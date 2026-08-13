@@ -23,6 +23,9 @@ jobs:
         with:
           node-version: 24
           cache: npm
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - run: npm ci
       - run: npm run build
       - name: Rebuild and verify public-domain example
