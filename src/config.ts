@@ -113,6 +113,7 @@ export async function initializeProject(options: {
     profile: options.profile,
     sources: [{ id: "primary", path: options.source, kind: "auto" }],
     scope: { startSegment: 1, maxSegment: null, allowInferredClaims: true },
+    processing: { concurrency: 4 },
     publication: { includeExcerpts: true, maxExcerptCharacters: 280 },
     provider,
     output: { data: "data", obsidian: "content", site: "site" },

@@ -34,7 +34,7 @@ A decision must classify every proposal. Categories receive definitions, inclusi
 
 ### Extraction
 
-Every segment is an independent structured generation request. The provider key is stable (`extract:<segment-id>`), enabling recorded responses. Extraction refuses a taxonomy whose current hash differs from the lock. One parsed response is persisted in `.plot-tools/raw/` and one line in `data/extractions.jsonl`.
+Every segment is an independent structured generation request. A bounded worker pool fans requests out up to `processing.concurrency`, waits for in-flight work on failure, and reconciles successful responses into source order. The provider key is stable (`extract:<segment-id>`), enabling recorded responses. Extraction refuses a taxonomy whose current hash differs from the lock. One parsed response is persisted in `.plot-tools/raw/` and one line in `data/extractions.jsonl`.
 
 ### Normalization
 

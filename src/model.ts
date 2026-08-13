@@ -23,6 +23,11 @@ export const ProjectConfigSchema = z.object({
     maxSegment: z.number().int().positive().nullable().default(null),
     allowInferredClaims: z.boolean().default(true),
   }),
+  processing: z
+    .object({
+      concurrency: z.number().int().min(1).max(32).default(4),
+    })
+    .default({ concurrency: 4 }),
   publication: z.object({
     includeExcerpts: z.boolean().default(true),
     maxExcerptCharacters: z.number().int().nonnegative().default(280),

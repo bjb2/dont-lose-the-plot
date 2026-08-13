@@ -16,7 +16,7 @@ import {
   TaxonomySchema,
   type SegmentExtraction,
 } from "./model.js"
-import { createProvider, loadPrompt, renderPrompt } from "./providers.js"
+import { createProvider, loadPrompt, renderPrompt, type StructuredProvider } from "./providers.js"
 import { completeRun, failRun, startRun } from "./runs.js"
 
 const TaxonomyLockSchema = z.object({
@@ -26,7 +26,10 @@ const TaxonomyLockSchema = z.object({
   taxonomy: TaxonomySchema,
 })
 
-export async function extractSegments(root: string): Promise<SegmentExtraction[]> {
+export async function extractSegments(
+  root: string,
+  options: { provider?: StructuredProvider } = {},
+): Promise<SegmentExtraction[]> {
   const config = await loadProjectConfig(root)
   const taxonomy = await loadTaxonomy(root)
   const lock = await readJson(join(root, "taxonomy.lock.json"), TaxonomyLockSchema)
@@ -42,7 +45,7 @@ export async function extractSegments(root: string): Promise<SegmentExtraction[]
   )
   if (segments.length === 0) throw new Error("No segments found; run plot-tools ingest first")
 
-  const provider = createProvider(config, root)
+  const provider = options.provider ?? createProvider(config, root)
   const prompt = await loadPrompt("segment-extraction")
   const promptVersion = (
     await readUtf8(join(import.meta.dirname, "..", "prompts", "segment-extraction", "VERSION"))
@@ -58,37 +61,61 @@ export async function extractSegments(root: string): Promise<SegmentExtraction[]
   })
 
   try {
-    const extractions: SegmentExtraction[] = []
+    const extractions = new Array<SegmentExtraction | undefined>(segments.length)
     const outputHashes: Record<string, string> = {}
-    for (const segment of segments) {
-      const extraction = await provider.generate({
-        key: `extract:${segment.id}`,
-        stage: "segment-extraction",
-        instructions: prompt.instructions,
-        prompt: renderPrompt(prompt.template, {
-          TAXONOMY: stableStringify(taxonomy),
-          SEGMENT_ID: segment.id,
-          ORDINAL: String(segment.ordinal),
-          TITLE: segment.title,
-          TEXT: segment.text,
-        }),
-        schema: SegmentExtractionSchema,
-      })
-      if (extraction.segmentId !== segment.id) {
-        throw new Error(
-          `Provider returned segmentId ${extraction.segmentId} while extracting ${segment.id}`,
-        )
+    let nextIndex = 0
+    let failure: unknown
+    let failed = false
+    const worker = async (): Promise<void> => {
+      while (!failed) {
+        const index = nextIndex
+        nextIndex += 1
+        const segment = segments[index]
+        if (!segment) return
+        try {
+          const extraction = await provider.generate({
+            key: `extract:${segment.id}`,
+            stage: "segment-extraction",
+            instructions: prompt.instructions,
+            prompt: renderPrompt(prompt.template, {
+              TAXONOMY: stableStringify(taxonomy),
+              SEGMENT_ID: segment.id,
+              ORDINAL: String(segment.ordinal),
+              TITLE: segment.title,
+              TEXT: segment.text,
+            }),
+            schema: SegmentExtractionSchema,
+          })
+          if (extraction.segmentId !== segment.id) {
+            throw new Error(
+              `Provider returned segmentId ${extraction.segmentId} while extracting ${segment.id}`,
+            )
+          }
+          extractions[index] = extraction
+          const rawPath = join(root, ".plot-tools", "raw", `${segment.id}.json`)
+          await writeJson(rawPath, extraction)
+          outputHashes[rawPath] = sha256(stableStringify(extraction))
+        } catch (error) {
+          if (!failed) failure = error
+          failed = true
+        }
       }
-      extractions.push(extraction)
-      const rawPath = join(root, ".plot-tools", "raw", `${segment.id}.json`)
-      await writeJson(rawPath, extraction)
-      outputHashes[rawPath] = sha256(stableStringify(extraction))
     }
+    await Promise.all(
+      Array.from({ length: Math.min(config.processing.concurrency, segments.length) }, () =>
+        worker(),
+      ),
+    )
+    if (failed) throw failure
+    const orderedExtractions = extractions.map((extraction, index) => {
+      if (!extraction) throw new Error(`Extraction worker omitted ${segments[index]?.id ?? index}`)
+      return extraction
+    })
     const extractionPath = join(root, config.output.data, "extractions.jsonl")
-    await writeJsonLines(extractionPath, extractions)
+    await writeJsonLines(extractionPath, orderedExtractions)
     outputHashes[extractionPath] = sha256(await readUtf8(extractionPath))
     await completeRun(root, run, outputHashes)
-    return extractions
+    return orderedExtractions
   } catch (error) {
     await failRun(root, run, error)
     throw error

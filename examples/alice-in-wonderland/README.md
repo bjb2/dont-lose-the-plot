@@ -1,6 +1,6 @@
 # Alice's Adventures in Wonderland example
 
-This is the primary real-world example for `dont-lose-the-plot`. It processes the first three narrative chapters of Lewis Carroll's _Alice's Adventures in Wonderland_ from the supplied EPUB, then produces a verified narrative graph, Obsidian vault, and Quartz-ready website.
+This is the primary real-world example for `dont-lose-the-plot`. It processes all twelve chapters of Lewis Carroll's _Alice's Adventures in Wonderland_ from the supplied EPUB, then produces a verified narrative graph, Obsidian vault, and Quartz-ready website.
 
 ## Source and rights
 
@@ -26,4 +26,4 @@ npx tsx ../../src/cli.ts render
 npx tsx ../../src/cli.ts verify
 ```
 
-`plot-tools.yml` uses `startSegment: 2` to skip Project Gutenberg front matter and `maxSegment: 3` to keep the recorded fixture compact. Remove the limit and use a live gateway provider to process all twelve chapters.
+`plot-tools.yml` uses `startSegment: 2` to skip Project Gutenberg front matter and `maxSegment: 12` to select every narrative chapter while excluding the trailing license section. Extraction fans out six chapters at a time and reconciles responses into source order.

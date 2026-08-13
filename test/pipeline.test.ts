@@ -3,6 +3,7 @@ import { cp, mkdtemp } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import { dirname, join } from "node:path"
 import { fileURLToPath } from "node:url"
+import { setTimeout as delay } from "node:timers/promises"
 import test from "node:test"
 import { parse as parseYaml, stringify as stringifyYaml } from "yaml"
 import { initializeProject } from "../src/config.js"
@@ -12,12 +13,37 @@ import { readUtf8, writeJsonLines, writeUtf8 } from "../src/files.js"
 import { ingestProject } from "../src/ingest.js"
 import { normalizeExtractions } from "../src/normalize.js"
 import { applyTaxonomyOnboarding } from "../src/onboarding.js"
+import {
+  RecordedProvider,
+  type GenerationRequest,
+  type StructuredProvider,
+} from "../src/providers.js"
 import { renderObsidian } from "../src/render.js"
 import { verifyProject } from "../src/verify.js"
 
 const repositoryRoot = join(dirname(fileURLToPath(import.meta.url)), "..")
 const exampleRoot = join(repositoryRoot, "test", "fixtures", "the-clockwork-harbor")
 const aliceExampleRoot = join(repositoryRoot, "examples", "alice-in-wonderland")
+
+class TrackingProvider implements StructuredProvider {
+  readonly name = "tracking-recorded"
+  readonly model = null
+  active = 0
+  maxActive = 0
+
+  constructor(private readonly inner: RecordedProvider) {}
+
+  async generate<T>(request: GenerationRequest<T>): Promise<T> {
+    this.active += 1
+    this.maxActive = Math.max(this.maxActive, this.active)
+    await delay(20)
+    try {
+      return await this.inner.generate(request)
+    } finally {
+      this.active -= 1
+    }
+  }
+}
 
 async function createProject(): Promise<string> {
   const parent = await mkdtemp(join(tmpdir(), "plot-tools-"))
@@ -49,9 +75,11 @@ async function createAliceProject(): Promise<string> {
   const configPath = join(root, "plot-tools.yml")
   const config = parseYaml(await readUtf8(configPath)) as {
     scope: { startSegment: number; maxSegment: number | null }
+    processing: { concurrency: number }
   }
   config.scope.startSegment = 2
-  config.scope.maxSegment = 3
+  config.scope.maxSegment = 12
+  config.processing.concurrency = 6
   await writeUtf8(configPath, stringifyYaml(config))
   return root
 }
@@ -97,6 +125,20 @@ test("recorded corpus builds a deterministic, verified graph", async () => {
   assert.equal(report.gates.find((gate) => gate.id === "evidence-exactness")?.status, "pass")
 })
 
+test("segment extraction fans out and reconciles in source order", async () => {
+  const root = await createProject()
+  await prepareThroughOnboarding(root)
+  const provider = new TrackingProvider(new RecordedProvider(join(root, "recordings.json")))
+
+  const extractions = await extractSegments(root, { provider })
+
+  assert.ok(provider.maxActive > 1)
+  assert.deepEqual(
+    extractions.map((extraction) => extraction.segmentId),
+    ["primary-0001-a63e726871", "primary-0002-7b1eb4be42", "primary-0003-865df2fca8"],
+  )
+})
+
 test("public-domain Alice EPUB builds with exact source evidence", async () => {
   const root = await createAliceProject()
   const ingestion = await ingestProject(root)
@@ -107,16 +149,16 @@ test("public-domain Alice EPUB builds with exact source evidence", async () => {
   await renderObsidian(root)
   const report = await verifyProject(root)
 
-  assert.deepEqual(
-    ingestion.segments.map((segment) => segment.title),
-    [
-      "CHAPTER I. Down the Rabbit-Hole",
-      "CHAPTER II. The Pool of Tears",
-      "CHAPTER III. A Caucus-Race and a Long Tale",
-    ],
-  )
-  assert.equal(graph.entities.length, 9)
-  assert.equal(graph.relationships.length, 4)
+  assert.equal(ingestion.segments.length, 12)
+  assert.equal(ingestion.segments[0]?.title, "CHAPTER I. Down the Rabbit-Hole")
+  assert.equal(ingestion.segments[11]?.title, "CHAPTER XII. Alice’s Evidence")
+  const entityIds = new Set(graph.entities.map((entity) => entity.id))
+  assert.ok(entityIds.has("character-alice"))
+  assert.ok(entityIds.has("character-white-rabbit"))
+  assert.ok(entityIds.has("character-queen-of-hearts"))
+  assert.ok(entityIds.has("character-mock-turtle"))
+  assert.equal(graph.relationships.length, 27)
+  assert.equal(graph.passages.length, 12)
   assert.equal(report.passed, true)
 })
 

@@ -89,7 +89,15 @@ categories:
 passageKinds:
   - quote
 relationVocabulary:
+  - accuses
+  - advises
   - asks-for-help
+  - attends
   - follows
+  - introduces
+  - meets
+  - orders
   - owns
+  - plays-with
   - proposes
+  - visits

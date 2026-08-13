@@ -1,0 +1,287 @@
+@use "./variables.scss" as *;
+
+// A restrained archival reading theme for source-grounded narrative graphs.
+:root:root {
+  --bodyFont: "Source Serif 4" !important;
+  --headerFont: "Schibsted Grotesk" !important;
+  --codeFont: "IBM Plex Mono" !important;
+  --light: #f6f1e6 !important;
+  --lightgray: #e6dcc8 !important;
+  --gray: #9a8d78 !important;
+  --darkgray: #4d463c !important;
+  --dark: #201d19 !important;
+  --plot-link: #8f2034;
+  --plot-link-hover: rgba(143, 32, 52, 0.09);
+  --plot-quote-bg: rgba(111, 43, 49, 0.05);
+  --plot-selection: #6f2b31;
+  --plot-selection-text: #fffaf0;
+  --plot-mark: #ead7a8;
+  --plot-mark-text: #322719;
+  --plot-graph-surface: rgba(111, 43, 49, 0.035);
+  --secondary: var(--plot-link) !important;
+  --tertiary: #9b6a3c !important;
+  --blockquote-border-color: var(--plot-link) !important;
+  --interactive-accent: var(--plot-link) !important;
+  --link-color: var(--plot-link) !important;
+  --link-color-hover: #b12b45 !important;
+  --link-external-color: var(--plot-link) !important;
+  --link-external-color-hover: #b12b45 !important;
+  --text-accent: var(--plot-link) !important;
+  --text-accent-hover: #b12b45 !important;
+}
+
+html:root:root[saved-theme="dark"] {
+  --light: #171411 !important;
+  --lightgray: #302923 !important;
+  --gray: #74685a !important;
+  --darkgray: #d5c7b1 !important;
+  --dark: #f1e8da !important;
+  --plot-link: #e2a1a8;
+  --plot-link-hover: rgba(226, 161, 168, 0.13);
+  --plot-quote-bg: rgba(226, 161, 168, 0.07);
+  --plot-selection: #e2a1a8;
+  --plot-selection-text: #171411;
+  --plot-mark: #8f6c32;
+  --plot-mark-text: #fff8e8;
+  --plot-graph-surface: rgba(226, 161, 168, 0.045);
+  --secondary: var(--plot-link) !important;
+  --tertiary: #d4a36e !important;
+  --link-color-hover: #f1bdc3 !important;
+  --link-external-color-hover: #f1bdc3 !important;
+  --text-accent-hover: #f1bdc3 !important;
+}
+
+html body ::selection {
+  background: var(--plot-selection);
+  color: var(--plot-selection-text);
+}
+
+html body .text-highlight {
+  background-color: var(--plot-mark);
+  color: var(--plot-mark-text);
+}
+
+// Quartz's theme package otherwise renders every wikilink as a yellow marker.
+html body .page article a.internal,
+html body .popover article a.internal {
+  background: transparent !important;
+  border-radius: 0;
+  color: var(--plot-link) !important;
+  font-weight: 550;
+  padding: 0 !important;
+  text-decoration: underline !important;
+  text-decoration-color: color-mix(in srgb, var(--plot-link) 42%, transparent) !important;
+  text-decoration-thickness: 0.07em !important;
+  text-underline-offset: 0.17em;
+}
+
+html body .page article a.internal:hover,
+html body .popover article a.internal:hover {
+  background: var(--plot-link-hover) !important;
+  border-radius: 0.16rem;
+  text-decoration-color: var(--plot-link) !important;
+}
+
+html body .page article a.internal:focus-visible,
+html body .popover article a.internal:focus-visible {
+  border-radius: 0.16rem;
+  outline: 2px solid var(--plot-link);
+  outline-offset: 2px;
+}
+
+html body a.tag-link {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0;
+  color: var(--plot-link) !important;
+  font-weight: 550;
+  padding: 0 !important;
+  text-decoration: underline !important;
+  text-decoration-color: color-mix(in srgb, var(--plot-link) 42%, transparent) !important;
+  text-underline-offset: 0.16em;
+}
+
+html body a.tag-link:hover {
+  background: var(--plot-link-hover) !important;
+  text-decoration-color: var(--plot-link) !important;
+}
+
+html body .note-properties-tags {
+  column-gap: 0.55rem;
+}
+
+html body .note-properties-separator {
+  display: none;
+}
+
+html body .breadcrumb-container .breadcrumb-element > a {
+  color: var(--plot-link) !important;
+  font-weight: 600;
+}
+
+html body .page article blockquote,
+html body .popover article blockquote {
+  background: var(--plot-quote-bg) !important;
+  border: 0 !important;
+  border-inline-start: 3px solid var(--plot-link) !important;
+  border-radius: 0 0.4rem 0.4rem 0;
+  color: var(--darkgray);
+  line-height: 1.7;
+  margin: 1.5rem 0 !important;
+  padding: 1rem 1.25rem 1.05rem 1.35rem !important;
+}
+
+html body .page article blockquote > :first-child,
+html body .popover article blockquote > :first-child {
+  margin-top: 0;
+}
+
+html body .page article blockquote > :last-child,
+html body .popover article blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+.graph > h3 {
+  font-family: var(--headerFont);
+  font-size: 0.84rem;
+  letter-spacing: 0.065em;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.graph > h3::after {
+  color: var(--gray);
+  content: "Hover to identify · drag to explore";
+  display: block;
+  font-family: var(--bodyFont);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin-top: 0.28rem;
+  text-transform: none;
+}
+
+.graph > .graph-outer {
+  background:
+    radial-gradient(circle at 50% 44%, var(--plot-graph-surface), transparent 68%), var(--light);
+  border: 1px solid color-mix(in srgb, var(--plot-link) 25%, var(--lightgray));
+  border-radius: 0.7rem;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--light) 78%, transparent);
+  height: 340px;
+  margin-top: 0.8rem;
+}
+
+.graph > .graph-outer > .global-graph-icon {
+  align-items: center;
+  backdrop-filter: blur(8px);
+  background: color-mix(in srgb, var(--light) 94%, transparent);
+  border: 1px solid color-mix(in srgb, var(--plot-link) 62%, var(--lightgray));
+  border-radius: 0.5rem;
+  color: var(--plot-link);
+  display: flex;
+  gap: 0.35rem;
+  height: 36px;
+  justify-content: center;
+  margin: 0.65rem;
+  min-width: 36px;
+  mask-image: none;
+  -webkit-mask-image: none;
+  opacity: 1;
+  padding: 0.44rem 0.55rem;
+  transition:
+    background-color 140ms ease,
+    border-color 140ms ease,
+    transform 140ms ease;
+  width: auto;
+  z-index: 2;
+}
+
+.graph > .graph-outer > .global-graph-icon svg {
+  display: block;
+  height: 16px;
+  width: 16px;
+}
+
+.graph > .graph-outer > .global-graph-icon::after {
+  content: "Expand";
+  font-family: var(--headerFont);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.graph > .graph-outer > .global-graph-icon:hover {
+  background: var(--plot-link-hover);
+  border-color: var(--plot-link);
+  transform: translateY(-1px);
+}
+
+.graph-container {
+  cursor: grab;
+}
+
+.graph-container:active {
+  cursor: grabbing;
+}
+
+.graph > .global-graph-outer {
+  backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--dark) 28%, transparent);
+}
+
+.graph > .global-graph-outer.active::before,
+.graph > .global-graph-outer.active::after {
+  color: var(--darkgray);
+  font-family: var(--headerFont);
+  pointer-events: none;
+  position: fixed;
+  top: calc(6vh + 1.15rem);
+  z-index: 10000;
+}
+
+.graph > .global-graph-outer.active::before {
+  content: "Knowledge map\A Hover to trace links · drag to move · scroll to zoom";
+  font-size: 0.78rem;
+  font-weight: 600;
+  left: max(5vw, calc((100vw - 1400px) / 2 + 1.25rem));
+  line-height: 1.45;
+  white-space: pre;
+}
+
+.graph > .global-graph-outer.active::after {
+  content: "Esc to close";
+  font-size: 0.72rem;
+  font-weight: 500;
+  right: max(5vw, calc((100vw - 1400px) / 2 + 1.25rem));
+}
+
+.graph > .global-graph-outer > .global-graph-container {
+  background:
+    radial-gradient(circle at center, var(--plot-graph-surface), transparent 62%), var(--light);
+  border: 1px solid color-mix(in srgb, var(--plot-link) 30%, var(--lightgray));
+  border-radius: 1rem;
+  box-shadow: 0 1.5rem 5rem rgba(0, 0, 0, 0.32);
+  height: 88vh;
+  width: min(92vw, 1400px);
+}
+
+@media all and (max-width: 800px) {
+  .graph > .graph-outer {
+    height: 300px;
+  }
+
+  .graph > .global-graph-outer > .global-graph-container {
+    height: 92vh;
+    width: 94vw;
+  }
+
+  .graph > .global-graph-outer.active::before {
+    content: "Knowledge map\A Drag to move · pinch to zoom";
+    left: 5vw;
+  }
+
+  .graph > .global-graph-outer.active::after {
+    content: "Tap outside to close";
+    right: 5vw;
+  }
+}

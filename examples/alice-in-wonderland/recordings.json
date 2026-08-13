@@ -13,7 +13,20 @@
       },
       "proposals": [],
       "proposedPassageKinds": [],
-      "proposedRelations": ["follows", "asks-for-help", "owns", "proposes"]
+      "proposedRelations": [
+        "accuses",
+        "advises",
+        "asks-for-help",
+        "attends",
+        "follows",
+        "introduces",
+        "meets",
+        "orders",
+        "owns",
+        "plays-with",
+        "proposes",
+        "visits"
+      ]
     },
     "extract:primary-0001-87acee8cf1": {
       "segmentId": "primary-0001-87acee8cf1",
@@ -317,6 +330,1187 @@
           "certainty": "explicit"
         }
       ],
+      "openQuestions": []
+    },
+    "extract:primary-0004-5815783509": {
+      "segmentId": "primary-0004-5815783509",
+      "summary": "White Rabbit mistakes Alice for his housemaid and sends her into his house for gloves and a fan. After drinking from an unlabeled bottle, Alice grows until she fills the room; she later escapes by eating cakes transformed from pebbles. In the wood she plays perilously with an enormous puppy, then encounters a blue Caterpillar atop a mushroom.",
+      "entities": [
+        {
+          "name": "Alice",
+          "aliases": [],
+          "category": "character",
+          "salience": "primary",
+          "certainty": "explicit",
+          "summary": "Alice is ordered into White Rabbit’s house, grows too large for its room, shrinks by eating a cake, escapes into the wood, and seeks a way back to her proper size.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "Alice begins shrinking after swallowing one of the cakes.",
+              "certainty": "explicit",
+              "excerpt": "So she swallowed one of the cakes, and was delighted to find that she began\nshrinking directly."
+            }
+          ],
+          "excerpt": "poor Alice"
+        },
+        {
+          "name": "White Rabbit",
+          "aliases": ["Rabbit", "W. RABBIT"],
+          "category": "character",
+          "salience": "primary",
+          "certainty": "explicit",
+          "summary": "White Rabbit anxiously searches for his missing gloves and fan, mistakes Alice for Mary Ann, and directs efforts to remove her from his house.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "White Rabbit orders Alice to fetch gloves and a fan.",
+              "certainty": "explicit",
+              "excerpt": "Run home this moment, and fetch me a pair of gloves and a fan! Quick, now!"
+            }
+          ],
+          "excerpt": "the White Rabbit"
+        },
+        {
+          "name": "Bill",
+          "aliases": ["the poor little Lizard"],
+          "category": "character",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "summary": "Bill is the little lizard selected to enter the house through the chimney and is kicked back out by Alice.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "Bill is sent down the chimney.",
+              "certainty": "explicit",
+              "excerpt": "the master says you’re to go down the\nchimney!"
+            }
+          ],
+          "excerpt": "The poor little Lizard, Bill"
+        },
+        {
+          "name": "Puppy",
+          "aliases": ["puppy", "enormous puppy"],
+          "category": "character",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "summary": "The enormous puppy excitedly chases a stick held by tiny Alice, making their play dangerous for her.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "Puppy rushes at the stick Alice holds out.",
+              "certainty": "explicit",
+              "excerpt": "rushed at the stick, and made believe to\nworry it"
+            }
+          ],
+          "excerpt": "An enormous puppy"
+        },
+        {
+          "name": "Caterpillar",
+          "aliases": ["large blue caterpillar"],
+          "category": "character",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "summary": "Caterpillar sits atop a mushroom smoking a hookah when Alice discovers him at the chapter’s end.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "Caterpillar sits on the mushroom and smokes a hookah.",
+              "certainty": "explicit",
+              "excerpt": "sitting on the top with its arms folded, quietly smoking a long hookah"
+            }
+          ],
+          "excerpt": "a large blue caterpillar"
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "White Rabbit",
+          "predicate": "orders",
+          "object": "Alice",
+          "certainty": "explicit",
+          "excerpt": "“Why, Mary Ann, what are you doing out here?\nRun home this moment, and fetch me a pair of gloves and a fan! Quick, now!”"
+        },
+        {
+          "subject": "Alice",
+          "predicate": "plays-with",
+          "object": "Puppy",
+          "certainty": "inferred",
+          "excerpt": "she picked up a little bit of stick, and held it\nout to the puppy; whereupon the puppy jumped into the air off all its feet at\nonce, with a yelp of delight, and rushed at the stick"
+        },
+        {
+          "subject": "Alice",
+          "predicate": "meets",
+          "object": "Caterpillar",
+          "certainty": "explicit",
+          "excerpt": "her eyes immediately met those of a large blue caterpillar"
+        }
+      ],
+      "passages": [
+        {
+          "title": "Alice imagines writing her own story",
+          "text": "There ought to be a book\nwritten about me, that there ought!",
+          "context": "While trapped at an enormous size in White Rabbit’s room, Alice reflects on the fairy-tale strangeness of her experiences.",
+          "speaker": "Alice",
+          "kind": "quote",
+          "certainty": "explicit",
+          "complete": true,
+          "entities": ["Alice"],
+          "significance": "The line foregrounds Alice’s awareness that her adventures are story-worthy."
+        }
+      ],
+      "plotBeats": [
+        "White Rabbit mistakes Alice for Mary Ann and orders her to retrieve gloves and a fan from his house.",
+        "Alice drinks from an unlabeled bottle and grows until she fills the room.",
+        "White Rabbit’s group sends Bill down the chimney, and Alice kicks him out.",
+        "Pebbles thrown through the window become cakes; Alice eats one, shrinks, and escapes.",
+        "Alice distracts an enormous puppy with a stick before fleeing deeper into the wood.",
+        "Alice finds a large blue Caterpillar sitting on a mushroom and smoking a hookah."
+      ],
+      "themes": [
+        "Unstable size and identity",
+        "Mistaken identity",
+        "Authority and obedience",
+        "Improvisation and escape"
+      ],
+      "openQuestions": ["What will happen when Alice engages with the Caterpillar?"]
+    },
+    "extract:primary-0005-121416e6bb": {
+      "entities": [
+        {
+          "aliases": [],
+          "attributes": {},
+          "category": "character",
+          "certainty": "explicit",
+          "claims": [
+            {
+              "certainty": "explicit",
+              "excerpt": "until she had succeeded in bringing herself down to her\nusual height.",
+              "text": "Alice succeeds in returning to her usual height."
+            }
+          ],
+          "excerpt": "“I—I’m a little girl,” said Alice",
+          "name": "Alice",
+          "salience": "primary",
+          "summary": "Alice struggles with her changing identity and size, tests pieces of mushroom, and eventually restores her usual height."
+        },
+        {
+          "aliases": [],
+          "attributes": {},
+          "category": "character",
+          "certainty": "explicit",
+          "claims": [
+            {
+              "certainty": "explicit",
+              "excerpt": "“One side will make you grow taller, and\nthe other side will make you grow shorter.”",
+              "text": "The Caterpillar explains that opposite sides of the mushroom produce opposite changes in height."
+            }
+          ],
+          "excerpt": "“Who are you?” said the Caterpillar.",
+          "name": "Caterpillar",
+          "salience": "primary",
+          "summary": "A terse, hookah-smoking Caterpillar questions Alice, tests her memory, and gives her advice about temper and changing size."
+        },
+        {
+          "aliases": [],
+          "attributes": {},
+          "category": "item",
+          "certainty": "explicit",
+          "claims": [
+            {
+              "certainty": "explicit",
+              "excerpt": "“One side will make you grow taller, and\nthe other side will make you grow shorter.”",
+              "text": "The Mushroom has sides that can make someone grow taller or shorter."
+            }
+          ],
+          "excerpt": "“Of the mushroom,” said the Caterpillar",
+          "name": "Mushroom",
+          "salience": "supporting",
+          "summary": "The Mushroom supplies the pieces Alice nibbles to control her height."
+        },
+        {
+          "aliases": [],
+          "attributes": {},
+          "category": "character",
+          "certainty": "explicit",
+          "claims": [
+            {
+              "certainty": "explicit",
+              "excerpt": "“As if it wasn’t trouble enough hatching the eggs,” said the Pigeon",
+              "text": "The Pigeon is hatching eggs."
+            }
+          ],
+          "excerpt": "“Serpent!” screamed the Pigeon.",
+          "name": "Pigeon",
+          "salience": "primary",
+          "summary": "A nesting Pigeon attacks the long-necked Alice, insists she is a serpent, and drives her away."
+        }
+      ],
+      "openQuestions": [
+        "Who lives in the little house Alice approaches at the end of the chapter?"
+      ],
+      "passages": [
+        {
+          "certainty": "explicit",
+          "complete": true,
+          "context": "Alice responds when the Caterpillar asks who she is.",
+          "entities": ["Alice", "Caterpillar"],
+          "kind": "quote",
+          "significance": "The quotation captures Alice’s uncertainty about her identity after repeated physical transformations.",
+          "speaker": "Alice",
+          "text": "“I—I hardly know, sir, just at present—at least I know who I was\nwhen I got up this morning, but I think I must have been changed several times\nsince then.”",
+          "title": "Alice’s uncertainty about who she is"
+        }
+      ],
+      "plotBeats": [
+        "Alice and the Caterpillar debate her identity, memory, and repeated changes in size.",
+        "The Caterpillar advises Alice to keep her temper and explains how the Mushroom changes height.",
+        "Alice experiments with both pieces of the Mushroom, first shrinking and then growing an extremely long neck.",
+        "The Pigeon attacks Alice, mistakes her for a serpent, and orders her away from its nest.",
+        "Alice uses the Mushroom to regain her usual height, then shrinks to nine inches before approaching a little house."
+      ],
+      "relationships": [
+        {
+          "certainty": "explicit",
+          "excerpt": "“Keep your temper,” said the Caterpillar.",
+          "object": "Alice",
+          "predicate": "advises",
+          "subject": "Caterpillar"
+        },
+        {
+          "certainty": "explicit",
+          "excerpt": "“Well, be off, then!” said the Pigeon",
+          "object": "Alice",
+          "predicate": "orders",
+          "subject": "Pigeon"
+        }
+      ],
+      "segmentId": "primary-0005-121416e6bb",
+      "summary": "Alice’s encounter with the Caterpillar centers on unstable identity, faulty memory, and size-changing advice. After learning that the Mushroom can alter her height, she experiments until her neck rises above the trees, prompting a Pigeon to attack her as a supposed serpent. Alice finally regains her usual height and then makes herself small enough to approach a nearby house.",
+      "themes": [
+        "identity and transformation",
+        "confusing advice",
+        "self-control",
+        "appearance and mistaken identity"
+      ]
+    },
+    "extract:primary-0006-6c47a0f8e4": {
+      "segmentId": "primary-0006-6c47a0f8e4",
+      "summary": "Alice enters the Duchess’s chaotic, pepper-filled kitchen, takes charge of a baby that turns into a pig, and then asks the Cheshire Cat where to go. The Cat directs her toward the Hatter or the March Hare, and Alice proceeds toward the March Hare’s house.",
+      "entities": [
+        {
+          "name": "Alice",
+          "aliases": [],
+          "category": "character",
+          "salience": "primary",
+          "certainty": "explicit",
+          "summary": "Alice enters the house, tries to protect the baby, and later seeks directions from the Cheshire Cat.",
+          "excerpt": "“Would you tell me, please,\nwhich way I ought to go from here?”",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "Alice asks which way she should go.",
+              "certainty": "explicit",
+              "excerpt": "“Would you tell me, please,\nwhich way I ought to go from here?”"
+            }
+          ]
+        },
+        {
+          "name": "Duchess",
+          "aliases": ["the Duchess"],
+          "category": "character",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "summary": "The Duchess nurses the baby amid the kitchen chaos and leaves to prepare for croquet.",
+          "excerpt": "the Duchess was sitting on a three-legged stool in the middle,\nnursing a baby;",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The Duchess intends to prepare to play croquet with the Queen.",
+              "certainty": "explicit",
+              "excerpt": "“I must go and get ready to play croquet\nwith the Queen,”"
+            }
+          ]
+        },
+        {
+          "name": "Cheshire Cat",
+          "aliases": ["the Cheshire Cat", "Cat", "Cheshire Puss"],
+          "category": "character",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "summary": "The grinning Cheshire Cat discusses madness with Alice and gives her directions toward the Hatter and March Hare.",
+          "excerpt": "the Cheshire Cat\nsitting on a bough of a tree a few yards off.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The Cheshire Cat says that everyone there, including itself and Alice, is mad.",
+              "certainty": "explicit",
+              "excerpt": "“we’re all mad here. I’m mad. You’re\nmad.”"
+            }
+          ]
+        },
+        {
+          "name": "Baby",
+          "aliases": ["baby", "child", "Pig", "pig", "little creature"],
+          "category": "character",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "summary": "The Duchess’s baby is carried away by Alice and becomes a pig.",
+          "excerpt": "it was neither more nor less than a pig",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The baby becomes a pig.",
+              "certainty": "explicit",
+              "excerpt": "it was neither more nor less than a pig"
+            }
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "Alice",
+          "predicate": "asks-for-help",
+          "object": "Cheshire Cat",
+          "certainty": "explicit",
+          "excerpt": "“Would you tell me, please,\nwhich way I ought to go from here?”"
+        },
+        {
+          "subject": "Cheshire Cat",
+          "predicate": "advises",
+          "object": "Alice",
+          "certainty": "explicit",
+          "excerpt": "Visit either you like: they’re both mad."
+        }
+      ],
+      "passages": [
+        {
+          "title": "The Cheshire Cat on madness",
+          "kind": "quote",
+          "speaker": "Cheshire Cat",
+          "text": "“Oh, you can’t help that,” said the Cat: “we’re all mad here. I’m mad. You’re\nmad.”",
+          "context": "Alice objects that she does not want to go among mad people, and the Cheshire Cat replies.",
+          "significance": "The exchange captures the Cat’s paradoxical logic and the pervasive irrationality Alice encounters.",
+          "entities": ["Alice", "Cheshire Cat"],
+          "certainty": "explicit",
+          "complete": true
+        }
+      ],
+      "plotBeats": [
+        "Alice enters the Duchess’s noisy kitchen and finds the Duchess nursing a baby while the cook throws kitchenware.",
+        "The Duchess leaves the baby with Alice and goes to prepare for croquet.",
+        "Alice carries the baby outside, where it becomes a pig and trots into the wood.",
+        "Alice asks the Cheshire Cat for directions and learns that the Hatter and March Hare are both mad.",
+        "Alice walks toward the March Hare’s house."
+      ],
+      "themes": [
+        "madness and irrationality",
+        "transformation",
+        "miscommunication",
+        "chaotic domestic life"
+      ],
+      "openQuestions": []
+    },
+    "extract:primary-0007-eca4f3b3a3": {
+      "segmentId": "primary-0007-eca4f3b3a3",
+      "summary": "Alice joins the March Hare, Hatter, and Dormouse at a disorderly tea table. Their riddles, arguments about meaning and Time, and the Dormouse’s interrupted story increasingly frustrate her, so she leaves, reenters the long hall, and finally reaches the beautiful garden.",
+      "entities": [
+        {
+          "name": "Alice",
+          "aliases": [],
+          "category": "character",
+          "salience": "primary",
+          "certainty": "explicit",
+          "summary": "A curious visitor who joins the tea table, questions its occupants, and eventually leaves in disgust.",
+          "excerpt": "“There’s plenty of room!” said Alice indignantly, and she sat down in a\nlarge arm-chair at one end of the table.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "Alice gets up and walks away after the Hatter’s rudeness becomes unbearable.",
+              "certainty": "explicit",
+              "excerpt": "This piece of rudeness was more than Alice could bear: she got up in great\ndisgust, and walked off;"
+            }
+          ]
+        },
+        {
+          "name": "March Hare",
+          "aliases": [],
+          "category": "character",
+          "salience": "primary",
+          "certainty": "explicit",
+          "summary": "One of the tea-party participants, given to provocative offers, wordplay, and commands.",
+          "excerpt": "“Have some wine,” the March Hare said in an encouraging tone.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The March Hare commands the Dormouse to tell a story.",
+              "certainty": "explicit",
+              "excerpt": "“Tell us a story!” said the March Hare."
+            }
+          ]
+        },
+        {
+          "name": "Hatter",
+          "aliases": [],
+          "category": "character",
+          "salience": "primary",
+          "certainty": "explicit",
+          "summary": "A tea-party participant who poses an unanswered riddle, discusses his quarrel with Time, and directs the others around the table.",
+          "excerpt": "The Hatter opened his eyes very wide on hearing this; but all he said\nwas, “Why is a raven like a writing-desk?”",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The Hatter says it is always tea-time and there is no time to wash the tea things.",
+              "certainty": "explicit",
+              "excerpt": "“it’s always tea-time, and we’ve\nno time to wash the things between whiles.”"
+            }
+          ]
+        },
+        {
+          "name": "Dormouse",
+          "aliases": [],
+          "category": "character",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "summary": "A sleepy tea-party participant used as a cushion and repeatedly awakened to tell a story.",
+          "excerpt": "The Dormouse slowly opened his eyes. “I wasn’t asleep,” he said in a hoarse,\nfeeble voice: “I heard every word you fellows were saying.”",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The Dormouse begins a story about three little sisters.",
+              "certainty": "explicit",
+              "excerpt": "“Once upon a time there were three little sisters,” the Dormouse began in a\ngreat hurry;"
+            }
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "March Hare",
+          "predicate": "orders",
+          "object": "Dormouse",
+          "certainty": "explicit",
+          "excerpt": "“Tell us a story!” said the March Hare."
+        },
+        {
+          "subject": "Hatter",
+          "predicate": "orders",
+          "object": "Dormouse",
+          "certainty": "explicit",
+          "excerpt": "“And be quick about it,” added the Hatter, “or you’ll be asleep again before\nit’s done.”"
+        },
+        {
+          "subject": "Dormouse",
+          "predicate": "follows",
+          "object": "Hatter",
+          "certainty": "explicit",
+          "excerpt": "He moved on as he spoke, and the Dormouse followed him:"
+        }
+      ],
+      "passages": [
+        {
+          "title": "The Hatter personifies Time",
+          "text": "“If you knew Time as well as I do,” said the Hatter, “you wouldn’t talk about\nwasting it. It’s him.”",
+          "speaker": "Hatter",
+          "kind": "quote",
+          "context": "The Hatter responds after Alice criticizes riddles that waste time.",
+          "significance": "The remark turns Time into a person and introduces the logic behind the perpetual tea-time.",
+          "entities": ["Hatter", "Alice"],
+          "certainty": "explicit",
+          "complete": true
+        }
+      ],
+      "plotBeats": [
+        "Alice sits at the crowded tea table despite cries that there is no room.",
+        "The Hatter poses a raven-and-writing-desk riddle but admits he does not know the answer.",
+        "The Hatter explains that his quarrel with Time has left the party at six o’clock and perpetual tea-time.",
+        "The Dormouse tells an interrupted story; after further rudeness, Alice leaves and eventually reaches the beautiful garden."
+      ],
+      "themes": ["nonsense and wordplay", "social rudeness", "time and stasis"],
+      "openQuestions": []
+    },
+    "extract:primary-0008-a0de9947ea": {
+      "segmentId": "primary-0008-a0de9947ea",
+      "summary": "Alice enters the Queen of Hearts’ garden, protects three gardeners from execution, joins a chaotic croquet game, and consults the Cheshire Cat. The Queen repeatedly issues death sentences, while a dispute over whether the bodiless Cat can be beheaded ends when Alice points the party toward the Duchess and the Cat disappears.",
+      "entities": [
+        {
+          "name": "Alice",
+          "aliases": [],
+          "category": "character",
+          "salience": "primary",
+          "certainty": "explicit",
+          "summary": "Alice watches the gardeners, resists the Queen’s threats, joins the croquet game, and speaks with the Cheshire Cat.",
+          "excerpt": "“My name is Alice, so please your Majesty,”",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "Alice hides the condemned gardeners in a flower-pot to protect them.",
+              "certainty": "explicit",
+              "excerpt": "“You shan’t be beheaded!” said Alice, and she put them into a large flower-pot\nthat stood near."
+            }
+          ]
+        },
+        {
+          "name": "Queen of Hearts",
+          "aliases": ["Queen", "THE QUEEN OF HEARTS"],
+          "category": "character",
+          "salience": "primary",
+          "certainty": "explicit",
+          "summary": "The Queen leads the procession and croquet game while repeatedly ordering executions.",
+          "excerpt": "THE KING AND QUEEN OF HEARTS.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The Queen repeatedly calls for players to be beheaded during the game.",
+              "certainty": "explicit",
+              "excerpt": "shouting “Off with his\nhead!” or “Off with her head!” about once in a minute."
+            }
+          ]
+        },
+        {
+          "name": "Cheshire Cat",
+          "aliases": ["Cat"],
+          "category": "character",
+          "salience": "primary",
+          "certainty": "explicit",
+          "summary": "The Cheshire Cat appears as a floating head, listens to Alice, and becomes the subject of a beheading dispute.",
+          "excerpt": "It’s the Cheshire Cat: now I\nshall have somebody to talk to.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The Cheshire Cat’s head fades away completely.",
+              "certainty": "explicit",
+              "excerpt": "The Cat’s head began fading away the moment he was gone, and, by the time he\nhad come back with the Duchess, it had entirely disappeared;"
+            }
+          ]
+        },
+        {
+          "name": "King of Hearts",
+          "aliases": ["King", "THE KING"],
+          "category": "character",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "summary": "The King questions Alice about the Cat and argues that anything with a head can be beheaded.",
+          "excerpt": "THE KING AND QUEEN OF HEARTS.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The King argues that anything with a head can be beheaded.",
+              "certainty": "explicit",
+              "excerpt": "The King’s argument was, that anything that had a head could be beheaded,"
+            }
+          ]
+        },
+        {
+          "name": "Knave of Hearts",
+          "aliases": ["Knave"],
+          "category": "character",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "summary": "The Knave carries the King’s crown and obeys the Queen’s command to turn over the gardeners.",
+          "excerpt": "Then followed the Knave of Hearts, carrying the\nKing’s crown on a crimson velvet cushion;",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The Knave turns over the gardeners at the Queen’s command.",
+              "certainty": "explicit",
+              "excerpt": "The Knave did so, very carefully, with one foot."
+            }
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "Alice",
+          "predicate": "introduces",
+          "object": "Cheshire Cat",
+          "certainty": "explicit",
+          "excerpt": "“It’s a friend of mine—a Cheshire Cat,” said Alice: “allow me to introduce it.”"
+        },
+        {
+          "subject": "Queen of Hearts",
+          "predicate": "orders",
+          "object": "Knave of Hearts",
+          "certainty": "explicit",
+          "excerpt": "The Queen turned angrily away from him, and said to the Knave “Turn them over!”"
+        }
+      ],
+      "passages": [
+        {
+          "title": "Alice defies the Queen",
+          "kind": "quote",
+          "speaker": "Alice",
+          "text": "“How should I know?” said Alice, surprised at her own courage. “It’s no\nbusiness of mine.”",
+          "context": "The Queen asks Alice to identify the three gardeners lying around the rose-tree.",
+          "significance": "Alice openly refuses responsibility for answering the Queen, marking a moment of growing courage.",
+          "entities": ["Alice", "Queen of Hearts"],
+          "certainty": "explicit",
+          "complete": true
+        }
+      ],
+      "plotBeats": [
+        "Alice discovers three gardeners painting white roses red to conceal their mistake from the Queen.",
+        "The royal procession arrives, and Alice refuses to submit when the Queen threatens her.",
+        "Alice saves the gardeners by hiding them in a flower-pot.",
+        "Alice joins the Queen’s disorderly croquet game, played with live flamingoes, hedgehogs, and soldiers.",
+        "The Cheshire Cat appears; a dispute over beheading it ends after Alice refers the party to the Duchess and the Cat vanishes."
+      ],
+      "themes": [
+        "Arbitrary authority",
+        "Defiance and courage",
+        "Absurd rules",
+        "Threats of punishment"
+      ],
+      "openQuestions": []
+    },
+    "extract:primary-0009-bc8469d98d": {
+      "segmentId": "primary-0009-bc8469d98d",
+      "summary": "Alice reunites with the now-affectionate Duchess, whose stream of morals ends when the Queen of Hearts threatens her away. The Queen orders the Gryphon to take Alice to the Mock Turtle, who begins a sorrowful, pun-filled account of his education under the sea.",
+      "entities": [
+        {
+          "name": "Alice",
+          "aliases": [],
+          "category": "character",
+          "salience": "primary",
+          "summary": "Alice endures the Duchess’s morals, returns briefly to the croquet game, and then follows the Gryphon to hear the Mock Turtle’s history.",
+          "excerpt": "Alice was very glad to find her in such a pleasant temper",
+          "certainty": "explicit",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "Alice goes after the Gryphon when it tells her to come on.",
+              "excerpt": "as she went slowly after it",
+              "certainty": "explicit"
+            }
+          ]
+        },
+        {
+          "name": "Duchess",
+          "aliases": [],
+          "category": "character",
+          "salience": "supporting",
+          "summary": "The Duchess walks affectionately with Alice and insists on finding morals in everything before fleeing the Queen’s threat.",
+          "excerpt": "“Everything’s got a moral, if only you can\nfind it.”",
+          "certainty": "explicit",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The Duchess says that everything has a discoverable moral.",
+              "excerpt": "“Everything’s got a moral, if only you can\nfind it.”",
+              "certainty": "explicit"
+            }
+          ]
+        },
+        {
+          "name": "Queen of Hearts",
+          "aliases": ["Queen"],
+          "category": "character",
+          "salience": "supporting",
+          "summary": "The Queen of Hearts threatens the Duchess, resumes the croquet game, and directs the Gryphon to escort Alice to the Mock Turtle.",
+          "excerpt": "there stood the Queen in front of them,\nwith her arms folded, frowning like a thunderstorm.",
+          "certainty": "explicit",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The Queen orders the Gryphon to take Alice to the Mock Turtle and let her hear his history.",
+              "excerpt": "“Up, lazy thing!” said the Queen,\n“and take this young lady to see the Mock Turtle, and to hear his history.",
+              "certainty": "explicit"
+            }
+          ]
+        },
+        {
+          "name": "Gryphon",
+          "aliases": [],
+          "category": "character",
+          "salience": "primary",
+          "summary": "The Gryphon escorts Alice, dismisses the Queen’s executions as fantasy, and prompts the Mock Turtle to continue his story.",
+          "excerpt": "The Gryphon sat up and rubbed its eyes",
+          "certainty": "explicit",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The Gryphon says that the Queen’s executions never actually happen.",
+              "excerpt": "“It’s all her fancy, that: they never\nexecutes nobody, you know.",
+              "certainty": "explicit"
+            }
+          ]
+        },
+        {
+          "name": "Mock Turtle",
+          "aliases": [],
+          "category": "character",
+          "salience": "primary",
+          "summary": "The sorrowful Mock Turtle tells Alice and the Gryphon about his former life and his pun-filled schooling in the sea.",
+          "excerpt": "“I’ll tell it her,” said the Mock Turtle in a deep, hollow tone",
+          "certainty": "explicit",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The Mock Turtle says he was once a real Turtle.",
+              "excerpt": "“Once,” said the Mock Turtle at last, with a deep sigh, “I was a real Turtle.”",
+              "certainty": "explicit"
+            }
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "Queen of Hearts",
+          "predicate": "orders",
+          "object": "Gryphon",
+          "certainty": "explicit",
+          "excerpt": "“Up, lazy thing!” said the Queen,\n“and take this young lady to see the Mock Turtle, and to hear his history."
+        },
+        {
+          "subject": "Alice",
+          "predicate": "follows",
+          "object": "Gryphon",
+          "certainty": "explicit",
+          "excerpt": "as she went slowly after it"
+        },
+        {
+          "subject": "Alice",
+          "predicate": "visits",
+          "object": "Mock Turtle",
+          "certainty": "explicit",
+          "excerpt": "So they went up to the Mock Turtle"
+        }
+      ],
+      "passages": [
+        {
+          "title": "The Mock Turtle’s curriculum",
+          "text": "“Reeling and Writhing, of course, to begin with,” the Mock Turtle replied; “and\nthen the different branches of Arithmetic—Ambition, Distraction, Uglification,\nand Derision.”",
+          "context": "The Mock Turtle answers Alice’s question about the regular course at his school in the sea.",
+          "speaker": "Mock Turtle",
+          "entities": ["Alice", "Mock Turtle"],
+          "kind": "quote",
+          "significance": "The distorted school subjects exemplify the Mock Turtle’s comic, pun-driven account of education.",
+          "certainty": "explicit",
+          "complete": true
+        }
+      ],
+      "plotBeats": [
+        "The Duchess greets Alice affectionately and repeatedly attaches morals to their conversation.",
+        "The Queen of Hearts threatens the Duchess, who immediately leaves.",
+        "After more croquet and threatened executions, the Queen orders the Gryphon to take Alice to the Mock Turtle.",
+        "The Mock Turtle begins recounting his life as a real Turtle and his education in the sea."
+      ],
+      "themes": [
+        "Morals imposed on ordinary remarks",
+        "Arbitrary authority and threats",
+        "Wordplay and parody of education",
+        "Appearance of sorrow versus claimed reality"
+      ],
+      "openQuestions": ["What games will the Mock Turtle describe next?"]
+    },
+    "extract:primary-0010-51fae369c5": {
+      "segmentId": "primary-0010-51fae369c5",
+      "summary": "The Mock Turtle and Gryphon explain and demonstrate the Lobster Quadrille for Alice. After Alice recounts her adventures and struggles through altered recitations, she requests the Mock Turtle’s song; a distant announcement that the trial is beginning prompts the Gryphon to hurry her away.",
+      "entities": [
+        {
+          "name": "Alice",
+          "aliases": [],
+          "category": "character",
+          "salience": "primary",
+          "summary": "She watches the dance, recounts her recent adventures, attempts recitations, requests a song, and is hurried toward an unspecified trial.",
+          "excerpt": "“No, indeed,” said Alice.",
+          "certainty": "explicit",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "Alice tells the two creatures about her adventures beginning with her first sight of the White Rabbit.",
+              "excerpt": "So Alice began telling them her adventures from the time when she first saw the\nWhite Rabbit.",
+              "certainty": "explicit"
+            }
+          ]
+        },
+        {
+          "name": "Mock Turtle",
+          "aliases": [],
+          "category": "character",
+          "salience": "primary",
+          "summary": "A tearful creature who explains and demonstrates the Lobster Quadrille, questions Alice’s recitations, and sings for her.",
+          "excerpt": "The Mock Turtle sighed deeply",
+          "certainty": "explicit",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The Mock Turtle begins to sing in a voice sometimes interrupted by sobs.",
+              "excerpt": "The Mock Turtle sighed deeply, and began, in a voice sometimes choked with\nsobs, to sing this:—",
+              "certainty": "explicit"
+            }
+          ]
+        },
+        {
+          "name": "Gryphon",
+          "aliases": [],
+          "category": "character",
+          "salience": "primary",
+          "summary": "The Mock Turtle’s forceful companion, who helps explain the dance, directs Alice’s recitation, and rushes her away when the trial begins.",
+          "excerpt": "said the Gryphon",
+          "certainty": "explicit",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The Gryphon takes Alice by the hand and hurries away before the song ends.",
+              "excerpt": "“Come on!” cried the Gryphon, and, taking Alice by the hand, it hurried off,\nwithout waiting for the end of the song.",
+              "certainty": "explicit"
+            }
+          ]
+        },
+        {
+          "name": "Lobster Quadrille",
+          "aliases": [],
+          "category": "event",
+          "salience": "supporting",
+          "summary": "A seaside dance involving lines, lobster partners, advances, changes, throws into the sea, and a return to land; the Mock Turtle and Gryphon demonstrate its first figure around Alice without lobsters.",
+          "excerpt": "a delightful thing a Lobster Quadrille is!",
+          "certainty": "explicit",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "Alice describes the Lobster Quadrille as a very pretty dance.",
+              "excerpt": "“It must be a very pretty dance,” said Alice timidly.",
+              "certainty": "explicit"
+            }
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "Mock Turtle",
+          "predicate": "proposes",
+          "object": "Lobster Quadrille",
+          "certainty": "explicit",
+          "excerpt": "“Come, let’s try the first figure!” said the Mock Turtle to the Gryphon."
+        },
+        {
+          "subject": "Alice",
+          "predicate": "attends",
+          "object": "Lobster Quadrille",
+          "certainty": "inferred",
+          "excerpt": "So they began solemnly dancing round and round Alice, every now and then\ntreading on her toes when they passed too close, and waving their forepaws to\nmark the time"
+        },
+        {
+          "subject": "Gryphon",
+          "predicate": "orders",
+          "object": "Alice",
+          "certainty": "explicit",
+          "excerpt": "“Stand up and repeat ‘’Tis the voice of the sluggard,’” said the\nGryphon."
+        }
+      ],
+      "passages": [
+        {
+          "title": "Alice on her changing identity",
+          "text": "“I could tell you my adventures—beginning from this morning,” said Alice a\nlittle timidly: “but it’s no use going back to yesterday, because I was a\ndifferent person then.”",
+          "speaker": "Alice",
+          "kind": "quote",
+          "context": "Alice responds when the Gryphon asks to hear her adventures.",
+          "significance": "The remark frames Alice’s account through her sense that she has changed since the previous day.",
+          "entities": ["Alice"],
+          "certainty": "explicit",
+          "complete": true
+        }
+      ],
+      "plotBeats": [
+        "The Mock Turtle and Gryphon explain the steps of the Lobster Quadrille.",
+        "They dance its first figure around Alice while the Mock Turtle sings.",
+        "Alice recounts her adventures and recites verses that come out differently.",
+        "The Mock Turtle begins “Turtle Soup,” but the Gryphon rushes Alice away when a distant cry announces that the trial is beginning."
+      ],
+      "themes": [
+        "Changing identity",
+        "Nonsense and wordplay",
+        "Performance and instruction",
+        "Confusion under authority"
+      ],
+      "openQuestions": ["What trial has begun in the distance?"]
+    },
+    "extract:primary-0011-9da9f924b6": {
+      "segmentId": "primary-0011-9da9f924b6",
+      "summary": "Alice attends a court where the King of Hearts judges an accusation that the Knave of Hearts stole the Queen’s tarts. The White Rabbit manages the proceedings, the Hatter gives confused testimony under threat, and Alice begins growing before she is unexpectedly called as the next witness.",
+      "entities": [
+        {
+          "name": "Alice",
+          "aliases": [],
+          "category": "character",
+          "salience": "primary",
+          "certainty": "explicit",
+          "summary": "Alice observes the unfamiliar court, comments on its disorder, begins growing larger, and is called as the next witness.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "Alice begins growing larger during the proceedings.",
+              "certainty": "explicit",
+              "excerpt": "she was beginning to grow larger\nagain"
+            }
+          ],
+          "excerpt": "Alice had never been in a court of justice before"
+        },
+        {
+          "name": "King of Hearts",
+          "aliases": ["King"],
+          "category": "character",
+          "salience": "primary",
+          "certainty": "explicit",
+          "summary": "The King of Hearts acts as judge, directs the witnesses and jury, and repeatedly threatens the Hatter.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The King of Hearts is acting as the judge.",
+              "certainty": "explicit",
+              "excerpt": "The judge, by the way, was the King"
+            }
+          ],
+          "excerpt": "The King and Queen of Hearts were seated on their throne"
+        },
+        {
+          "name": "Queen of Hearts",
+          "aliases": ["Queen"],
+          "category": "character",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "summary": "The Queen of Hearts is seated beside the King, is named as the maker of the tarts, and issues violent orders during the hearing.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The accusation states that the Queen of Hearts made the tarts.",
+              "certainty": "explicit",
+              "excerpt": "The Queen of Hearts, she made some tarts,"
+            }
+          ],
+          "excerpt": "The Queen of Hearts, she made some tarts,"
+        },
+        {
+          "name": "Knave of Hearts",
+          "aliases": ["Knave"],
+          "category": "character",
+          "salience": "primary",
+          "certainty": "explicit",
+          "summary": "The Knave of Hearts stands in chains before the court and is accused of stealing the Queen’s tarts.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The accusation alleges that the Knave of Hearts stole the tarts.",
+              "certainty": "explicit",
+              "excerpt": "The Knave of Hearts, he stole those tarts,"
+            }
+          ],
+          "excerpt": "the Knave was standing before them, in\nchains"
+        },
+        {
+          "name": "White Rabbit",
+          "aliases": ["Rabbit"],
+          "category": "character",
+          "salience": "primary",
+          "certainty": "explicit",
+          "summary": "The White Rabbit serves as the court herald, reads the accusation, calls witnesses, and advises the King on procedure.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The White Rabbit reads from the parchment scroll.",
+              "certainty": "explicit",
+              "excerpt": "On this the White Rabbit blew three blasts on the trumpet, and then unrolled\nthe parchment scroll, and read as follows:—"
+            }
+          ],
+          "excerpt": "the\nWhite Rabbit, with a trumpet in one hand, and a scroll of parchment in the\nother"
+        },
+        {
+          "name": "Hatter",
+          "aliases": [],
+          "category": "character",
+          "salience": "primary",
+          "certainty": "explicit",
+          "summary": "The Hatter is the first witness and gives confused, frightened testimony while the King threatens him.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The Hatter is the first witness.",
+              "certainty": "explicit",
+              "excerpt": "The first witness was the Hatter."
+            }
+          ],
+          "excerpt": "The first witness was the Hatter."
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "King of Hearts",
+          "predicate": "orders",
+          "object": "White Rabbit",
+          "certainty": "explicit",
+          "excerpt": "“Call the first witness,” said the King; and the White Rabbit blew three blasts\non the trumpet, and called out, “First witness!”"
+        },
+        {
+          "subject": "King of Hearts",
+          "predicate": "orders",
+          "object": "Hatter",
+          "certainty": "explicit",
+          "excerpt": "“Give your evidence,” said the King; “and don’t be nervous, or I’ll have you\nexecuted on the spot.”"
+        }
+      ],
+      "passages": [
+        {
+          "title": "The accusation",
+          "text": "“The Queen of Hearts, she made some tarts,\n\n All on a summer day:\n\nThe Knave of Hearts, he stole those tarts,\n\n And took them quite away!”",
+          "speaker": "White Rabbit",
+          "kind": "quote",
+          "context": "The White Rabbit reads the formal accusation after the King orders the herald to begin.",
+          "significance": "The verse states the charge at the center of the trial and identifies both the alleged victim and the accused.",
+          "entities": ["White Rabbit", "Queen of Hearts", "Knave of Hearts"],
+          "certainty": "explicit",
+          "complete": true
+        }
+      ],
+      "plotBeats": [
+        "Alice arrives at the crowded court and identifies the King as judge and the assembled creatures as jurors.",
+        "The White Rabbit reads the accusation that the Knave of Hearts stole the Queen’s tarts.",
+        "The King calls the Hatter, whose confused testimony is interrupted by threats and disputes.",
+        "A second witness refuses to cooperate and disappears while the court expels the Dormouse.",
+        "Alice grows larger and is called as the next witness."
+      ],
+      "themes": [
+        "absurd judicial procedure",
+        "authority and intimidation",
+        "confusion of evidence"
+      ],
+      "openQuestions": [
+        "What evidence will Alice give after the White Rabbit calls her as the next witness?"
+      ]
+    },
+    "extract:primary-0012-e55373cbf3": {
+      "segmentId": "primary-0012-e55373cbf3",
+      "summary": "Alice’s sudden growth disrupts the court, but she rejects its arbitrary rules and unsupported evidence. The King of Hearts and Queen of Hearts press the case against the Knave of Hearts until Alice denounces them as cards and wakes beside her sister, realizing Wonderland was a dream.",
+      "entities": [
+        {
+          "name": "Alice",
+          "aliases": [],
+          "category": "character",
+          "salience": "primary",
+          "certainty": "explicit",
+          "summary": "Alice gives evidence, challenges the court’s reasoning, and finally defies the card court before waking.",
+          "excerpt": "“Stuff and nonsense!” said Alice loudly.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "Alice rejects the proposal to impose a sentence before reaching a verdict.",
+              "certainty": "explicit",
+              "excerpt": "“The idea of having the sentence\nfirst!”"
+            }
+          ]
+        },
+        {
+          "name": "King of Hearts",
+          "aliases": ["King"],
+          "category": "character",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "summary": "The King conducts the proceedings, invents a rule aimed at Alice, and strains to interpret the verses as evidence.",
+          "excerpt": "“Read them,” said the King.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The King claims that the verses are the trial’s most important evidence.",
+              "certainty": "explicit",
+              "excerpt": "“That’s the most important piece of evidence we’ve heard yet,”"
+            }
+          ]
+        },
+        {
+          "name": "Queen of Hearts",
+          "aliases": ["Queen"],
+          "category": "character",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "summary": "The Queen declares the Knave guilty, demands sentencing before a verdict, and calls for Alice’s execution.",
+          "excerpt": "“That proves his guilt,” said the Queen.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The Queen proposes sentencing before the jury gives its verdict.",
+              "certainty": "explicit",
+              "excerpt": "“Sentence first—verdict afterwards.”"
+            }
+          ]
+        },
+        {
+          "name": "White Rabbit",
+          "aliases": [],
+          "category": "character",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "summary": "The White Rabbit corrects the King, presents a newly found paper, and reads its verses aloud.",
+          "excerpt": "The White Rabbit put on his spectacles.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The White Rabbit identifies the paper as a set of verses rather than a letter.",
+              "certainty": "explicit",
+              "excerpt": "“It isn’t a letter, after all: it’s a set of verses.”"
+            }
+          ]
+        },
+        {
+          "name": "Knave of Hearts",
+          "aliases": ["Knave", "prisoner"],
+          "category": "character",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "summary": "The Knave is the prisoner whose guilt the court tries to infer from an unsigned set of verses.",
+          "excerpt": "“Please your Majesty,” said the Knave,",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The Knave denies writing the paper.",
+              "certainty": "explicit",
+              "excerpt": "“I didn’t write it, and they can’t prove\nI did: there’s no name signed at the end.”"
+            }
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "King of Hearts",
+          "predicate": "accuses",
+          "object": "Knave of Hearts",
+          "certainty": "explicit",
+          "excerpt": "“If you didn’t sign it,” said the King, “that only makes the matter worse. You\nmust have meant some mischief, or else you’d have signed your name like\nan honest man.”"
+        },
+        {
+          "subject": "Queen of Hearts",
+          "predicate": "accuses",
+          "object": "Knave of Hearts",
+          "certainty": "explicit",
+          "excerpt": "“That proves his guilt,” said the Queen."
+        },
+        {
+          "subject": "Queen of Hearts",
+          "predicate": "orders",
+          "object": "Alice",
+          "certainty": "explicit",
+          "excerpt": "“Hold your tongue!” said the Queen, turning purple."
+        }
+      ],
+      "passages": [
+        {
+          "title": "Alice rejects the card court",
+          "kind": "quote",
+          "speaker": "Alice",
+          "text": "“Who cares for you?” said Alice, (she had grown to her full size by this time).\n“You’re nothing but a pack of cards!”",
+          "context": "Alice openly dismisses the court immediately before the cards fly at her and she wakes.",
+          "significance": "The declaration marks Alice’s final rejection of the court’s authority and precipitates the end of her dream.",
+          "entities": ["Alice", "Queen of Hearts"],
+          "certainty": "explicit",
+          "complete": true
+        }
+      ],
+      "plotBeats": [
+        "Alice jumps up to give evidence and accidentally overturns the jury-box.",
+        "The King questions Alice and invents Rule Forty-two to make her leave the court.",
+        "The White Rabbit produces and reads an unsigned set of verses that the King treats as evidence against the Knave.",
+        "The Queen demands sentence before verdict and orders Alice to be silent.",
+        "Alice calls the court a pack of cards, wakes beside her sister, and recounts her dream."
+      ],
+      "themes": ["arbitrary authority", "faulty evidence", "defiance", "dream and reality"],
       "openQuestions": []
     }
   }

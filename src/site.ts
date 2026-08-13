@@ -2,9 +2,10 @@ import { execFile } from "node:child_process"
 import { cp } from "node:fs/promises"
 import { join, resolve } from "node:path"
 import { promisify } from "node:util"
+import { parse as parseYaml, stringify as stringifyYaml } from "yaml"
 import { z } from "zod"
 import { loadProjectConfig } from "./config.js"
-import { emptyDirectory, pathExists, readJson, writeJson, writeUtf8 } from "./files.js"
+import { emptyDirectory, pathExists, readJson, readUtf8, writeJson, writeUtf8 } from "./files.js"
 
 const execute = promisify(execFile)
 
@@ -67,6 +68,7 @@ export async function buildQuartzSite(root: string): Promise<string> {
     ],
     checkout,
   )
+  await applyQuartzTheme(checkout, config.title)
   await runPackageCommand("npx", ["quartz", "plugin", "install", "--from-config"], checkout)
   await runPackageCommand("npx", ["quartz", "build"], checkout)
 
@@ -74,6 +76,75 @@ export async function buildQuartzSite(root: string): Promise<string> {
   await emptyDirectory(output)
   await cp(join(checkout, "public"), output, { recursive: true })
   return output
+}
+
+type QuartzConfig = {
+  configuration: {
+    pageTitle: string
+    pageTitleSuffix: string
+    analytics: unknown
+    theme: unknown
+  }
+  plugins: Array<{
+    source: string
+    options?: unknown
+  }>
+}
+
+async function applyQuartzTheme(checkout: string, projectTitle: string): Promise<void> {
+  const configPath = join(checkout, "quartz.config.yaml")
+  const quartzConfig = parseYaml(await readUtf8(configPath)) as QuartzConfig
+  quartzConfig.configuration.pageTitle = projectTitle
+  quartzConfig.configuration.pageTitleSuffix = " · Narrative archive"
+  quartzConfig.configuration.analytics = null
+  quartzConfig.configuration.theme = {
+    fontOrigin: "googleFonts",
+    cdnCaching: true,
+    typography: {
+      header: "Schibsted Grotesk",
+      body: "Source Serif 4",
+      code: "IBM Plex Mono",
+    },
+    colors: {
+      lightMode: {
+        light: "#f6f1e6",
+        lightgray: "#e6dcc8",
+        gray: "#9a8d78",
+        darkgray: "#4d463c",
+        dark: "#201d19",
+        secondary: "#6f2b31",
+        tertiary: "#9b6a3c",
+        highlight: "rgba(111, 43, 49, 0.12)",
+        textHighlight: "#d9b56d66",
+      },
+      darkMode: {
+        light: "#171411",
+        lightgray: "#302923",
+        gray: "#74685a",
+        darkgray: "#d5c7b1",
+        dark: "#f1e8da",
+        secondary: "#d08b92",
+        tertiary: "#d4a36e",
+        highlight: "rgba(208, 139, 146, 0.14)",
+        textHighlight: "#a8783266",
+      },
+    },
+  }
+
+  const footer = quartzConfig.plugins.find((plugin) => plugin.source === "@quartz-community/footer")
+  if (footer) {
+    footer.options = {
+      links: {
+        "Plot tools": "https://github.com/bjb2/dont-lose-the-plot",
+      },
+    }
+  }
+
+  await writeUtf8(configPath, stringifyYaml(quartzConfig))
+  await cp(
+    resolve(import.meta.dirname, "..", "templates", "quartz", "custom.scss"),
+    join(checkout, "quartz", "styles", "custom.scss"),
+  )
 }
 
 async function runPackageCommand(

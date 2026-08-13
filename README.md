@@ -6,7 +6,7 @@ The pipeline is designed for factual reliability rather than unconstrained wiki 
 
 ## Real example: Alice's Adventures in Wonderland
 
-The primary example uses the Project Gutenberg EPUB of Lewis Carroll's public-domain _Alice's Adventures in Wonderland_. The repository includes three narrative chapters, recorded structured responses, canonical taxonomy, and a reproducible site configuration under [`examples/alice-in-wonderland`](examples/alice-in-wonderland/README.md).
+The primary example uses the Project Gutenberg EPUB of Lewis Carroll's public-domain _Alice's Adventures in Wonderland_. The repository processes all twelve chapters with recorded structured responses, a canonical taxonomy, and a reproducible site configuration under [`examples/alice-in-wonderland`](examples/alice-in-wonderland/README.md).
 
 ```sh
 npm ci
@@ -77,6 +77,8 @@ Corpus-specific concepts, texts, creatures, rituals, powers, protocols, or other
 ### 3. Structured extraction
 
 Prompts and Zod schemas are versioned in the package. The Vercel AI SDK requests schema-constrained output through AI Gateway. Source text is delimited as untrusted data, evidence excerpts must be verbatim, and extracted taxonomy values must belong to the lock.
+
+Segments fan out through a bounded worker pool controlled by `processing.concurrency` (default `4`, maximum `32`). Responses are reconciled into source order before normalization, so provider latency does not change canonical output order.
 
 ### 4. Canonical graph
 

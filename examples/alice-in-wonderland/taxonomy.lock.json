@@ -1,5 +1,5 @@
 {
-  "lockedAt": "2026-08-13T14:11:26.215Z",
+  "lockedAt": "2026-08-13T14:44:35.815Z",
   "schemaVersion": 1,
   "taxonomy": {
     "categories": [
@@ -80,8 +80,21 @@
       }
     ],
     "passageKinds": ["quote"],
-    "relationVocabulary": ["asks-for-help", "follows", "owns", "proposes"],
+    "relationVocabulary": [
+      "accuses",
+      "advises",
+      "asks-for-help",
+      "attends",
+      "follows",
+      "introduces",
+      "meets",
+      "orders",
+      "owns",
+      "plays-with",
+      "proposes",
+      "visits"
+    ],
     "schemaVersion": 1
   },
-  "taxonomyHash": "dacd804b7033b466ea0950d734a87bf7c51f6dad9b36ee60d2ba4807c927ff08"
+  "taxonomyHash": "545bd61e3fcdc46e7d2cc4a1bb7745cc859d18b2951c96015cdb61706064187f"
 }

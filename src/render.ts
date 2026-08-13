@@ -46,6 +46,9 @@ export async function renderObsidian(root: string): Promise<{ files: number; has
       `Chapters/${String(segment.ordinal).padStart(4, "0")}-${slugify(segment.title)}`,
     ]),
   )
+  const chapterLabels = new Map(
+    segments.map((segment) => [segment.id, chapterLabel(segment.ordinal, segment.title)]),
+  )
   const passagePaths = new Map(
     passages.map((passage) => [
       passage.id,
@@ -156,7 +159,13 @@ export async function renderObsidian(root: string): Promise<{ files: number; has
       ...listOrEmpty(
         entityClaims.map(
           (claim) =>
-            `${claim.text} ${citation(claim.provenance, chapterPaths, config.publication.includeExcerpts, config.publication.maxExcerptCharacters)}`,
+            `${claim.text} ${citation(
+              claim.provenance,
+              chapterPaths,
+              chapterLabels,
+              config.publication.includeExcerpts,
+              config.publication.maxExcerptCharacters,
+            )}`,
         ),
       ),
       "",
@@ -184,7 +193,7 @@ export async function renderObsidian(root: string): Promise<{ files: number; has
       "",
       ...entity.mentions.map(
         (mention) =>
-          `- [[${chapterPaths.get(mention.segmentId)}|${mention.locator}]]${renderExcerpt(mention, config.publication.includeExcerpts, config.publication.maxExcerptCharacters)}`,
+          `- [[${chapterPaths.get(mention.segmentId)}|${chapterLabels.get(mention.segmentId)}]]${renderExcerpt(mention, config.publication.includeExcerpts, config.publication.maxExcerptCharacters)}`,
       ),
       "",
       "## Passages",
@@ -260,7 +269,7 @@ export async function renderObsidian(root: string): Promise<{ files: number; has
       "",
       `**Why it matters:** ${passage.significance}`,
       "",
-      `**Source:** [[${chapterPaths.get(passage.provenance.segmentId)}|${passage.provenance.locator}]]`,
+      `**Source:** [[${chapterPaths.get(passage.provenance.segmentId)}|${chapterLabels.get(passage.provenance.segmentId)}]]`,
       "",
       "## Entities",
       "",
@@ -347,13 +356,19 @@ function renderRelationship(
   return `${predicate} → ${literalObject ?? "unresolved"}`
 }
 
+function chapterLabel(ordinal: number, title: string): string {
+  const cleanTitle = title.replace(/^chapter\s+(?:[ivxlcdm]+|\d+)[.:\s–—-]*/i, "").trim()
+  return cleanTitle ? `Chapter ${ordinal}: ${cleanTitle}` : `Chapter ${ordinal}`
+}
+
 function citation(
   provenance: Provenance,
   chapterPaths: Map<string, string>,
+  chapterLabels: Map<string, string>,
   includeExcerpt: boolean,
   maxCharacters: number,
 ): string {
-  return `([[${chapterPaths.get(provenance.segmentId)}|source]])${renderExcerpt(provenance, includeExcerpt, maxCharacters)}`
+  return `([[${chapterPaths.get(provenance.segmentId)}|${chapterLabels.get(provenance.segmentId)}]])${renderExcerpt(provenance, includeExcerpt, maxCharacters)}`
 }
 
 function renderExcerpt(provenance: Provenance, include: boolean, maxCharacters: number): string {

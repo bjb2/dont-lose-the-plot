@@ -8,8 +8,10 @@ sources:
     kind: auto
 scope:
   startSegment: 2
-  maxSegment: 3
+  maxSegment: 12
   allowInferredClaims: true
+processing:
+  concurrency: 6
 publication:
   includeExcerpts: true
   maxExcerptCharacters: 280

@@ -14,6 +14,15 @@
       "required": ["data", "obsidian", "site"],
       "type": "object"
     },
+    "processing": {
+      "additionalProperties": false,
+      "default": { "concurrency": 4 },
+      "properties": {
+        "concurrency": { "default": 4, "maximum": 32, "minimum": 1, "type": "integer" }
+      },
+      "required": ["concurrency"],
+      "type": "object"
+    },
     "profile": {
       "default": "novel",
       "enum": ["novel", "screenplay", "transcript", "blank"],
@@ -104,6 +113,7 @@
     "profile",
     "sources",
     "scope",
+    "processing",
     "publication",
     "provider",
     "output"
