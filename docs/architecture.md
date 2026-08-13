@@ -5,12 +5,12 @@
 ```mermaid
 flowchart LR
   S[EPUB / Markdown / text] --> I[Deterministic ingestion]
-  I --> W[Self-contained work items]
-  W --> A[Interactive OMP agents]
-  A --> G[Validated discovery]
-  G --> O[Human onboarding]
+  I --> W[Pilot work item]
+  W --> A[Interactive OMP pilot agent]
+  A --> G[Validated taxonomy questions]
+  G --> O[One human checkpoint]
   O --> L[Taxonomy lock]
-  L --> X[Visible OMP extraction subagents]
+  L --> X[Visible full-extraction subagents]
   X --> E[Deterministic response collector]
   E --> N[Normalization]
   N --> V[Verification]
@@ -27,9 +27,9 @@ Each arrow crosses a persisted contract. A later stage does not infer missing up
 
 Inputs are immutable source bytes plus `plot-tools.yml`. Outputs are a source manifest and ordered `Segment` JSONL records. Segment IDs combine source ID, scoped ordinal, and content hash. EPUB ingestion follows OPF spine order rather than archive or manifest order.
 
-### Discovery
+### Taxonomy pilot
 
-Discovery preparation receives the starter ontology and a deterministic stratified sample, then writes a self-contained prompt and JSON schema under `.plot-tools/work/`. A visible OMP task agent writes the response. The deterministic collector validates it, writes a decision draft, and cannot modify the taxonomy.
+Pilot preparation receives the starter ontology and six deterministic segments stratified across the configured scope, then writes one self-contained prompt and JSON schema under `.plot-tools/work/`. A visible OMP task agent first attempts provisional extraction over every pilot segment, then proposes only recurring structures the starter taxonomy cannot represent. Every proposal requires exact evidence from at least two pilot segments. The deterministic collector validates that evidence and writes both `.plot-tools/review/taxonomy-questions.json` and a decision draft; it cannot modify the taxonomy.
 
 ### Onboarding
 
@@ -37,7 +37,7 @@ A decision must classify every proposal. Categories receive definitions, inclusi
 
 ### Extraction
 
-Every segment becomes one self-contained work item. The project OMP skill dispatches visible task subagents in batches no larger than `processing.concurrency`; each writes one JSON response. The collector parses every response with Zod, verifies its segment ID, restores source order, and refuses a taxonomy whose current hash differs from the lock. One validated response is persisted in `.plot-tools/raw/` and one line in `data/extractions.jsonl`. A stable recording key (`extract:<segment-id>`) supports network-free fixture replay without masquerading as a live provider.
+Every scoped segment, including every pilot segment, becomes one self-contained work item after the taxonomy lock exists. The project OMP skill dispatches visible task subagents in batches no larger than `processing.concurrency`; each writes one JSON response. The collector parses every response with Zod, verifies its segment ID, restores source order, and refuses a missing lock or a taxonomy whose current hash differs from the lock. One validated response is persisted in `.plot-tools/raw/` and one line in `data/extractions.jsonl`. A stable recording key (`extract:<segment-id>`) supports network-free fixture replay without masquerading as a live provider.
 
 ### Normalization
 

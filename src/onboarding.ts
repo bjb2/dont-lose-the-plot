@@ -4,8 +4,8 @@ import { z } from "zod"
 import { loadTaxonomy } from "./config.js"
 import { readJson, readUtf8, sha256, stableStringify, writeJson, writeUtf8 } from "./files.js"
 import {
-  DiscoveryResultSchema,
   TaxonomyAttributeSchema,
+  TaxonomyPilotResultSchema,
   TaxonomySchema,
   type Taxonomy,
   type TaxonomyCategory,
@@ -31,11 +31,11 @@ export async function applyTaxonomyOnboarding(
   root: string,
   options: { acceptRecommended?: boolean; decisionsPath?: string } = {},
 ): Promise<Taxonomy> {
-  const discoveryPath = join(root, ".plot-tools", "review", "category-proposals.json")
+  const pilotPath = join(root, ".plot-tools", "review", "taxonomy-pilot.json")
   const decisionPath = options.decisionsPath
     ? join(root, options.decisionsPath)
     : join(root, ".plot-tools", "review", "taxonomy-decisions.yml")
-  const discovery = await readJson(discoveryPath, DiscoveryResultSchema)
+  const pilot = await readJson(pilotPath, TaxonomyPilotResultSchema)
   const decisions = DecisionFileSchema.parse(parseYaml(await readUtf8(decisionPath)))
   const resolved = options.acceptRecommended
     ? {
@@ -43,7 +43,7 @@ export async function applyTaxonomyOnboarding(
         proposals: decisions.proposals.map((decision) => ({
           ...decision,
           decision: recommendedDecision(
-            discovery.proposals.find((proposal) => proposal.id === decision.id)?.recommendedAs,
+            pilot.proposals.find((proposal) => proposal.id === decision.id)?.recommendedAs,
           ),
         })),
         passageKinds: Object.fromEntries(
@@ -63,7 +63,7 @@ export async function applyTaxonomyOnboarding(
   const taxonomy = await loadTaxonomy(root)
   const categories = [...taxonomy.categories]
   for (const decision of resolved.proposals) {
-    const proposal = discovery.proposals.find((candidate) => candidate.id === decision.id)
+    const proposal = pilot.proposals.find((candidate) => candidate.id === decision.id)
     if (!proposal) throw new Error(`Decision references unknown proposal ${decision.id}`)
     if (decision.decision === "category") {
       const proposedCategory: TaxonomyCategory = {
@@ -161,7 +161,7 @@ function applyNonCategoryDecision(
     target.attributes[proposalId] = {
       type: "string",
       required: false,
-      description: `Discovered corpus attribute: ${proposalId}`,
+      description: `Taxonomy pilot attribute: ${proposalId}`,
     }
   }
   if (decision.decision === "relationship")

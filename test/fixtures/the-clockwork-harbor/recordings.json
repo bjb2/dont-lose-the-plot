@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "responses": {
-    "discovery": {
+    "pilot": {
       "corpusProfile": {
         "genre": "clockwork maritime fantasy",
         "structure": "three sequential chapters centered on a supernatural emergency",

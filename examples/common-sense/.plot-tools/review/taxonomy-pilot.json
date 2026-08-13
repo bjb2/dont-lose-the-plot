@@ -1,0 +1,208 @@
+{
+  "corpusProfile": {
+    "extractionRisks": [
+      "Rhetorical personification can make a polity look like a person",
+      "Historical examples must not be flattened into the author's own claims",
+      "Religious and natural-law appeals may function as evidence without being presented as neutral fact",
+      "The source uses historical spellings such as independance and connexion that should remain verbatim in excerpts"
+    ],
+    "genre": "Political pamphlet and argumentative nonfiction",
+    "namingConventions": [
+      "Polities and institutions are usually capitalized",
+      "Political doctrines and systems recur as common nouns",
+      "Arguments often contrast paired alternatives such as society and government or reconciliation and independence"
+    ],
+    "structure": "Introduction followed by topical essays that define political principles, rebut monarchy and reconciliation, and advance independence and institutional proposals"
+  },
+  "proposals": [
+    {
+      "commonRelations": ["claims-authority-over", "at-war-with"],
+      "confidence": 0.98,
+      "definition": "A named country, colony, continent, or politically constituted people treated as an actor or subject of government.",
+      "examples": [
+        {
+          "evidence": "The cause of America is in a great measure the cause of all mankind.",
+          "name": "America",
+          "segmentId": "primary-0001-aa4049b632"
+        },
+        {
+          "evidence": "Volumes have been written on the subject of the struggle between\nEngland and America.",
+          "name": "England and America",
+          "segmentId": "primary-0004-799e727fd2"
+        }
+      ],
+      "exclude": [
+        "Forms of government such as monarchy",
+        "Institutions such as Parliament or Congress",
+        "Unnamed hypothetical communities"
+      ],
+      "id": "polity",
+      "include": [
+        "Named countries and continents",
+        "The American colonies when discussed collectively",
+        "Political communities assigned interests, duties, or capabilities"
+      ],
+      "labels": {
+        "plural": "Polities",
+        "singular": "Polity"
+      },
+      "mergeInto": null,
+      "readerValue": "The argument repeatedly assigns distinct interests, injuries, capacities, and obligations to America, England, Britain, and other political communities; stable pages prevent those actors from being confused with institutions or abstract systems.",
+      "recommendedAs": "category",
+      "sharedAttributes": [
+        {
+          "description": "The political condition or status attributed to the polity in the source",
+          "id": "political-status",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "commonRelations": ["opposes", "contrasts-with"],
+      "confidence": 0.99,
+      "definition": "A named form or organizing principle of government whose design, legitimacy, or consequences the text evaluates.",
+      "examples": [
+        {
+          "evidence": "Here then is the origin and rise of government; namely, a mode rendered\nnecessary by the inability of moral virtue to govern the world; here\ntoo is the design and end of government, viz. freedom and security.",
+          "name": "Government",
+          "segmentId": "primary-0002-e36801330a"
+        },
+        {
+          "evidence": "The contest for monarchy and succession, between the houses of York and\nLancaster, laid England in a scene of blood for many years.",
+          "name": "Monarchy and hereditary succession",
+          "segmentId": "primary-0003-7ed9938aef"
+        }
+      ],
+      "exclude": [
+        "A specific institution such as Congress",
+        "A country governed by the system",
+        "A single policy proposal"
+      ],
+      "id": "political-system",
+      "include": [
+        "Government as an organized system",
+        "Monarchy, hereditary succession, republic, and representative government",
+        "Constitutional arrangements evaluated across sections"
+      ],
+      "labels": {
+        "plural": "Political systems",
+        "singular": "Political system"
+      },
+      "mergeInto": null,
+      "readerValue": "Paine compares systems across the pamphlet and gives them different origins, purposes, defects, and historical consequences; readers need stable pages that collect those claims without treating systems as places or institutions.",
+      "recommendedAs": "category",
+      "sharedAttributes": [
+        {
+          "description": "The purpose or justification attributed to the system",
+          "id": "stated-purpose",
+          "type": "string"
+        },
+        {
+          "description": "The source's explicit assessment of the system",
+          "id": "authorial-assessment",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "commonRelations": ["governs", "represents", "claims-authority-over"],
+      "confidence": 0.97,
+      "definition": "A named governing, legislative, religious, or representative body that exercises or contests authority.",
+      "examples": [
+        {
+          "evidence": "as the King of England hath undertaken in his own Right,\nto support the Parliament in what he calls Theirs",
+          "name": "Parliament",
+          "segmentId": "primary-0001-aa4049b632"
+        },
+        {
+          "evidence": "But as it is more than probable that we shall never be\nwithout a Congress",
+          "name": "Congress",
+          "segmentId": "primary-0005-0cc95308b4"
+        }
+      ],
+      "exclude": [
+        "A polity such as America",
+        "A political system such as monarchy",
+        "An informal class of unnamed supporters"
+      ],
+      "id": "institution",
+      "include": [
+        "Parliament and Congress",
+        "Legislatures, conventions, and governing assemblies",
+        "Named collective bodies with institutional powers"
+      ],
+      "labels": {
+        "plural": "Institutions",
+        "singular": "Institution"
+      },
+      "mergeInto": null,
+      "readerValue": "The pamphlet distinguishes bodies such as Parliament and Congress from both the peoples they claim to represent and the political systems they operate; institution pages preserve that distinction and their attributed powers.",
+      "recommendedAs": "category",
+      "sharedAttributes": [
+        {
+          "description": "The institution's governmental, legislative, or religious role",
+          "id": "institution-type",
+          "type": "string"
+        },
+        {
+          "description": "The authority the institution claims or is assigned",
+          "id": "claimed-authority",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "commonRelations": ["supports", "opposes", "contrasts-with"],
+      "confidence": 0.99,
+      "definition": "A recurring named doctrine, principle, or political alternative that the pamphlet defines, advocates, or rejects.",
+      "examples": [
+        {
+          "evidence": "the Doctrine of Independance: As no Answer hath yet appeared, it is now\npresumed that none will",
+          "name": "Independence",
+          "segmentId": "primary-0001-aa4049b632"
+        },
+        {
+          "evidence": "As much hath been said of the advantages of reconciliation, which, like\nan agreeable dream, hath passed away and left us as we were",
+          "name": "Reconciliation",
+          "segmentId": "primary-0004-799e727fd2"
+        }
+      ],
+      "exclude": [
+        "A concrete governing institution",
+        "A named polity",
+        "A one-off rhetorical image"
+      ],
+      "id": "political-concept",
+      "include": [
+        "Independence, reconciliation, natural rights, representation, and security",
+        "Named doctrines and paired political alternatives",
+        "Principles whose meaning or consequences recur across sections"
+      ],
+      "labels": {
+        "plural": "Political concepts",
+        "singular": "Political concept"
+      },
+      "mergeInto": null,
+      "readerValue": "The pamphlet is organized around recurring doctrines and alternatives, especially independence and reconciliation; stable concept pages let readers follow how definitions, arguments, and consequences accumulate across sections.",
+      "recommendedAs": "category",
+      "sharedAttributes": [
+        {
+          "description": "Whether the source advocates, rejects, qualifies, or defines the concept",
+          "id": "authorial-position",
+          "type": "string"
+        }
+      ]
+    }
+  ],
+  "proposedPassageKinds": ["argument", "proposal", "rebuttal", "maxim"],
+  "proposedRelations": [
+    "advocates",
+    "opposes",
+    "supports",
+    "contrasts-with",
+    "governs",
+    "represents",
+    "claims-authority-over",
+    "at-war-with"
+  ]
+}

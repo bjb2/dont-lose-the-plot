@@ -148,8 +148,10 @@ function extractEpub(
     for (const navPoint of ncx.match(/<navPoint\b[\s\S]*?<\/navPoint>/gi) ?? []) {
       const href = /<content\b[^>]*src=["']([^"']+)["']/.exec(navPoint)?.[1]
       const label = /<navLabel\b[^>]*>[\s\S]*?<text\b[^>]*>([\s\S]*?)<\/text>/.exec(navPoint)?.[1]
-      if (href && label)
-        navigationTitles.set(normalizeArchivePath(stripFragment(href)), decodeXml(label))
+      if (href && label) {
+        const path = normalizeArchivePath(stripFragment(href))
+        if (!navigationTitles.has(path)) navigationTitles.set(path, decodeXml(label))
+      }
     }
   }
   const navItem = [...manifest.values()].find((item) =>
@@ -160,7 +162,10 @@ function extractEpub(
     for (const anchor of navigation.match(/<a\b[^>]*href=["'][^"']+["'][^>]*>[\s\S]*?<\/a>/gi) ??
       []) {
       const href = /href=["']([^"']+)["']/.exec(anchor)?.[1]
-      if (href) navigationTitles.set(normalizeArchivePath(stripFragment(href)), stripHtml(anchor))
+      if (href) {
+        const path = normalizeArchivePath(stripFragment(href))
+        if (!navigationTitles.has(path)) navigationTitles.set(path, stripHtml(anchor))
+      }
     }
   }
 
@@ -175,17 +180,49 @@ function extractEpub(
     seen.add(href)
     const fullPath = posix.join(opfDirectory, href)
     const xhtml = readEntry(fullPath)
-    const text = stripHtml(/<body\b[^>]*>([\s\S]*?)<\/body>/i.exec(xhtml)?.[1] ?? xhtml)
-    if (text.length < 50) continue
-    const heading = stripHtml(/<h[1-3]\b[^>]*>([\s\S]*?)<\/h[1-3]>/i.exec(xhtml)?.[1] ?? "")
-    segments.push({
-      title: navigationTitles.get(href) ?? heading ?? `Segment ${segments.length + 1}`,
-      text,
-      locator: `${sourcePath}:${fullPath}`,
-    })
+    const body = /<body\b[^>]*>([\s\S]*?)<\/body>/i.exec(xhtml)?.[1] ?? xhtml
+    const fallbackTitle =
+      navigationTitles.get(href) ??
+      stripHtml(/<h[1-3]\b[^>]*>([\s\S]*?)<\/h[1-3]>/i.exec(xhtml)?.[1] ?? "") ??
+      `Segment ${segments.length + 1}`
+    segments.push(...splitEpubDocument(body, fallbackTitle, `${sourcePath}:${fullPath}`))
   }
   if (segments.length === 0) throw new Error("EPUB spine contains no substantive text segments")
   return { title, segments }
+}
+
+function splitEpubDocument(body: string, fallbackTitle: string, locator: string): DraftSegment[] {
+  const wholeDocument = (): DraftSegment[] => {
+    const text = stripHtml(body)
+    return text.length < 50 ? [] : [{ title: fallbackTitle, text, locator }]
+  }
+  const candidates = [...body.matchAll(/<h[12]\b([^>]*)>([\s\S]*?)<\/h[12]>/gi)].map((match) => ({
+    index: match.index ?? 0,
+    title: stripHtml(match[2] ?? ""),
+    attributes: parseAttributes(match[1] ?? ""),
+  }))
+  const substantive = candidates.filter((heading) => heading.title && !/^\d+$/.test(heading.title))
+  const chapterHeadings = substantive.filter((heading) =>
+    /^(?:chapter|part|book|act|scene)\b/i.test(heading.title),
+  )
+  const headings = chapterHeadings.length >= 2 ? chapterHeadings : substantive
+  if (headings.length <= 1) return wholeDocument()
+  const candidateTextLength = stripHtml(body.slice(headings[0]!.index)).length
+  if (candidateTextLength < 50_000) return wholeDocument()
+
+  const sections: DraftSegment[] = []
+  for (const [index, heading] of headings.entries()) {
+    const end = headings[index + 1]?.index ?? body.length
+    const text = stripHtml(body.slice(heading.index, end))
+    if (text.length < 50) continue
+    const anchor = heading.attributes.id || slugify(heading.title)
+    sections.push({
+      title: heading.title,
+      text,
+      locator: `${locator}#${anchor}`,
+    })
+  }
+  return sections.length >= 2 ? sections : wholeDocument()
 }
 
 function parseAttributes(tag: string): Record<string, string> {

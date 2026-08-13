@@ -36,6 +36,6 @@ Exact evidence does not claim that the model's interpretation is correct; it pro
 The test suite uses two corpora:
 
 - `examples/alice-in-wonderland`: real public-domain EPUB ingestion and a successful source-evidence path.
-- `test/fixtures/the-clockwork-harbor`: a synthetic fixture for custom category discovery, deterministic output, pending onboarding, fabricated evidence, and taxonomy-drift failures.
+- `test/fixtures/the-clockwork-harbor`: a synthetic fixture for the pre-extraction taxonomy checkpoint, custom onboarding, deterministic output, pending decisions, fabricated evidence, and taxonomy-drift failures.
 
 Recorded responses make these contracts network-free and stable in CI. They exercise the same response schemas and deterministic collectors used for output from interactive OMP agents; no test or CLI stage calls a model service.

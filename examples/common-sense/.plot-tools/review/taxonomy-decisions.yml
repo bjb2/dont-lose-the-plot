@@ -1,0 +1,66 @@
+schemaVersion: 1
+proposals:
+  - id: polity
+    recommendedAs: category
+    decision: pending
+    mergeInto: null
+    folder: Polities
+    attributes:
+      political-status:
+        type: string
+        required: false
+        description: The political condition or status attributed to the polity in the
+          source
+  - id: political-system
+    recommendedAs: category
+    decision: pending
+    mergeInto: null
+    folder: Political Systems
+    attributes:
+      stated-purpose:
+        type: string
+        required: false
+        description: The purpose or justification attributed to the system
+      authorial-assessment:
+        type: string
+        required: false
+        description: The source's explicit assessment of the system
+  - id: institution
+    recommendedAs: category
+    decision: pending
+    mergeInto: null
+    folder: Institutions
+    attributes:
+      institution-type:
+        type: string
+        required: false
+        description: The institution's governmental, legislative, or religious role
+      claimed-authority:
+        type: string
+        required: false
+        description: The authority the institution claims or is assigned
+  - id: political-concept
+    recommendedAs: category
+    decision: pending
+    mergeInto: null
+    folder: Political Concepts
+    attributes:
+      authorial-position:
+        type: string
+        required: false
+        description: Whether the source advocates, rejects, qualifies, or defines the
+          concept
+passageKinds:
+  argument: false
+  proposal: false
+  rebuttal: false
+  maxim: false
+relations:
+  advocates: false
+  opposes: false
+  supports: false
+  contrasts-with: false
+  governs: false
+  represents: false
+  claims-authority-over: false
+  at-war-with: false

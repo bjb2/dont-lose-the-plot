@@ -1,0 +1,147 @@
+{
+  "lockedAt": "2026-08-13T17:15:03.751Z",
+  "schemaVersion": 1,
+  "taxonomy": {
+    "categories": [
+      {
+        "attributes": {
+          "political-status": {
+            "description": "The political condition or status attributed to the polity in the source",
+            "required": false,
+            "type": "string"
+          }
+        },
+        "definition": "A named country, colony, continent, or politically constituted people treated as an actor or subject of government.",
+        "exclude": [
+          "Forms of government such as monarchy",
+          "Institutions such as Parliament or Congress",
+          "Unnamed hypothetical communities"
+        ],
+        "folder": "Polities",
+        "id": "polity",
+        "include": [
+          "Named countries and continents",
+          "The American colonies when discussed collectively",
+          "Political communities assigned interests, duties, or capabilities"
+        ],
+        "labels": {
+          "plural": "Polities",
+          "singular": "Polity"
+        },
+        "pageTemplate": "entity",
+        "relations": ["claims-authority-over", "at-war-with"],
+        "tags": []
+      },
+      {
+        "attributes": {
+          "authorial-assessment": {
+            "description": "The source's explicit assessment of the system",
+            "required": false,
+            "type": "string"
+          },
+          "stated-purpose": {
+            "description": "The purpose or justification attributed to the system",
+            "required": false,
+            "type": "string"
+          }
+        },
+        "definition": "A named form or organizing principle of government whose design, legitimacy, or consequences the text evaluates.",
+        "exclude": [
+          "A specific institution such as Congress",
+          "A country governed by the system",
+          "A single policy proposal"
+        ],
+        "folder": "Political Systems",
+        "id": "political-system",
+        "include": [
+          "Government as an organized system",
+          "Monarchy, hereditary succession, republic, and representative government",
+          "Constitutional arrangements evaluated across sections"
+        ],
+        "labels": {
+          "plural": "Political systems",
+          "singular": "Political system"
+        },
+        "pageTemplate": "entity",
+        "relations": ["opposes", "contrasts-with"],
+        "tags": []
+      },
+      {
+        "attributes": {
+          "claimed-authority": {
+            "description": "The authority the institution claims or is assigned",
+            "required": false,
+            "type": "string"
+          },
+          "institution-type": {
+            "description": "The institution's governmental, legislative, or religious role",
+            "required": false,
+            "type": "string"
+          }
+        },
+        "definition": "A named governing, legislative, religious, or representative body that exercises or contests authority.",
+        "exclude": [
+          "A polity such as America",
+          "A political system such as monarchy",
+          "An informal class of unnamed supporters"
+        ],
+        "folder": "Institutions",
+        "id": "institution",
+        "include": [
+          "Parliament and Congress",
+          "Legislatures, conventions, and governing assemblies",
+          "Named collective bodies with institutional powers"
+        ],
+        "labels": {
+          "plural": "Institutions",
+          "singular": "Institution"
+        },
+        "pageTemplate": "entity",
+        "relations": ["governs", "represents", "claims-authority-over"],
+        "tags": []
+      },
+      {
+        "attributes": {
+          "authorial-position": {
+            "description": "Whether the source advocates, rejects, qualifies, or defines the concept",
+            "required": false,
+            "type": "string"
+          }
+        },
+        "definition": "A recurring named doctrine, principle, or political alternative that the pamphlet defines, advocates, or rejects.",
+        "exclude": [
+          "A concrete governing institution",
+          "A named polity",
+          "A one-off rhetorical image"
+        ],
+        "folder": "Political Concepts",
+        "id": "political-concept",
+        "include": [
+          "Independence, reconciliation, natural rights, representation, and security",
+          "Named doctrines and paired political alternatives",
+          "Principles whose meaning or consequences recur across sections"
+        ],
+        "labels": {
+          "plural": "Political concepts",
+          "singular": "Political concept"
+        },
+        "pageTemplate": "entity",
+        "relations": ["supports", "opposes", "contrasts-with"],
+        "tags": []
+      }
+    ],
+    "passageKinds": ["argument", "maxim", "proposal", "quote", "rebuttal"],
+    "relationVocabulary": [
+      "advocates",
+      "at-war-with",
+      "claims-authority-over",
+      "contrasts-with",
+      "governs",
+      "opposes",
+      "represents",
+      "supports"
+    ],
+    "schemaVersion": 1
+  },
+  "taxonomyHash": "47865a52578854abe89ccb69bf4ae20c26427ac149e37d7e14dd52da2c2af7ee"
+}

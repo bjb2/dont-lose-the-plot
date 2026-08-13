@@ -18,7 +18,7 @@ From this directory, after installing the repository dependencies:
 
 ```sh
 npx tsx ../../src/cli.ts ingest
-npx tsx ../../src/cli.ts discover
+npx tsx ../../src/cli.ts pilot
 npx tsx ../../src/cli.ts onboard --accept-recommended
 npx tsx ../../src/cli.ts extract
 npx tsx ../../src/cli.ts normalize
@@ -26,4 +26,4 @@ npx tsx ../../src/cli.ts render
 npx tsx ../../src/cli.ts verify
 ```
 
-`plot-tools.yml` uses `startSegment: 2` to skip Project Gutenberg front matter and `maxSegment: 12` to select every narrative chapter while excluding the trailing license section. Extraction fans out six chapters at a time and reconciles responses into source order.
+`plot-tools.yml` uses `startSegment: 2` to skip Project Gutenberg front matter and `maxSegment: 12` to select every narrative chapter while excluding the trailing license section. The taxonomy pilot samples six chapters across that range before onboarding. Full extraction then reprocesses all twelve chapters under the lock, fans out six chapters at a time, and reconciles responses into source order.

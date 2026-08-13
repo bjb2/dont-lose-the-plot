@@ -1,0 +1,137 @@
+{
+  "checkpoint": "before-full-extraction",
+  "passageKindSuggestions": ["argument", "proposal", "rebuttal", "maxim"],
+  "pilotSegments": [
+    {
+      "id": "primary-0001-aa4049b632",
+      "ordinal": 1,
+      "title": "INTRODUCTION."
+    },
+    {
+      "id": "primary-0002-e36801330a",
+      "ordinal": 2,
+      "title": "OF THE ORIGIN AND DESIGN OF GOVERNMENT IN GENERAL,\n\nWITH CONCISE REMARKS ON THE ENGLISH CONSTITUTION."
+    },
+    {
+      "id": "primary-0003-7ed9938aef",
+      "ordinal": 3,
+      "title": "OF MONARCHY AND HEREDITARY SUCCESSION."
+    },
+    {
+      "id": "primary-0004-799e727fd2",
+      "ordinal": 4,
+      "title": "THOUGHTS ON THE PRESENT STATE OF AMERICAN AFFAIRS."
+    },
+    {
+      "id": "primary-0005-0cc95308b4",
+      "ordinal": 5,
+      "title": "OF THE PRESENT ABILITY OF AMERICA,\n\nWITH SOME MISCELLANEOUS REFLEXIONS."
+    },
+    {
+      "id": "primary-0006-05584f2a63",
+      "ordinal": 6,
+      "title": "APPENDIX."
+    }
+  ],
+  "proposalQuestions": [
+    {
+      "confidence": 0.98,
+      "evidence": [
+        {
+          "evidence": "The cause of America is in a great measure the cause of all mankind.",
+          "name": "America",
+          "segmentId": "primary-0001-aa4049b632"
+        },
+        {
+          "evidence": "Volumes have been written on the subject of the struggle between\nEngland and America.",
+          "name": "England and America",
+          "segmentId": "primary-0004-799e727fd2"
+        }
+      ],
+      "id": "polity",
+      "mergeInto": null,
+      "options": ["category", "tag", "attribute", "relationship", "ignore"],
+      "prompt": "How should “Polity” be represented in the graph?",
+      "reason": "The argument repeatedly assigns distinct interests, injuries, capacities, and obligations to America, England, Britain, and other political communities; stable pages prevent those actors from being confused with institutions or abstract systems.",
+      "recommendation": "category",
+      "targetRequired": false
+    },
+    {
+      "confidence": 0.99,
+      "evidence": [
+        {
+          "evidence": "Here then is the origin and rise of government; namely, a mode rendered\nnecessary by the inability of moral virtue to govern the world; here\ntoo is the design and end of government, viz. freedom and security.",
+          "name": "Government",
+          "segmentId": "primary-0002-e36801330a"
+        },
+        {
+          "evidence": "The contest for monarchy and succession, between the houses of York and\nLancaster, laid England in a scene of blood for many years.",
+          "name": "Monarchy and hereditary succession",
+          "segmentId": "primary-0003-7ed9938aef"
+        }
+      ],
+      "id": "political-system",
+      "mergeInto": null,
+      "options": ["category", "tag", "attribute", "relationship", "ignore"],
+      "prompt": "How should “Political system” be represented in the graph?",
+      "reason": "Paine compares systems across the pamphlet and gives them different origins, purposes, defects, and historical consequences; readers need stable pages that collect those claims without treating systems as places or institutions.",
+      "recommendation": "category",
+      "targetRequired": false
+    },
+    {
+      "confidence": 0.97,
+      "evidence": [
+        {
+          "evidence": "as the King of England hath undertaken in his own Right,\nto support the Parliament in what he calls Theirs",
+          "name": "Parliament",
+          "segmentId": "primary-0001-aa4049b632"
+        },
+        {
+          "evidence": "But as it is more than probable that we shall never be\nwithout a Congress",
+          "name": "Congress",
+          "segmentId": "primary-0005-0cc95308b4"
+        }
+      ],
+      "id": "institution",
+      "mergeInto": null,
+      "options": ["category", "tag", "attribute", "relationship", "ignore"],
+      "prompt": "How should “Institution” be represented in the graph?",
+      "reason": "The pamphlet distinguishes bodies such as Parliament and Congress from both the peoples they claim to represent and the political systems they operate; institution pages preserve that distinction and their attributed powers.",
+      "recommendation": "category",
+      "targetRequired": false
+    },
+    {
+      "confidence": 0.99,
+      "evidence": [
+        {
+          "evidence": "the Doctrine of Independance: As no Answer hath yet appeared, it is now\npresumed that none will",
+          "name": "Independence",
+          "segmentId": "primary-0001-aa4049b632"
+        },
+        {
+          "evidence": "As much hath been said of the advantages of reconciliation, which, like\nan agreeable dream, hath passed away and left us as we were",
+          "name": "Reconciliation",
+          "segmentId": "primary-0004-799e727fd2"
+        }
+      ],
+      "id": "political-concept",
+      "mergeInto": null,
+      "options": ["category", "tag", "attribute", "relationship", "ignore"],
+      "prompt": "How should “Political concept” be represented in the graph?",
+      "reason": "The pamphlet is organized around recurring doctrines and alternatives, especially independence and reconciliation; stable concept pages let readers follow how definitions, arguments, and consequences accumulate across sections.",
+      "recommendation": "category",
+      "targetRequired": false
+    }
+  ],
+  "relationSuggestions": [
+    "advocates",
+    "opposes",
+    "supports",
+    "contrasts-with",
+    "governs",
+    "represents",
+    "claims-authority-over",
+    "at-war-with"
+  ],
+  "schemaVersion": 1
+}

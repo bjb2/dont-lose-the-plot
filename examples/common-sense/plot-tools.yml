@@ -1,0 +1,21 @@
+schemaVersion: 1
+title: Common Sense
+language: en
+profile: blank
+sources:
+  - id: primary
+    path: sources/common-sense.epub
+    kind: auto
+scope:
+  startSegment: 4
+  maxSegment: 6
+  allowInferredClaims: true
+processing:
+  concurrency: 4
+publication:
+  includeExcerpts: true
+  maxExcerptCharacters: 280
+output:
+  data: data
+  obsidian: content
+  site: site

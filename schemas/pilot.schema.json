@@ -1,5 +1,5 @@
 {
-  "$id": "https://dont-lose-the-plot.dev/schemas/discovery.schema.json",
+  "$id": "https://dont-lose-the-plot.dev/schemas/pilot.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "properties": {

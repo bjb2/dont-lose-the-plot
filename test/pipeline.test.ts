@@ -6,7 +6,7 @@ import { fileURLToPath } from "node:url"
 import test from "node:test"
 import { parse as parseYaml, stringify as stringifyYaml } from "yaml"
 import { initializeProject } from "../src/config.js"
-import { discoverCorpus } from "../src/discovery.js"
+import { analyzeTaxonomyPilot, prepareTaxonomyPilot } from "../src/pilot.js"
 import { extractSegments, prepareExtractionWork } from "../src/extract.js"
 import { readUtf8, writeJson, writeJsonLines, writeUtf8 } from "../src/files.js"
 import { ingestProject } from "../src/ingest.js"
@@ -18,6 +18,7 @@ import { verifyProject } from "../src/verify.js"
 const repositoryRoot = join(dirname(fileURLToPath(import.meta.url)), "..")
 const exampleRoot = join(repositoryRoot, "test", "fixtures", "the-clockwork-harbor")
 const aliceExampleRoot = join(repositoryRoot, "examples", "alice-in-wonderland")
+const commonSenseExampleRoot = join(repositoryRoot, "examples", "common-sense")
 
 async function createOmpProject(): Promise<string> {
   const parent = await mkdtemp(join(tmpdir(), "plot-tools-omp-"))
@@ -71,9 +72,29 @@ async function createAliceProject(): Promise<string> {
   return root
 }
 
+async function createCommonSenseProject(): Promise<string> {
+  const parent = await mkdtemp(join(tmpdir(), "plot-tools-common-sense-"))
+  const root = join(parent, "project")
+  await initializeProject({
+    directory: root,
+    title: "Common Sense",
+    source: "sources/common-sense.epub",
+    profile: "blank",
+  })
+  await cp(join(commonSenseExampleRoot, "sources"), join(root, "sources"), { recursive: true })
+  const configPath = join(root, "plot-tools.yml")
+  const config = parseYaml(await readUtf8(configPath)) as {
+    scope: { startSegment: number; maxSegment: number | null }
+  }
+  config.scope.startSegment = 4
+  config.scope.maxSegment = 6
+  await writeUtf8(configPath, stringifyYaml(config))
+  return root
+}
+
 async function prepareThroughOnboarding(root: string): Promise<void> {
   await ingestProject(root)
-  await discoverCorpus(root)
+  await analyzeTaxonomyPilot(root)
   await applyTaxonomyOnboarding(root, { acceptRecommended: true })
 }
 
@@ -154,13 +175,56 @@ test("new projects scaffold the interactive OMP skill", async () => {
 
   assert.equal(config.recordings, undefined)
   assert.match(skill, /visible `task` subagents/)
+  assert.match(skill, /plot-tools prepare pilot/)
   assert.match(skill, /plot-tools prepare extraction/)
+})
+
+test("taxonomy pilot blocks full extraction until review", async () => {
+  const root = await createProject()
+  await ingestProject(root)
+  const preparedPilot = await prepareTaxonomyPilot(root)
+
+  assert.equal(preparedPilot.segments.length, 3)
+  await assert.rejects(() => prepareExtractionWork(root), /Taxonomy pilot review is incomplete/)
+
+  await analyzeTaxonomyPilot(root)
+  const questions = JSON.parse(
+    await readUtf8(join(root, ".plot-tools", "review", "taxonomy-questions.json")),
+  ) as {
+    checkpoint: string
+    proposalQuestions: unknown[]
+  }
+  assert.equal(questions.checkpoint, "before-full-extraction")
+  assert.ok(questions.proposalQuestions.length > 0)
+  await assert.rejects(() => prepareExtractionWork(root), /Taxonomy pilot review is incomplete/)
+
+  await applyTaxonomyOnboarding(root, { acceptRecommended: true })
+  const preparedExtraction = await prepareExtractionWork(root)
+  assert.equal(preparedExtraction.segments, 3)
+})
+
+test("Common Sense EPUB splits one spine document into pilot sections", async () => {
+  const root = await createCommonSenseProject()
+  const ingestion = await ingestProject(root)
+  const pilot = await prepareTaxonomyPilot(root)
+  const work = await readUtf8(pilot.work)
+
+  assert.equal(ingestion.segments.length, 6)
+  assert.equal(ingestion.segments[0]?.title, "INTRODUCTION.")
+  assert.equal(ingestion.segments[5]?.title, "APPENDIX.")
+  assert.deepEqual(
+    pilot.segments.map((segment) => segment.ordinal),
+    [1, 2, 3, 4, 5, 6],
+  )
+  assert.match(work, /\[\.\.\. middle sample \.\.\.\]/)
+  assert.match(work, /\[\.\.\. ending sample \.\.\.\]/)
 })
 
 test("public-domain Alice EPUB builds with exact source evidence", async () => {
   const root = await createAliceProject()
   const ingestion = await ingestProject(root)
-  await discoverCorpus(root)
+  const pilot = await prepareTaxonomyPilot(root)
+  await analyzeTaxonomyPilot(root)
   await applyTaxonomyOnboarding(root, { acceptRecommended: true })
   await extractSegments(root)
   const graph = await normalizeExtractions(root)
@@ -170,6 +234,10 @@ test("public-domain Alice EPUB builds with exact source evidence", async () => {
   assert.equal(ingestion.segments.length, 12)
   assert.equal(ingestion.segments[0]?.title, "CHAPTER I. Down the Rabbit-Hole")
   assert.equal(ingestion.segments[11]?.title, "CHAPTER XII. Alice’s Evidence")
+  assert.deepEqual(
+    pilot.segments.map((segment) => segment.ordinal),
+    [1, 3, 5, 8, 10, 12],
+  )
   const entityIds = new Set(graph.entities.map((entity) => entity.id))
   assert.ok(entityIds.has("character-alice"))
   assert.ok(entityIds.has("character-white-rabbit"))
@@ -195,7 +263,7 @@ test("public-domain Alice EPUB builds with exact source evidence", async () => {
 test("accepted taxonomy onboarding is idempotent", async () => {
   const root = await createProject()
   await ingestProject(root)
-  await discoverCorpus(root)
+  await analyzeTaxonomyPilot(root)
   const first = await applyTaxonomyOnboarding(root, { acceptRecommended: true })
   const second = await applyTaxonomyOnboarding(root, { acceptRecommended: true })
 
@@ -205,7 +273,7 @@ test("accepted taxonomy onboarding is idempotent", async () => {
 test("onboarding refuses unresolved taxonomy decisions", async () => {
   const root = await createProject()
   await ingestProject(root)
-  await discoverCorpus(root)
+  await analyzeTaxonomyPilot(root)
   await assert.rejects(() => applyTaxonomyOnboarding(root), /decisions remain pending/i)
 })
 

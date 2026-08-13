@@ -1,0 +1,17 @@
+{"code":"attribute-conflict","entityId":"institution-congress","id":"issue-1","message":"Conflicting institution-type values for institution-congress","severity":"review"}
+{"code":"attribute-conflict","entityId":"institution-congress","id":"issue-2","message":"Conflicting claimed-authority values for institution-congress","severity":"review"}
+{"code":"attribute-conflict","entityId":"institution-congress","id":"issue-3","message":"Conflicting institution-type values for institution-congress","severity":"review"}
+{"code":"attribute-conflict","entityId":"political-concept-independance","id":"issue-4","message":"Conflicting authorial-position values for political-concept-independance","severity":"review"}
+{"code":"attribute-conflict","entityId":"political-concept-independance","id":"issue-5","message":"Conflicting authorial-position values for political-concept-independance","severity":"review"}
+{"code":"attribute-conflict","entityId":"political-concept-independance","id":"issue-6","message":"Conflicting authorial-position values for political-concept-independance","severity":"review"}
+{"code":"attribute-conflict","entityId":"political-concept-reconciliation","id":"issue-7","message":"Conflicting authorial-position values for political-concept-reconciliation","severity":"review"}
+{"code":"attribute-conflict","entityId":"political-system-british-government","id":"issue-8","message":"Conflicting authorial-assessment values for political-system-british-government","severity":"review"}
+{"code":"attribute-conflict","entityId":"political-system-constitution-of-england","id":"issue-9","message":"Conflicting authorial-assessment values for political-system-constitution-of-england","severity":"review"}
+{"code":"attribute-conflict","entityId":"political-system-monarchy","id":"issue-10","message":"Conflicting authorial-assessment values for political-system-monarchy","severity":"review"}
+{"code":"attribute-conflict","entityId":"political-system-monarchy","id":"issue-11","message":"Conflicting authorial-assessment values for political-system-monarchy","severity":"review"}
+{"code":"attribute-conflict","entityId":"political-system-monarchy","id":"issue-12","message":"Conflicting authorial-assessment values for political-system-monarchy","severity":"review"}
+{"code":"attribute-conflict","entityId":"polity-america","id":"issue-13","message":"Conflicting political-status values for polity-america","severity":"review"}
+{"code":"attribute-conflict","entityId":"polity-america","id":"issue-14","message":"Conflicting political-status values for polity-america","severity":"review"}
+{"code":"attribute-conflict","entityId":"polity-england","id":"issue-15","message":"Conflicting political-status values for polity-england","severity":"review"}
+{"code":"attribute-conflict","entityId":"polity-great-britain","id":"issue-16","message":"Conflicting political-status values for polity-great-britain","severity":"review"}
+{"code":"attribute-conflict","entityId":"polity-great-britain","id":"issue-17","message":"Conflicting political-status values for polity-great-britain","severity":"review"}

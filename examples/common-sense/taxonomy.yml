@@ -1,0 +1,130 @@
+schemaVersion: 1
+categories:
+  - id: polity
+    labels:
+      singular: Polity
+      plural: Polities
+    definition: A named country, colony, continent, or politically constituted
+      people treated as an actor or subject of government.
+    include:
+      - Named countries and continents
+      - The American colonies when discussed collectively
+      - Political communities assigned interests, duties, or capabilities
+    exclude:
+      - Forms of government such as monarchy
+      - Institutions such as Parliament or Congress
+      - Unnamed hypothetical communities
+    tags: []
+    attributes:
+      political-status:
+        type: string
+        required: false
+        description: The political condition or status attributed to the polity in the
+          source
+    relations:
+      - claims-authority-over
+      - at-war-with
+    folder: Polities
+    pageTemplate: entity
+  - id: political-system
+    labels:
+      singular: Political system
+      plural: Political systems
+    definition: A named form or organizing principle of government whose design,
+      legitimacy, or consequences the text evaluates.
+    include:
+      - Government as an organized system
+      - Monarchy, hereditary succession, republic, and representative government
+      - Constitutional arrangements evaluated across sections
+    exclude:
+      - A specific institution such as Congress
+      - A country governed by the system
+      - A single policy proposal
+    tags: []
+    attributes:
+      stated-purpose:
+        type: string
+        required: false
+        description: The purpose or justification attributed to the system
+      authorial-assessment:
+        type: string
+        required: false
+        description: The source's explicit assessment of the system
+    relations:
+      - opposes
+      - contrasts-with
+    folder: Political Systems
+    pageTemplate: entity
+  - id: institution
+    labels:
+      singular: Institution
+      plural: Institutions
+    definition: A named governing, legislative, religious, or representative body
+      that exercises or contests authority.
+    include:
+      - Parliament and Congress
+      - Legislatures, conventions, and governing assemblies
+      - Named collective bodies with institutional powers
+    exclude:
+      - A polity such as America
+      - A political system such as monarchy
+      - An informal class of unnamed supporters
+    tags: []
+    attributes:
+      institution-type:
+        type: string
+        required: false
+        description: The institution's governmental, legislative, or religious role
+      claimed-authority:
+        type: string
+        required: false
+        description: The authority the institution claims or is assigned
+    relations:
+      - governs
+      - represents
+      - claims-authority-over
+    folder: Institutions
+    pageTemplate: entity
+  - id: political-concept
+    labels:
+      singular: Political concept
+      plural: Political concepts
+    definition: A recurring named doctrine, principle, or political alternative that
+      the pamphlet defines, advocates, or rejects.
+    include:
+      - Independence, reconciliation, natural rights, representation, and
+        security
+      - Named doctrines and paired political alternatives
+      - Principles whose meaning or consequences recur across sections
+    exclude:
+      - A concrete governing institution
+      - A named polity
+      - A one-off rhetorical image
+    tags: []
+    attributes:
+      authorial-position:
+        type: string
+        required: false
+        description: Whether the source advocates, rejects, qualifies, or defines the
+          concept
+    relations:
+      - supports
+      - opposes
+      - contrasts-with
+    folder: Political Concepts
+    pageTemplate: entity
+passageKinds:
+  - argument
+  - maxim
+  - proposal
+  - quote
+  - rebuttal
+relationVocabulary:
+  - advocates
+  - at-war-with
+  - claims-authority-over
+  - contrasts-with
+  - governs
+  - opposes
+  - represents
+  - supports

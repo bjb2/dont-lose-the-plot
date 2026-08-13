@@ -2,7 +2,7 @@
 import { resolve } from "node:path"
 import { Command } from "commander"
 import { findProjectRoot, initializeProject } from "./config.js"
-import { discoverCorpus, prepareDiscoveryWork } from "./discovery.js"
+import { analyzeTaxonomyPilot, prepareTaxonomyPilot } from "./pilot.js"
 import { extractSegments, prepareExtractionWork } from "./extract.js"
 import { ingestProject } from "./ingest.js"
 import { normalizeExtractions } from "./normalize.js"
@@ -46,12 +46,12 @@ program
   })
 
 program
-  .command("discover")
-  .description("Validate an OMP discovery response and draft taxonomy decisions")
-  .option("--response <path>", "OMP-produced discovery JSON")
+  .command("pilot")
+  .description("Validate an OMP taxonomy-pilot response and draft review questions")
+  .option("--response <path>", "OMP-produced taxonomy-pilot JSON")
   .action(async (options: { response?: string }) => {
     const root = await projectRoot()
-    const result = await discoverCorpus(root, {
+    const result = await analyzeTaxonomyPilot(root, {
       ...(options.response ? { responsePath: options.response } : {}),
     })
     print({ proposals: result.proposals.length })
@@ -73,7 +73,7 @@ program
 
 program
   .command("lock")
-  .description("Lock an already reviewed taxonomy without corpus discovery")
+  .description("Lock an already reviewed taxonomy without a taxonomy pilot")
   .action(async () => {
     const root = await projectRoot()
     const taxonomy = await lockExistingTaxonomy(root)
@@ -95,8 +95,8 @@ program
 const prepare = program
   .command("prepare")
   .description("Create self-contained work items for visible OMP agents")
-prepare.command("discovery").action(async () => {
-  print(await prepareDiscoveryWork(await projectRoot()))
+prepare.command("pilot").action(async () => {
+  print(await prepareTaxonomyPilot(await projectRoot()))
 })
 prepare.command("extraction").action(async () => {
   print(await prepareExtractionWork(await projectRoot()))

@@ -3,6 +3,7 @@ import { z } from "zod"
 import { loadProjectConfig, loadTaxonomy } from "./config.js"
 import {
   emptyDirectory,
+  pathExists,
   readJson,
   readJsonLines,
   readUtf8,
@@ -139,7 +140,13 @@ export async function prepareExtractionWork(root: string): Promise<{
 async function loadExtractionContext(root: string) {
   const config = await loadProjectConfig(root)
   const taxonomy = await loadTaxonomy(root)
-  const lock = await readJson(join(root, "taxonomy.lock.json"), TaxonomyLockSchema)
+  const lockPath = join(root, "taxonomy.lock.json")
+  if (!(await pathExists(lockPath))) {
+    throw new Error(
+      "Taxonomy pilot review is incomplete; run plot-tools prepare pilot, plot-tools pilot, and plot-tools onboard before full extraction",
+    )
+  }
+  const lock = await readJson(lockPath, TaxonomyLockSchema)
   const currentHash = sha256(stableStringify(taxonomy))
   if (lock.taxonomyHash !== currentHash) {
     throw new Error(

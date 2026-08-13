@@ -113,7 +113,7 @@ export const CategoryProposalSchema = z.object({
   confidence: z.number().min(0).max(1),
 })
 
-export const DiscoveryResultSchema = z.object({
+export const TaxonomyPilotResultSchema = z.object({
   corpusProfile: z.object({
     genre: z.string(),
     structure: z.string(),
@@ -288,7 +288,7 @@ export type SourceRecord = z.infer<typeof SourceRecordSchema>
 export type Segment = z.infer<typeof SegmentSchema>
 export type Taxonomy = z.infer<typeof TaxonomySchema>
 export type TaxonomyCategory = z.infer<typeof TaxonomyCategorySchema>
-export type DiscoveryResult = z.infer<typeof DiscoveryResultSchema>
+export type TaxonomyPilotResult = z.infer<typeof TaxonomyPilotResultSchema>
 export type SegmentExtraction = z.infer<typeof SegmentExtractionSchema>
 export type Provenance = z.infer<typeof ProvenanceSchema>
 export type CanonicalEntity = z.infer<typeof CanonicalEntitySchema>

@@ -20,7 +20,10 @@ node ../../dist/cli.js verify
 node ../../dist/cli.js site build
 ```
 
-The synthetic Clockwork Harbor text exists only under `test/fixtures/` to test discovery, custom taxonomy onboarding, deterministic rendering, and intentional failure paths.
+The [`examples/common-sense`](examples/common-sense/README.md) example starts from a blank taxonomy and demonstrates the new pre-extraction checkpoint on Thomas Paine's political pamphlet. Its six-section pilot surfaces evidence-backed recommendations for polities, political systems, institutions, political concepts, relation predicates, and rhetorical passage kinds before any full-extraction work is created.
+
+The synthetic Clockwork Harbor text exists only under `test/fixtures/` to test the taxonomy pilot, custom taxonomy onboarding, deterministic rendering, and intentional failure paths.
+
 ## Install and initialize
 
 Requires Node.js 22 or newer and an authenticated [Oh My Pi](https://github.com/can1357/oh-my-pi) installation.
@@ -47,10 +50,10 @@ OMP visibly orchestrates the deterministic CLI:
 
 ```text
 plot-tools ingest
-plot-tools prepare discovery
-OMP task agent → .plot-tools/responses/discovery.json
-plot-tools discover --response .plot-tools/responses/discovery.json
-human taxonomy review
+plot-tools prepare pilot
+OMP task agent → .plot-tools/responses/taxonomy-pilot.json
+plot-tools pilot --response .plot-tools/responses/taxonomy-pilot.json
+human review of evidence-backed taxonomy questions
 plot-tools onboard
 plot-tools prepare extraction
 OMP task agents → one response JSON per segment
@@ -63,15 +66,15 @@ plot-tools site build
 
 The generated work items are self-contained: each names its output path, embeds the versioned prompt, references its JSON schema, and includes only the source text needed for that decision. `processing.concurrency` limits each visible extraction-subagent batch (default `4`, maximum `32`). The collector validates every response and restores source order regardless of subagent completion order.
 
-For an established hand-authored taxonomy, OMP runs `plot-tools lock` instead of discovery and onboarding. A project with a `recordings` path is a deterministic replay fixture; it can run `discover`, `extract`, or `build` without AI.
+For an established hand-authored taxonomy, OMP runs `plot-tools lock` instead of the pilot and onboarding. A project with a `recordings` path is a deterministic replay fixture; it can run `pilot`, `extract`, or `build` without AI.
 
 ### 1. Ingestion
 
 EPUB package spine order, Markdown headings, and text chapter/scene headings become stable ordered segments. Each source and segment is hashed. Use `scope.startSegment` to skip front matter and `scope.maxSegment` to create a spoiler or processing boundary.
 
-### 2. Corpus discovery and onboarding
+### 2. Taxonomy pilot and onboarding
 
-Discovery samples the corpus across its full range and proposes structures the starter taxonomy cannot express. It does not silently change the schema. Every proposal is classified as a category, tag, attribute, relationship, merge, or rejection in a human-editable decision file. Accepted decisions produce `taxonomy.yml` and `taxonomy.lock.json`.
+Before the full extraction fan-out, the pilot attempts provisional extraction over six deterministic segments distributed across the configured scope. It proposes only recurring structures the starter taxonomy cannot express, cites exact evidence from at least two pilot segments per proposal, and writes `.plot-tools/review/taxonomy-questions.json`. OMP presents those recommendations in one compact user checkpoint. Only reviewed decisions can produce `taxonomy.yml` and `taxonomy.lock.json`; extraction work cannot be prepared before that lock exists. The later fan-out reprocesses every scoped segment, including pilot segments, under the locked taxonomy.
 
 The starter ontology stays deliberately small:
 
