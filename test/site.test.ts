@@ -4,7 +4,7 @@ import { tmpdir } from "node:os"
 import { join } from "node:path"
 import test from "node:test"
 import { pathExists, readUtf8, writeUtf8 } from "../src/files.js"
-import { publishQuartzOutput, validateQuartzOutput } from "../src/site.js"
+import { localPreviewOutput, publishQuartzOutput, validateQuartzOutput } from "../src/site.js"
 
 const title = "Alice's Adventures in Wonderland"
 const baseUrl = "bjb2.github.io/dont-lose-the-plot"
@@ -53,4 +53,11 @@ test("Quartz publication copies complete assets and removes stale files", async 
   assert.match(await readUtf8(join(output, "index.html")), /index-deadbeef\.css/)
   assert.equal(await pathExists(join(output, "index-stale.css")), false)
   assert.equal(await pathExists(join(output, "removed.html")), false)
+})
+
+test("local preview output mirrors the configured deployment subpath", () => {
+  assert.equal(
+    localPreviewOutput(join("project", "site"), baseUrl),
+    join("project", "site", "serve", "dont-lose-the-plot"),
+  )
 })

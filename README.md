@@ -97,7 +97,7 @@ Normalization conservatively merges exact category/name or unambiguous alias mat
 
 ### 5. Publication
 
-`plot-tools render` rebuilds an Obsidian-compatible vault from canonical data. It emits chapter pages, typed entity pages, passage pages, indexes, frontmatter, wikilinks, and a deterministic render manifest. `plot-tools site build` provisions a pinned Quartz v5 checkout, copies the rendered vault, builds the static site, and writes `site/public`.
+`plot-tools render` rebuilds an Obsidian-compatible vault from canonical data. It emits chapter pages, typed entity pages, passage pages, indexes, frontmatter, wikilinks, and a deterministic render manifest. `plot-tools site build` provisions a pinned Quartz v5 checkout, copies the rendered vault, builds the static site, and writes the deployment artifact to `site/public`. It also mirrors the build beneath `site/serve/<deployment-path>` so a local static server rooted at `site/serve` resolves the same base-path URLs as GitHub Pages.
 
 ## Project layout
 
@@ -116,7 +116,8 @@ data/segments.jsonl            ordered source units
 data/extractions.jsonl         schema-valid collected responses
 data/*.jsonl                   canonical graph artifacts
 content/                       generated Obsidian vault
-site/public/                   generated Quartz website
+site/public/                   generated deployment artifact
+site/serve/<deployment-path>/ local preview tree
 ```
 
 ## Verification gates

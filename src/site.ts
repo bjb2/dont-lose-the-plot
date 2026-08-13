@@ -84,6 +84,10 @@ export async function buildQuartzSite(root: string): Promise<string> {
     await validateQuartzOutput(buildOutput, config.title, siteConfig.baseUrl)
     await publishQuartzOutput(buildOutput, output)
     await validateQuartzOutput(output, config.title, siteConfig.baseUrl)
+
+    const previewOutput = localPreviewOutput(resolve(root, config.output.site), siteConfig.baseUrl)
+    await publishQuartzOutput(buildOutput, previewOutput)
+    await validateQuartzOutput(previewOutput, config.title, siteConfig.baseUrl)
     return output
   } finally {
     await rm(buildOutput, { recursive: true, force: true })
@@ -200,6 +204,13 @@ async function runQuartzBuild(checkout: string, output: string): Promise<void> {
       await delay(250)
     }
   }
+}
+
+export function localPreviewOutput(siteRoot: string, baseUrl: string): string {
+  const basePath = new URL(`https://${baseUrl}`).pathname
+    .split("/")
+    .filter((segment) => segment.length > 0)
+  return join(siteRoot, "serve", ...basePath)
 }
 
 export async function publishQuartzOutput(source: string, output: string): Promise<void> {
