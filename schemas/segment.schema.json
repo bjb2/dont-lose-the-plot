@@ -1,0 +1,16 @@
+{
+  "$id": "https://dont-lose-the-plot.dev/schemas/segment.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string" },
+    "locator": { "type": "string" },
+    "ordinal": { "exclusiveMinimum": 0, "maximum": 9007199254740991, "type": "integer" },
+    "sha256": { "maxLength": 64, "minLength": 64, "type": "string" },
+    "sourceId": { "type": "string" },
+    "text": { "type": "string" },
+    "title": { "type": "string" }
+  },
+  "required": ["id", "sourceId", "ordinal", "title", "text", "sha256", "locator"],
+  "type": "object"
+}

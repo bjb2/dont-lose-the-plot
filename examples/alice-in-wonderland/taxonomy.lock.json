@@ -1,0 +1,87 @@
+{
+  "lockedAt": "2026-08-13T14:11:26.215Z",
+  "schemaVersion": 1,
+  "taxonomy": {
+    "categories": [
+      {
+        "attributes": {},
+        "definition": "A named person or person-like participant with a durable narrative identity.",
+        "exclude": ["Unnamed crowds", "Incidental roles without stable identity"],
+        "folder": "Characters",
+        "id": "character",
+        "include": ["Named people", "Durable aliases", "Person-like nonhuman actors"],
+        "labels": {
+          "plural": "Characters",
+          "singular": "Character"
+        },
+        "pageTemplate": "entity",
+        "relations": [],
+        "tags": []
+      },
+      {
+        "attributes": {},
+        "definition": "A named physical or spatial setting that recurs or matters to the narrative.",
+        "exclude": ["Generic rooms without narrative identity"],
+        "folder": "Locations",
+        "id": "location",
+        "include": ["Named settlements", "Buildings", "Regions", "Distinct settings"],
+        "labels": {
+          "plural": "Locations",
+          "singular": "Location"
+        },
+        "pageTemplate": "entity",
+        "relations": [],
+        "tags": []
+      },
+      {
+        "attributes": {},
+        "definition": "A durable named group, institution, faction, family, or collective actor.",
+        "exclude": ["Temporary groups with no stable identity"],
+        "folder": "Organizations",
+        "id": "organization",
+        "include": ["Institutions", "Factions", "Named families acting collectively"],
+        "labels": {
+          "plural": "Organizations",
+          "singular": "Organization"
+        },
+        "pageTemplate": "entity",
+        "relations": [],
+        "tags": []
+      },
+      {
+        "attributes": {},
+        "definition": "A distinct named or uniquely tracked physical object.",
+        "exclude": ["Ordinary interchangeable objects"],
+        "folder": "Items",
+        "id": "item",
+        "include": ["Named objects", "Unique documents", "Plot-significant possessions"],
+        "labels": {
+          "plural": "Items",
+          "singular": "Item"
+        },
+        "pageTemplate": "entity",
+        "relations": [],
+        "tags": []
+      },
+      {
+        "attributes": {},
+        "definition": "A named or independently referable occurrence involving one or more participants.",
+        "exclude": ["Every routine action or plot beat"],
+        "folder": "Events",
+        "id": "event",
+        "include": ["Named incidents", "Major meetings", "Conflicts", "Investigations"],
+        "labels": {
+          "plural": "Events",
+          "singular": "Event"
+        },
+        "pageTemplate": "entity",
+        "relations": [],
+        "tags": []
+      }
+    ],
+    "passageKinds": ["quote"],
+    "relationVocabulary": ["asks-for-help", "follows", "owns", "proposes"],
+    "schemaVersion": 1
+  },
+  "taxonomyHash": "dacd804b7033b466ea0950d734a87bf7c51f6dad9b36ee60d2ba4807c927ff08"
+}

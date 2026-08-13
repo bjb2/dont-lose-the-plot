@@ -1,0 +1,55 @@
+{
+  "name": "dont-lose-the-plot",
+  "version": "0.1.0",
+  "description": "Source-grounded narrative graph extraction with Obsidian and static website output",
+  "type": "module",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bjb2/dont-lose-the-plot.git"
+  },
+  "bin": {
+    "plot-tools": "./dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "prompts",
+    "schemas",
+    "templates",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "schemas": "tsx scripts/generate-schemas.ts",
+    "build": "npm run schemas && tsc",
+    "check": "npm run schemas && tsc --noEmit && prettier . --check",
+    "format": "prettier . --write",
+    "test": "tsx --test test/**/*.test.ts",
+    "test:all": "npm run check && npm test",
+    "prepack": "npm run build && npm test"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": [
+    "narrative",
+    "knowledge-graph",
+    "obsidian",
+    "fiction",
+    "llm",
+    "epub"
+  ],
+  "dependencies": {
+    "ai": "^7.0.64",
+    "commander": "^15.0.0",
+    "fflate": "^0.8.3",
+    "yaml": "^2.9.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^26.2.0",
+    "prettier": "^3.9.6",
+    "tsx": "^4.23.12",
+    "typescript": "^7.0.2"
+  }
+}

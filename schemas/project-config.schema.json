@@ -1,0 +1,112 @@
+{
+  "$id": "https://dont-lose-the-plot.dev/schemas/project-config.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "language": { "default": "en", "minLength": 2, "type": "string" },
+    "output": {
+      "additionalProperties": false,
+      "properties": {
+        "data": { "default": "data", "type": "string" },
+        "obsidian": { "default": "content", "type": "string" },
+        "site": { "default": "site", "type": "string" }
+      },
+      "required": ["data", "obsidian", "site"],
+      "type": "object"
+    },
+    "profile": {
+      "default": "novel",
+      "enum": ["novel", "screenplay", "transcript", "blank"],
+      "type": "string"
+    },
+    "provider": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": { "const": "gateway", "type": "string" },
+            "model": { "minLength": 1, "type": "string" }
+          },
+          "required": ["kind", "model"],
+          "type": "object"
+        },
+        {
+          "additionalProperties": false,
+          "properties": {
+            "kind": { "const": "recorded", "type": "string" },
+            "recordings": { "minLength": 1, "type": "string" }
+          },
+          "required": ["kind", "recordings"],
+          "type": "object"
+        }
+      ]
+    },
+    "publication": {
+      "additionalProperties": false,
+      "properties": {
+        "includeExcerpts": { "default": true, "type": "boolean" },
+        "maxExcerptCharacters": {
+          "default": 280,
+          "maximum": 9007199254740991,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": ["includeExcerpts", "maxExcerptCharacters"],
+      "type": "object"
+    },
+    "schemaVersion": { "const": 1, "type": "number" },
+    "scope": {
+      "additionalProperties": false,
+      "properties": {
+        "allowInferredClaims": { "default": true, "type": "boolean" },
+        "maxSegment": {
+          "anyOf": [
+            { "exclusiveMinimum": 0, "maximum": 9007199254740991, "type": "integer" },
+            { "type": "null" }
+          ],
+          "default": null
+        },
+        "startSegment": {
+          "default": 1,
+          "exclusiveMinimum": 0,
+          "maximum": 9007199254740991,
+          "type": "integer"
+        }
+      },
+      "required": ["startSegment", "maxSegment", "allowInferredClaims"],
+      "type": "object"
+    },
+    "sources": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "id": { "pattern": "^[a-z0-9][a-z0-9-]*$", "type": "string" },
+          "kind": {
+            "default": "auto",
+            "enum": ["auto", "epub", "markdown", "text"],
+            "type": "string"
+          },
+          "path": { "minLength": 1, "type": "string" }
+        },
+        "required": ["id", "path", "kind"],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "title": { "minLength": 1, "type": "string" }
+  },
+  "required": [
+    "schemaVersion",
+    "title",
+    "language",
+    "profile",
+    "sources",
+    "scope",
+    "publication",
+    "provider",
+    "output"
+  ],
+  "type": "object"
+}

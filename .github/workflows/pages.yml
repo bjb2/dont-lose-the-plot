@@ -1,0 +1,49 @@
+name: Deploy Alice example
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Rebuild and verify public-domain example
+        working-directory: examples/alice-in-wonderland
+        run: |
+          node ../../dist/cli.js ingest
+          node ../../dist/cli.js extract
+          node ../../dist/cli.js normalize
+          node ../../dist/cli.js render
+          node ../../dist/cli.js verify
+          node ../../dist/cli.js site build
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: examples/alice-in-wonderland/site/public
+
+  deploy:
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

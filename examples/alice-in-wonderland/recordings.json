@@ -1,0 +1,323 @@
+{
+  "schemaVersion": 1,
+  "responses": {
+    "discovery": {
+      "corpusProfile": {
+        "genre": "literary nonsense and fantasy",
+        "structure": "episodic chapters following Alice through a sequence of encounters",
+        "namingConventions": ["proper names", "species used as names", "named games and events"],
+        "extractionRisks": [
+          "Treat person-like animals as characters rather than inventing a creature category",
+          "Do not turn every size change into a separate entity"
+        ]
+      },
+      "proposals": [],
+      "proposedPassageKinds": [],
+      "proposedRelations": ["follows", "asks-for-help", "owns", "proposes"]
+    },
+    "extract:primary-0001-87acee8cf1": {
+      "segmentId": "primary-0001-87acee8cf1",
+      "summary": "Alice follows the White Rabbit down a rabbit-hole, finds a locked hall and garden door, and changes size after drinking from a bottle and eating a cake.",
+      "plotBeats": [
+        "Alice follows the White Rabbit",
+        "Alice discovers the golden key and garden door",
+        "Alice shrinks after drinking from the bottle",
+        "Alice eats the cake"
+      ],
+      "themes": ["curiosity", "transformation", "thresholds"],
+      "entities": [
+        {
+          "name": "Alice",
+          "category": "character",
+          "aliases": [],
+          "summary": "A curious girl who follows the White Rabbit underground.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "Alice was beginning to get very tired",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "Alice follows the White Rabbit into the rabbit-hole.",
+              "certainty": "explicit",
+              "excerpt": "she ran across the field after it"
+            }
+          ]
+        },
+        {
+          "name": "White Rabbit",
+          "category": "character",
+          "aliases": ["Rabbit"],
+          "summary": "A waistcoat-wearing rabbit whose haste draws Alice underground.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "a White Rabbit with pink eyes",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The White Rabbit carries a watch in its waistcoat pocket.",
+              "certainty": "explicit",
+              "excerpt": "a watch out of its"
+            }
+          ]
+        },
+        {
+          "name": "Dinah",
+          "category": "character",
+          "aliases": [],
+          "summary": "Alice's cat, whom Alice thinks about while falling.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "Dinah was the\ncat.",
+          "attributes": {},
+          "claims": []
+        },
+        {
+          "name": "Golden Key",
+          "category": "item",
+          "aliases": ["tiny golden key"],
+          "summary": "A small key that fits the door leading toward the garden.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "a tiny golden key",
+          "attributes": {},
+          "claims": []
+        },
+        {
+          "name": "Drink Me Bottle",
+          "category": "item",
+          "aliases": ["little bottle"],
+          "summary": "A labeled bottle whose contents make Alice shrink.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "DRINK ME",
+          "attributes": {},
+          "claims": []
+        },
+        {
+          "name": "Eat Me Cake",
+          "category": "item",
+          "aliases": ["small cake"],
+          "summary": "A currant-marked cake Alice eats after becoming too small to reach the key.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "EAT ME",
+          "attributes": {},
+          "claims": []
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "Alice",
+          "predicate": "follows",
+          "object": "White Rabbit",
+          "certainty": "explicit",
+          "excerpt": "she ran across the field after it"
+        }
+      ],
+      "passages": [
+        {
+          "title": "The Rabbit is late",
+          "kind": "quote",
+          "speaker": "White Rabbit",
+          "text": "I shall be late!",
+          "context": "Alice hears the White Rabbit speak before following it.",
+          "significance": "The ordinary anxiety expressed by an impossible figure triggers Alice's pursuit.",
+          "entities": ["Alice", "White Rabbit"],
+          "complete": true,
+          "certainty": "explicit"
+        }
+      ],
+      "openQuestions": ["What is the White Rabbit late for?"]
+    },
+    "extract:primary-0002-89c560d007": {
+      "segmentId": "primary-0002-89c560d007",
+      "summary": "Alice grows enormous, questions her identity, frightens away the White Rabbit, and meets a Mouse while swimming in her own pool of tears.",
+      "plotBeats": [
+        "Alice grows to more than nine feet",
+        "Alice questions whether she is still herself",
+        "The White Rabbit drops its fan and gloves",
+        "Alice addresses the Mouse in the pool"
+      ],
+      "themes": ["identity", "isolation", "miscommunication"],
+      "entities": [
+        {
+          "name": "Alice",
+          "category": "character",
+          "aliases": [],
+          "summary": "A girl whose changing size makes her question her identity.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "Who in the world am I?",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "Alice creates a pool with her tears.",
+              "certainty": "explicit",
+              "excerpt": "she went on all the same, shedding gallons of tears"
+            }
+          ]
+        },
+        {
+          "name": "White Rabbit",
+          "category": "character",
+          "aliases": ["Rabbit"],
+          "summary": "The anxious rabbit who mistakes Alice's approach and drops his gloves and fan.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "The Rabbit started violently",
+          "attributes": {},
+          "claims": []
+        },
+        {
+          "name": "Mouse",
+          "category": "character",
+          "aliases": [],
+          "summary": "A swimming Mouse whom Alice asks for a way out of the pool.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "O Mouse, do\nyou know the way out of this pool?",
+          "attributes": {},
+          "claims": []
+        },
+        {
+          "name": "Dinah",
+          "category": "character",
+          "aliases": [],
+          "summary": "Alice's cat, whose skill at catching mice offends the Mouse.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "our cat Dinah",
+          "attributes": {},
+          "claims": []
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "Alice",
+          "predicate": "asks-for-help",
+          "object": "Mouse",
+          "certainty": "explicit",
+          "excerpt": "O Mouse, do\nyou know the way out of this pool?"
+        },
+        {
+          "subject": "Alice",
+          "predicate": "owns",
+          "object": "Dinah",
+          "certainty": "explicit",
+          "excerpt": "our cat Dinah"
+        }
+      ],
+      "passages": [
+        {
+          "title": "The great puzzle",
+          "kind": "quote",
+          "speaker": "Alice",
+          "text": "Who in the world am I? Ah, that’s\nthe great puzzle!",
+          "context": "Alice tests her memory after her body changes size.",
+          "significance": "The question makes identity, rather than size alone, the chapter's central uncertainty.",
+          "entities": ["Alice"],
+          "complete": true,
+          "certainty": "explicit"
+        }
+      ],
+      "openQuestions": ["How will Alice and the Mouse leave the pool?"]
+    },
+    "extract:primary-0003-c7dce16cd1": {
+      "segmentId": "primary-0003-c7dce16cd1",
+      "summary": "The wet animals hold a Caucus-Race, the Dodo awards prizes, and Alice drives the group away by talking about Dinah.",
+      "plotBeats": [
+        "The Dodo proposes a Caucus-Race",
+        "Everyone runs without a fixed course",
+        "The Dodo declares everyone a winner",
+        "The Mouse leaves after Alice misunderstands its tale"
+      ],
+      "themes": ["absurd authority", "language", "social misunderstanding"],
+      "entities": [
+        {
+          "name": "Alice",
+          "category": "character",
+          "aliases": [],
+          "summary": "A participant who supplies comfits as prizes and misunderstands the Mouse's tale.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "Alice had no idea what to do",
+          "attributes": {},
+          "claims": []
+        },
+        {
+          "name": "Mouse",
+          "category": "character",
+          "aliases": [],
+          "summary": "A touchy Mouse whose history Alice mistakes for the shape of its tail.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "Mine is a long and a sad tale!",
+          "attributes": {},
+          "claims": []
+        },
+        {
+          "name": "Dodo",
+          "category": "character",
+          "aliases": [],
+          "summary": "A solemn bird who proposes the Caucus-Race and judges its result.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "said the Dodo solemnly",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The Dodo declares that everyone has won.",
+              "certainty": "explicit",
+              "excerpt": "Everybody has won"
+            }
+          ]
+        },
+        {
+          "name": "Caucus-Race",
+          "category": "event",
+          "aliases": [],
+          "summary": "An unstructured race proposed as a way for the wet party to dry off.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "best thing to get us dry would be a Caucus-race",
+          "attributes": {},
+          "claims": []
+        },
+        {
+          "name": "Dinah",
+          "category": "character",
+          "aliases": [],
+          "summary": "Alice's cat, whose hunting habits alarm the gathered animals.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "our Dinah here",
+          "attributes": {},
+          "claims": []
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "Dodo",
+          "predicate": "proposes",
+          "object": "Caucus-Race",
+          "certainty": "explicit",
+          "excerpt": "best thing to get us dry would be a Caucus-race"
+        }
+      ],
+      "passages": [
+        {
+          "title": "Everybody has won",
+          "kind": "quote",
+          "speaker": "Dodo",
+          "text": "Everybody has won, and all\nmust have prizes.",
+          "context": "The Dodo announces the result after the race stops.",
+          "significance": "The verdict turns the race into a satire of procedure without competition or measure.",
+          "entities": ["Dodo", "Caucus-Race", "Alice"],
+          "complete": true,
+          "certainty": "explicit"
+        }
+      ],
+      "openQuestions": []
+    }
+  }
+}

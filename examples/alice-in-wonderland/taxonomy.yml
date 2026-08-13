@@ -1,0 +1,95 @@
+schemaVersion: 1
+categories:
+  - id: character
+    labels:
+      singular: Character
+      plural: Characters
+    definition: A named person or person-like participant with a durable narrative
+      identity.
+    include:
+      - Named people
+      - Durable aliases
+      - Person-like nonhuman actors
+    exclude:
+      - Unnamed crowds
+      - Incidental roles without stable identity
+    tags: []
+    attributes: {}
+    relations: []
+    folder: Characters
+    pageTemplate: entity
+  - id: location
+    labels:
+      singular: Location
+      plural: Locations
+    definition: A named physical or spatial setting that recurs or matters to the
+      narrative.
+    include:
+      - Named settlements
+      - Buildings
+      - Regions
+      - Distinct settings
+    exclude:
+      - Generic rooms without narrative identity
+    tags: []
+    attributes: {}
+    relations: []
+    folder: Locations
+    pageTemplate: entity
+  - id: organization
+    labels:
+      singular: Organization
+      plural: Organizations
+    definition: A durable named group, institution, faction, family, or collective actor.
+    include:
+      - Institutions
+      - Factions
+      - Named families acting collectively
+    exclude:
+      - Temporary groups with no stable identity
+    tags: []
+    attributes: {}
+    relations: []
+    folder: Organizations
+    pageTemplate: entity
+  - id: item
+    labels:
+      singular: Item
+      plural: Items
+    definition: A distinct named or uniquely tracked physical object.
+    include:
+      - Named objects
+      - Unique documents
+      - Plot-significant possessions
+    exclude:
+      - Ordinary interchangeable objects
+    tags: []
+    attributes: {}
+    relations: []
+    folder: Items
+    pageTemplate: entity
+  - id: event
+    labels:
+      singular: Event
+      plural: Events
+    definition: A named or independently referable occurrence involving one or more
+      participants.
+    include:
+      - Named incidents
+      - Major meetings
+      - Conflicts
+      - Investigations
+    exclude:
+      - Every routine action or plot beat
+    tags: []
+    attributes: {}
+    relations: []
+    folder: Events
+    pageTemplate: entity
+passageKinds:
+  - quote
+relationVocabulary:
+  - asks-for-help
+  - follows
+  - owns
+  - proposes

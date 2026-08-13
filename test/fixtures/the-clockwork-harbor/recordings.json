@@ -1,0 +1,418 @@
+{
+  "schemaVersion": 1,
+  "responses": {
+    "discovery": {
+      "corpusProfile": {
+        "genre": "clockwork maritime fantasy",
+        "structure": "three sequential chapters centered on a supernatural emergency",
+        "namingConventions": [
+          "personal names",
+          "institutional role titles",
+          "named operational protocols"
+        ],
+        "extractionRisks": [
+          "Do not treat every ordinary instruction as a protocol",
+          "Keep the Bell Protocol distinct from its physical copper strip"
+        ]
+      },
+      "proposals": [
+        {
+          "id": "protocol",
+          "labels": { "singular": "Protocol", "plural": "Protocols" },
+          "definition": "A named operational rule that can be invoked, followed, retired, or archived as a durable narrative object.",
+          "include": ["Named emergency procedures", "Rules explicitly invoked by characters"],
+          "exclude": ["Ordinary one-off instructions", "Unstated social customs"],
+          "examples": [
+            {
+              "name": "Bell Protocol",
+              "segmentId": "primary-0001-a63e726871",
+              "evidence": "BELL PROTOCOL: RETURN EVERY BORROWED VOICE BEFORE SUNSET"
+            },
+            {
+              "name": "Bell Protocol",
+              "segmentId": "primary-0002-7b1eb4be42",
+              "evidence": "She invoked the Bell Protocol and ordered the Tidekeepers to collect every recorded message before sunset."
+            }
+          ],
+          "sharedAttributes": [
+            {
+              "id": "instruction",
+              "type": "string",
+              "description": "The protocol's operative instruction."
+            },
+            { "id": "status", "type": "string", "description": "Current source-supported status." }
+          ],
+          "commonRelations": ["invokes", "retires", "archived-by"],
+          "recommendedAs": "category",
+          "mergeInto": null,
+          "readerValue": "The protocol is invoked, changes state, and drives the resolution, so it benefits from durable identity and a page.",
+          "confidence": 0.98
+        }
+      ],
+      "proposedPassageKinds": ["warning"],
+      "proposedRelations": ["carries", "member-of", "invokes", "retires", "archived-by"]
+    },
+    "extract:primary-0001-a63e726871": {
+      "segmentId": "primary-0001-a63e726871",
+      "summary": "Mara brings the Brass Gull to North Quay, where Ivo warns her about the seventh bell and discovers the Bell Protocol.",
+      "plotBeats": [
+        "Mara arrives with the Brass Gull",
+        "Ivo warns Mara not to answer the seventh bell",
+        "The Bell Protocol is found inside the Gull"
+      ],
+      "themes": ["identity", "warnings", "borrowed voices"],
+      "entities": [
+        {
+          "name": "Mara Venn",
+          "category": "character",
+          "aliases": ["Mara"],
+          "summary": "A courier carrying the Brass Gull through North Quay.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "At dawn, courier Mara Venn crossed North Quay with the Brass Gull locked beneath her coat.",
+          "attributes": { "occupation": "courier" },
+          "claims": [
+            {
+              "text": "Mara carries the Brass Gull beneath her coat.",
+              "certainty": "explicit",
+              "excerpt": "At dawn, courier Mara Venn crossed North Quay with the Brass Gull locked beneath her coat."
+            }
+          ]
+        },
+        {
+          "name": "Ivo Rill",
+          "category": "character",
+          "aliases": ["Ivo"],
+          "summary": "An apprentice Tidekeeper who records the Bell Protocol.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "Ivo Rill, an apprentice Tidekeeper, waited beside the dry bell tower.",
+          "attributes": { "role": "apprentice Tidekeeper" },
+          "claims": [
+            {
+              "text": "Ivo copies the Bell Protocol into his tide ledger.",
+              "certainty": "explicit",
+              "excerpt": "Ivo called it an obsolete emergency rule, but he copied the words into his tide ledger."
+            }
+          ]
+        },
+        {
+          "name": "Brass Gull",
+          "category": "item",
+          "aliases": ["Gull"],
+          "summary": "A mechanical bird that reacts to ships hidden by fog.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "The mechanical bird clicked once whenever the harbor fog hid a moving ship.",
+          "attributes": { "material": "brass" },
+          "claims": []
+        },
+        {
+          "name": "North Quay",
+          "category": "location",
+          "aliases": [],
+          "summary": "A harbor quay containing the dry bell tower.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "At dawn, courier Mara Venn crossed North Quay with the Brass Gull locked beneath her coat.",
+          "attributes": {},
+          "claims": []
+        },
+        {
+          "name": "Tidekeepers",
+          "category": "organization",
+          "aliases": ["Tidekeeper"],
+          "summary": "A harbor institution whose apprentice Ivo maintains a tide ledger.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "Ivo Rill, an apprentice Tidekeeper, waited beside the dry bell tower.",
+          "attributes": {},
+          "claims": []
+        },
+        {
+          "name": "Bell Protocol",
+          "category": "protocol",
+          "aliases": [],
+          "summary": "An emergency rule requiring every borrowed voice to be returned before sunset.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "BELL PROTOCOL: RETURN EVERY BORROWED VOICE BEFORE SUNSET",
+          "attributes": {
+            "instruction": "Return every borrowed voice before sunset",
+            "status": "obsolete"
+          },
+          "claims": [
+            {
+              "text": "The protocol requires every borrowed voice to be returned before sunset.",
+              "certainty": "explicit",
+              "excerpt": "BELL PROTOCOL: RETURN EVERY BORROWED VOICE BEFORE SUNSET"
+            }
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "Mara Venn",
+          "predicate": "carries",
+          "object": "Brass Gull",
+          "certainty": "explicit",
+          "excerpt": "At dawn, courier Mara Venn crossed North Quay with the Brass Gull locked beneath her coat."
+        },
+        {
+          "subject": "Ivo Rill",
+          "predicate": "member-of",
+          "object": "Tidekeepers",
+          "certainty": "explicit",
+          "excerpt": "Ivo Rill, an apprentice Tidekeeper, waited beside the dry bell tower."
+        }
+      ],
+      "passages": [
+        {
+          "title": "Do not answer with your name",
+          "kind": "warning",
+          "speaker": "Ivo Rill",
+          "text": "If the seventh bell rings, do not answer with your name.",
+          "context": "Ivo warns Mara beside the dry bell tower.",
+          "significance": "The warning establishes the threat to personal identity and Mara's later choice to remain silent.",
+          "entities": ["Ivo Rill", "Mara Venn"],
+          "complete": true,
+          "certainty": "explicit"
+        }
+      ],
+      "openQuestions": ["Why does the seventh bell steal voices?"]
+    },
+    "extract:primary-0002-7b1eb4be42": {
+      "segmentId": "primary-0002-7b1eb4be42",
+      "summary": "North Quay repeats Mara's name, Sera invokes the Bell Protocol, and Mara survives the seventh bell by remaining silent.",
+      "plotBeats": [
+        "Speaking tubes repeat Mara's name",
+        "Sera invokes the Bell Protocol",
+        "Mara refuses to answer the seventh bell"
+      ],
+      "themes": ["identity", "institutional response", "silence"],
+      "entities": [
+        {
+          "name": "Mara Venn",
+          "category": "character",
+          "aliases": ["Mara"],
+          "summary": "The courier whose name is repeated by the speaking tubes.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "By noon, every speaking tube in North Quay repeated Mara's name.",
+          "attributes": { "occupation": "courier" },
+          "claims": [
+            {
+              "text": "Mara remains silent when the seventh bell rings.",
+              "certainty": "explicit",
+              "excerpt": "The seventh bell rang without a rope. Mara remained silent."
+            }
+          ]
+        },
+        {
+          "name": "Ivo Rill",
+          "category": "character",
+          "aliases": ["Ivo"],
+          "summary": "The apprentice whose ledger answers in Mara's voice.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "Ivo admitted that his ledger now answered questions in Mara's voice.",
+          "attributes": { "role": "apprentice Tidekeeper" },
+          "claims": []
+        },
+        {
+          "name": "Sera Holt",
+          "category": "character",
+          "aliases": ["Captain Sera Holt", "Sera"],
+          "summary": "A Tidekeeper captain who seals the quay and invokes the Bell Protocol.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "Tidekeeper Captain Sera Holt sealed the quay gates.",
+          "attributes": { "role": "Tidekeeper captain" },
+          "claims": []
+        },
+        {
+          "name": "Brass Gull",
+          "category": "item",
+          "aliases": ["Gull"],
+          "summary": "The mechanical bird that escapes toward the dry bell tower.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "The Brass Gull tore free from her hands and flew toward the dry bell tower.",
+          "attributes": { "material": "brass" },
+          "claims": []
+        },
+        {
+          "name": "North Quay",
+          "category": "location",
+          "aliases": [],
+          "summary": "The quay sealed by Sera during the voice emergency.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "By noon, every speaking tube in North Quay repeated Mara's name.",
+          "attributes": {},
+          "claims": []
+        },
+        {
+          "name": "Tidekeepers",
+          "category": "organization",
+          "aliases": ["Tidekeeper"],
+          "summary": "The institution ordered to collect recorded messages.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "She invoked the Bell Protocol and ordered the Tidekeepers to collect every recorded message before sunset.",
+          "attributes": {},
+          "claims": []
+        },
+        {
+          "name": "Bell Protocol",
+          "category": "protocol",
+          "aliases": [],
+          "summary": "The emergency procedure Sera invokes to recover recorded messages.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "She invoked the Bell Protocol and ordered the Tidekeepers to collect every recorded message before sunset.",
+          "attributes": { "status": "active" },
+          "claims": []
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "Sera Holt",
+          "predicate": "member-of",
+          "object": "Tidekeepers",
+          "certainty": "explicit",
+          "excerpt": "Tidekeeper Captain Sera Holt sealed the quay gates."
+        },
+        {
+          "subject": "Sera Holt",
+          "predicate": "invokes",
+          "object": "Bell Protocol",
+          "certainty": "explicit",
+          "excerpt": "She invoked the Bell Protocol and ordered the Tidekeepers to collect every recorded message before sunset."
+        }
+      ],
+      "passages": [
+        {
+          "title": "A promise made to a disaster",
+          "kind": "quote",
+          "speaker": "Sera Holt",
+          "text": "A protocol is a promise made to a disaster.",
+          "context": "Sera explains the nature of protocols after the seventh bell rings.",
+          "significance": "The line frames institutional rules as obligations created in anticipation of catastrophe.",
+          "entities": ["Sera Holt", "Bell Protocol"],
+          "complete": true,
+          "certainty": "explicit"
+        }
+      ],
+      "openQuestions": ["Can the borrowed voices be returned before sunset?"]
+    },
+    "extract:primary-0003-865df2fca8": {
+      "segmentId": "primary-0003-865df2fca8",
+      "summary": "Mara, Ivo, and Sera return the stolen voices; the bell cracks and Sera retires the Bell Protocol.",
+      "plotBeats": [
+        "The group carries the captured voices to the tower",
+        "Ivo reverses the messages",
+        "Sera retires and archives the protocol"
+      ],
+      "themes": ["restoration", "fulfilled obligation", "identity"],
+      "entities": [
+        {
+          "name": "Mara Venn",
+          "category": "character",
+          "aliases": ["Mara"],
+          "summary": "The courier who opens the Gull and recovers her own voice.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "Mara opened the Gull's copper strip.",
+          "attributes": { "occupation": "courier" },
+          "claims": [
+            {
+              "text": "Only Mara's own voice answers when she speaks her name.",
+              "certainty": "explicit",
+              "excerpt": "When Mara finally spoke her name, only her own voice answered."
+            }
+          ]
+        },
+        {
+          "name": "Ivo Rill",
+          "category": "character",
+          "aliases": ["Ivo"],
+          "summary": "The apprentice who reads each borrowed message backward.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "Ivo read each borrowed message backward, and the harbor returned the stolen voices to their owners.",
+          "attributes": { "role": "apprentice Tidekeeper" },
+          "claims": []
+        },
+        {
+          "name": "Sera Holt",
+          "category": "character",
+          "aliases": ["Captain Sera Holt", "Sera"],
+          "summary": "The captain who retires the Bell Protocol after the voices return.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "Sera retired the Bell Protocol and gave its copper strip to the Tidekeepers' archive.",
+          "attributes": { "role": "Tidekeeper captain" },
+          "claims": []
+        },
+        {
+          "name": "Brass Gull",
+          "category": "item",
+          "aliases": ["Gull"],
+          "summary": "The mechanical bird containing the Bell Protocol's copper strip.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "The Brass Gull perched above the seventh bell.",
+          "attributes": { "material": "brass" },
+          "claims": []
+        },
+        {
+          "name": "Tidekeepers",
+          "category": "organization",
+          "aliases": ["Tidekeeper"],
+          "summary": "The institution whose archive receives the retired protocol strip.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "Sera retired the Bell Protocol and gave its copper strip to the Tidekeepers' archive.",
+          "attributes": {},
+          "claims": []
+        },
+        {
+          "name": "Bell Protocol",
+          "category": "protocol",
+          "aliases": [],
+          "summary": "The emergency procedure retired after the voices are restored.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "Sera retired the Bell Protocol and gave its copper strip to the Tidekeepers' archive.",
+          "attributes": { "status": "retired" },
+          "claims": [
+            {
+              "text": "Sera retires the Bell Protocol and archives its copper strip.",
+              "certainty": "explicit",
+              "excerpt": "Sera retired the Bell Protocol and gave its copper strip to the Tidekeepers' archive."
+            }
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "Sera Holt",
+          "predicate": "retires",
+          "object": "Bell Protocol",
+          "certainty": "explicit",
+          "excerpt": "Sera retired the Bell Protocol and gave its copper strip to the Tidekeepers' archive."
+        },
+        {
+          "subject": "Bell Protocol",
+          "predicate": "archived-by",
+          "object": "Tidekeepers",
+          "certainty": "explicit",
+          "excerpt": "Sera retired the Bell Protocol and gave its copper strip to the Tidekeepers' archive."
+        }
+      ],
+      "passages": [],
+      "openQuestions": []
+    }
+  }
+}

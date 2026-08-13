@@ -1,0 +1,35 @@
+{
+  "$id": "https://dont-lose-the-plot.dev/schemas/relationship.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "certainty": { "enum": ["explicit", "inferred", "unresolved"], "type": "string" },
+    "id": { "type": "string" },
+    "literalObject": { "anyOf": [{ "type": "string" }, { "type": "null" }] },
+    "objectId": { "anyOf": [{ "type": "string" }, { "type": "null" }] },
+    "predicate": { "type": "string" },
+    "provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "excerpt": { "type": "string" },
+        "locator": { "type": "string" },
+        "segmentId": { "type": "string" },
+        "segmentOrdinal": { "exclusiveMinimum": 0, "maximum": 9007199254740991, "type": "integer" },
+        "sourceId": { "type": "string" }
+      },
+      "required": ["sourceId", "segmentId", "segmentOrdinal", "locator"],
+      "type": "object"
+    },
+    "subjectId": { "type": "string" }
+  },
+  "required": [
+    "id",
+    "subjectId",
+    "predicate",
+    "objectId",
+    "literalObject",
+    "certainty",
+    "provenance"
+  ],
+  "type": "object"
+}

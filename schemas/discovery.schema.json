@@ -1,0 +1,92 @@
+{
+  "$id": "https://dont-lose-the-plot.dev/schemas/discovery.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "corpusProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "extractionRisks": { "items": { "type": "string" }, "type": "array" },
+        "genre": { "type": "string" },
+        "namingConventions": { "items": { "type": "string" }, "type": "array" },
+        "structure": { "type": "string" }
+      },
+      "required": ["genre", "structure", "namingConventions", "extractionRisks"],
+      "type": "object"
+    },
+    "proposals": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "commonRelations": { "items": { "type": "string" }, "type": "array" },
+          "confidence": { "maximum": 1, "minimum": 0, "type": "number" },
+          "definition": { "type": "string" },
+          "examples": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "evidence": { "type": "string" },
+                "name": { "type": "string" },
+                "segmentId": { "type": "string" }
+              },
+              "required": ["name", "segmentId", "evidence"],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "exclude": { "items": { "type": "string" }, "type": "array" },
+          "id": { "pattern": "^[a-z][a-z0-9-]*$", "type": "string" },
+          "include": { "items": { "type": "string" }, "type": "array" },
+          "labels": {
+            "additionalProperties": false,
+            "properties": { "plural": { "type": "string" }, "singular": { "type": "string" } },
+            "required": ["singular", "plural"],
+            "type": "object"
+          },
+          "mergeInto": { "anyOf": [{ "type": "string" }, { "type": "null" }] },
+          "readerValue": { "type": "string" },
+          "recommendedAs": {
+            "enum": ["category", "tag", "attribute", "relationship", "ignore"],
+            "type": "string"
+          },
+          "sharedAttributes": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "description": { "type": "string" },
+                "id": { "type": "string" },
+                "type": {
+                  "enum": ["string", "number", "boolean", "string-list", "entity-ref", "object"],
+                  "type": "string"
+                }
+              },
+              "required": ["id", "type", "description"],
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "labels",
+          "definition",
+          "include",
+          "exclude",
+          "examples",
+          "sharedAttributes",
+          "commonRelations",
+          "recommendedAs",
+          "mergeInto",
+          "readerValue",
+          "confidence"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "proposedPassageKinds": { "items": { "type": "string" }, "type": "array" },
+    "proposedRelations": { "items": { "type": "string" }, "type": "array" }
+  },
+  "required": ["corpusProfile", "proposals", "proposedPassageKinds", "proposedRelations"],
+  "type": "object"
+}

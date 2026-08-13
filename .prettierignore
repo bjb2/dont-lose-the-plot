@@ -1,0 +1,10 @@
+node_modules/
+dist/
+coverage/
+examples/**/content/
+examples/**/data/
+examples/**/site/
+examples/**/*.epub
+examples/**/.plot-tools/quartz/
+package-lock.json
+LICENSE

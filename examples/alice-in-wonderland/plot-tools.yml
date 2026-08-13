@@ -1,0 +1,22 @@
+schemaVersion: 1
+title: Alice's Adventures in Wonderland
+language: en
+profile: novel
+sources:
+  - id: primary
+    path: sources/alice-in-wonderland.epub
+    kind: auto
+scope:
+  startSegment: 2
+  maxSegment: 3
+  allowInferredClaims: true
+publication:
+  includeExcerpts: true
+  maxExcerptCharacters: 280
+provider:
+  kind: recorded
+  recordings: recordings.json
+output:
+  data: data
+  obsidian: content
+  site: site

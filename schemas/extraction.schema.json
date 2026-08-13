@@ -1,0 +1,114 @@
+{
+  "$id": "https://dont-lose-the-plot.dev/schemas/extraction.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "entities": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "aliases": { "default": [], "items": { "type": "string" }, "type": "array" },
+          "attributes": {
+            "additionalProperties": {},
+            "default": {},
+            "propertyNames": { "type": "string" },
+            "type": "object"
+          },
+          "category": { "minLength": 1, "type": "string" },
+          "certainty": { "enum": ["explicit", "inferred", "unresolved"], "type": "string" },
+          "claims": {
+            "default": [],
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "certainty": { "enum": ["explicit", "inferred", "unresolved"], "type": "string" },
+                "excerpt": { "minLength": 1, "type": "string" },
+                "text": { "minLength": 1, "type": "string" }
+              },
+              "required": ["text", "certainty", "excerpt"],
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "excerpt": { "minLength": 1, "type": "string" },
+          "name": { "minLength": 1, "type": "string" },
+          "salience": { "enum": ["primary", "supporting", "reference"], "type": "string" },
+          "summary": { "minLength": 1, "type": "string" }
+        },
+        "required": [
+          "name",
+          "category",
+          "aliases",
+          "summary",
+          "salience",
+          "certainty",
+          "excerpt",
+          "attributes",
+          "claims"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "openQuestions": { "items": { "type": "string" }, "type": "array" },
+    "passages": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "certainty": { "enum": ["explicit", "inferred", "unresolved"], "type": "string" },
+          "complete": { "type": "boolean" },
+          "context": { "minLength": 1, "type": "string" },
+          "entities": { "items": { "type": "string" }, "type": "array" },
+          "kind": { "minLength": 1, "type": "string" },
+          "significance": { "minLength": 1, "type": "string" },
+          "speaker": { "anyOf": [{ "type": "string" }, { "type": "null" }] },
+          "text": { "minLength": 1, "type": "string" },
+          "title": { "minLength": 1, "type": "string" }
+        },
+        "required": [
+          "title",
+          "kind",
+          "speaker",
+          "text",
+          "context",
+          "significance",
+          "entities",
+          "complete",
+          "certainty"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "plotBeats": { "items": { "type": "string" }, "type": "array" },
+    "relationships": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "certainty": { "enum": ["explicit", "inferred", "unresolved"], "type": "string" },
+          "excerpt": { "minLength": 1, "type": "string" },
+          "object": { "minLength": 1, "type": "string" },
+          "predicate": { "minLength": 1, "type": "string" },
+          "subject": { "minLength": 1, "type": "string" }
+        },
+        "required": ["subject", "predicate", "object", "certainty", "excerpt"],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "segmentId": { "type": "string" },
+    "summary": { "minLength": 1, "type": "string" },
+    "themes": { "items": { "type": "string" }, "type": "array" }
+  },
+  "required": [
+    "segmentId",
+    "summary",
+    "plotBeats",
+    "themes",
+    "entities",
+    "relationships",
+    "passages",
+    "openQuestions"
+  ],
+  "type": "object"
+}

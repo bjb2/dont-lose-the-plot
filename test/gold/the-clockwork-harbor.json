@@ -1,0 +1,16 @@
+{
+  "categories": ["character", "event", "item", "location", "organization", "protocol"],
+  "entityIds": [
+    "character-ivo-rill",
+    "character-mara-venn",
+    "character-sera-holt",
+    "item-brass-gull",
+    "location-north-quay",
+    "organization-tidekeepers",
+    "protocol-bell-protocol"
+  ],
+  "segments": 3,
+  "relationships": 6,
+  "passages": 2,
+  "renderedFiles": 19
+}

@@ -1,0 +1,63 @@
+{
+  "$id": "https://dont-lose-the-plot.dev/schemas/entity.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "aliases": { "items": { "type": "string" }, "type": "array" },
+    "attributes": {
+      "additionalProperties": {},
+      "propertyNames": { "type": "string" },
+      "type": "object"
+    },
+    "canonicalName": { "type": "string" },
+    "category": { "type": "string" },
+    "certainty": { "enum": ["explicit", "inferred", "unresolved"], "type": "string" },
+    "firstSeen": {
+      "additionalProperties": false,
+      "properties": {
+        "excerpt": { "type": "string" },
+        "locator": { "type": "string" },
+        "segmentId": { "type": "string" },
+        "segmentOrdinal": { "exclusiveMinimum": 0, "maximum": 9007199254740991, "type": "integer" },
+        "sourceId": { "type": "string" }
+      },
+      "required": ["sourceId", "segmentId", "segmentOrdinal", "locator"],
+      "type": "object"
+    },
+    "id": { "type": "string" },
+    "mentions": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "excerpt": { "type": "string" },
+          "locator": { "type": "string" },
+          "segmentId": { "type": "string" },
+          "segmentOrdinal": {
+            "exclusiveMinimum": 0,
+            "maximum": 9007199254740991,
+            "type": "integer"
+          },
+          "sourceId": { "type": "string" }
+        },
+        "required": ["sourceId", "segmentId", "segmentOrdinal", "locator"],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "salience": { "enum": ["primary", "supporting", "reference"], "type": "string" },
+    "summary": { "type": "string" }
+  },
+  "required": [
+    "id",
+    "category",
+    "canonicalName",
+    "aliases",
+    "summary",
+    "salience",
+    "certainty",
+    "firstSeen",
+    "mentions",
+    "attributes"
+  ],
+  "type": "object"
+}
