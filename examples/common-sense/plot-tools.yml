@@ -15,6 +15,7 @@ processing:
 publication:
   includeExcerpts: true
   maxExcerptCharacters: 280
+recordings: recordings.json
 output:
   data: data
   obsidian: content

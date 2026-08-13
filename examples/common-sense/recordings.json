@@ -1,0 +1,2393 @@
+{
+  "schemaVersion": 1,
+  "responses": {
+    "pilot": {
+      "corpusProfile": {
+        "genre": "Political pamphlet and argumentative nonfiction",
+        "structure": "Introduction followed by topical essays that define political principles, rebut monarchy and reconciliation, and advance independence and institutional proposals",
+        "namingConventions": [
+          "Polities and institutions are usually capitalized",
+          "Political doctrines and systems recur as common nouns",
+          "Arguments often contrast paired alternatives such as society and government or reconciliation and independence"
+        ],
+        "extractionRisks": [
+          "Rhetorical personification can make a polity look like a person",
+          "Historical examples must not be flattened into the author's own claims",
+          "Religious and natural-law appeals may function as evidence without being presented as neutral fact",
+          "The source uses historical spellings such as independance and connexion that should remain verbatim in excerpts"
+        ]
+      },
+      "proposals": [
+        {
+          "id": "polity",
+          "labels": {
+            "singular": "Polity",
+            "plural": "Polities"
+          },
+          "definition": "A named country, colony, continent, or politically constituted people treated as an actor or subject of government.",
+          "include": [
+            "Named countries and continents",
+            "The American colonies when discussed collectively",
+            "Political communities assigned interests, duties, or capabilities"
+          ],
+          "exclude": [
+            "Forms of government such as monarchy",
+            "Institutions such as Parliament or Congress",
+            "Unnamed hypothetical communities"
+          ],
+          "examples": [
+            {
+              "name": "America",
+              "segmentId": "primary-0001-aa4049b632",
+              "evidence": "The cause of America is in a great measure the cause of all mankind."
+            },
+            {
+              "name": "England and America",
+              "segmentId": "primary-0004-799e727fd2",
+              "evidence": "Volumes have been written on the subject of the struggle between\nEngland and America."
+            }
+          ],
+          "sharedAttributes": [
+            {
+              "id": "political-status",
+              "type": "string",
+              "description": "The political condition or status attributed to the polity in the source"
+            }
+          ],
+          "commonRelations": ["claims-authority-over", "at-war-with"],
+          "recommendedAs": "category",
+          "mergeInto": null,
+          "readerValue": "The argument repeatedly assigns distinct interests, injuries, capacities, and obligations to America, England, Britain, and other political communities; stable pages prevent those actors from being confused with institutions or abstract systems.",
+          "confidence": 0.98
+        },
+        {
+          "id": "political-system",
+          "labels": {
+            "singular": "Political system",
+            "plural": "Political systems"
+          },
+          "definition": "A named form or organizing principle of government whose design, legitimacy, or consequences the text evaluates.",
+          "include": [
+            "Government as an organized system",
+            "Monarchy, hereditary succession, republic, and representative government",
+            "Constitutional arrangements evaluated across sections"
+          ],
+          "exclude": [
+            "A specific institution such as Congress",
+            "A country governed by the system",
+            "A single policy proposal"
+          ],
+          "examples": [
+            {
+              "name": "Government",
+              "segmentId": "primary-0002-e36801330a",
+              "evidence": "Here then is the origin and rise of government; namely, a mode rendered\nnecessary by the inability of moral virtue to govern the world; here\ntoo is the design and end of government, viz. freedom and security."
+            },
+            {
+              "name": "Monarchy and hereditary succession",
+              "segmentId": "primary-0003-7ed9938aef",
+              "evidence": "The contest for monarchy and succession, between the houses of York and\nLancaster, laid England in a scene of blood for many years."
+            }
+          ],
+          "sharedAttributes": [
+            {
+              "id": "stated-purpose",
+              "type": "string",
+              "description": "The purpose or justification attributed to the system"
+            },
+            {
+              "id": "authorial-assessment",
+              "type": "string",
+              "description": "The source's explicit assessment of the system"
+            }
+          ],
+          "commonRelations": ["opposes", "contrasts-with"],
+          "recommendedAs": "category",
+          "mergeInto": null,
+          "readerValue": "Paine compares systems across the pamphlet and gives them different origins, purposes, defects, and historical consequences; readers need stable pages that collect those claims without treating systems as places or institutions.",
+          "confidence": 0.99
+        },
+        {
+          "id": "institution",
+          "labels": {
+            "singular": "Institution",
+            "plural": "Institutions"
+          },
+          "definition": "A named governing, legislative, religious, or representative body that exercises or contests authority.",
+          "include": [
+            "Parliament and Congress",
+            "Legislatures, conventions, and governing assemblies",
+            "Named collective bodies with institutional powers"
+          ],
+          "exclude": [
+            "A polity such as America",
+            "A political system such as monarchy",
+            "An informal class of unnamed supporters"
+          ],
+          "examples": [
+            {
+              "name": "Parliament",
+              "segmentId": "primary-0001-aa4049b632",
+              "evidence": "as the King of England hath undertaken in his own Right,\nto support the Parliament in what he calls Theirs"
+            },
+            {
+              "name": "Congress",
+              "segmentId": "primary-0005-0cc95308b4",
+              "evidence": "But as it is more than probable that we shall never be\nwithout a Congress"
+            }
+          ],
+          "sharedAttributes": [
+            {
+              "id": "institution-type",
+              "type": "string",
+              "description": "The institution's governmental, legislative, or religious role"
+            },
+            {
+              "id": "claimed-authority",
+              "type": "string",
+              "description": "The authority the institution claims or is assigned"
+            }
+          ],
+          "commonRelations": ["governs", "represents", "claims-authority-over"],
+          "recommendedAs": "category",
+          "mergeInto": null,
+          "readerValue": "The pamphlet distinguishes bodies such as Parliament and Congress from both the peoples they claim to represent and the political systems they operate; institution pages preserve that distinction and their attributed powers.",
+          "confidence": 0.97
+        },
+        {
+          "id": "political-concept",
+          "labels": {
+            "singular": "Political concept",
+            "plural": "Political concepts"
+          },
+          "definition": "A recurring named doctrine, principle, or political alternative that the pamphlet defines, advocates, or rejects.",
+          "include": [
+            "Independence, reconciliation, natural rights, representation, and security",
+            "Named doctrines and paired political alternatives",
+            "Principles whose meaning or consequences recur across sections"
+          ],
+          "exclude": [
+            "A concrete governing institution",
+            "A named polity",
+            "A one-off rhetorical image"
+          ],
+          "examples": [
+            {
+              "name": "Independence",
+              "segmentId": "primary-0001-aa4049b632",
+              "evidence": "the Doctrine of Independance: As no Answer hath yet appeared, it is now\npresumed that none will"
+            },
+            {
+              "name": "Reconciliation",
+              "segmentId": "primary-0004-799e727fd2",
+              "evidence": "As much hath been said of the advantages of reconciliation, which, like\nan agreeable dream, hath passed away and left us as we were"
+            }
+          ],
+          "sharedAttributes": [
+            {
+              "id": "authorial-position",
+              "type": "string",
+              "description": "Whether the source advocates, rejects, qualifies, or defines the concept"
+            }
+          ],
+          "commonRelations": ["supports", "opposes", "contrasts-with"],
+          "recommendedAs": "category",
+          "mergeInto": null,
+          "readerValue": "The pamphlet is organized around recurring doctrines and alternatives, especially independence and reconciliation; stable concept pages let readers follow how definitions, arguments, and consequences accumulate across sections.",
+          "confidence": 0.99
+        }
+      ],
+      "proposedPassageKinds": ["argument", "proposal", "rebuttal", "maxim"],
+      "proposedRelations": [
+        "advocates",
+        "opposes",
+        "supports",
+        "contrasts-with",
+        "governs",
+        "represents",
+        "claims-authority-over",
+        "at-war-with"
+      ]
+    },
+    "extract:primary-0001-aa4049b632": {
+      "segmentId": "primary-0001-aa4049b632",
+      "summary": "The author frames America’s cause as one of universal human concern, condemns the King–Parliament combination as oppressive usurpation, and notes that the doctrine of Independance has received no published refutation.",
+      "plotBeats": [
+        "The author argues that entrenched custom can initially make wrongdoing appear right, but that time changes opinion.",
+        "The King of England’s support for Parliament’s asserted rights is presented as part of a combination that grievously oppresses the people of the country and may be rejected as usurpation.",
+        "America’s cause is enlarged into a cause affecting all mankind, particularly where natural rights are attacked.",
+        "A delayed new edition is issued after no answer has appeared to refute the Doctrine of Independance."
+      ],
+      "themes": [
+        "Custom and the delayed recognition of wrongdoing",
+        "Resistance to oppressive and usurped authority",
+        "America’s cause as a universal human concern",
+        "Natural rights",
+        "Independance and the absence of a published refutation"
+      ],
+      "entities": [
+        {
+          "name": "America",
+          "category": "polity",
+          "aliases": [],
+          "summary": "A polity whose cause the author presents as substantially shared by all mankind.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "The cause of America is in a great measure the cause of all mankind.",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "America's cause is in a great measure the cause of all mankind.",
+              "certainty": "explicit",
+              "excerpt": "The cause of America is in a great measure the cause of all mankind."
+            }
+          ]
+        },
+        {
+          "name": "Parliament",
+          "category": "institution",
+          "aliases": [],
+          "summary": "The institution whose claimed rights the King of England undertakes to support in the account of the oppressive combination.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "the King of England hath undertaken in his own Right,\nto support the Parliament in what he calls Theirs",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "The King of England has undertaken to support Parliament in what he calls its rights.",
+              "certainty": "explicit",
+              "excerpt": "the King of England hath undertaken in his own Right,\nto support the Parliament in what he calls Theirs"
+            }
+          ]
+        },
+        {
+          "name": "Independance",
+          "category": "political-concept",
+          "aliases": [],
+          "summary": "The doctrine whose lack of a published refutation is given as the reason to release the delayed new edition.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "the Doctrine of Independance",
+          "attributes": {
+            "authorial-position": "not refuted by an answer that has appeared"
+          },
+          "claims": [
+            {
+              "text": "No answer has yet appeared to refute the Doctrine of Independance.",
+              "certainty": "explicit",
+              "excerpt": "As no Answer hath yet appeared"
+            }
+          ]
+        },
+        {
+          "name": "natural rights of all Mankind",
+          "category": "political-concept",
+          "aliases": [],
+          "summary": "Rights whose violation through a declared war is presented as a concern for every person capable of feeling.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "declaring War against the natural rights of all Mankind",
+          "attributes": {
+            "authorial-position": "defended"
+          },
+          "claims": [
+            {
+              "text": "Declaring war against the natural rights of all mankind is said to concern every person given the power of feeling.",
+              "certainty": "explicit",
+              "excerpt": "declaring War against the natural rights of all Mankind, and\nextirpating the Defenders thereof from the Face of the Earth, is the\nConcern of every Man to whom Nature hath given the Power of feeling"
+            }
+          ]
+        }
+      ],
+      "relationships": [],
+      "passages": [
+        {
+          "title": "Time makes converts",
+          "kind": "maxim",
+          "speaker": "AUTHOR",
+          "text": "Time makes more converts \nthan reason.",
+          "context": "The author closes the opening reflection on how habitual custom can make a wrong thing appear right.",
+          "significance": "It condenses the introduction's claim that entrenched opinion may change gradually rather than through argument alone.",
+          "entities": [],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Privilege to reject usurpation",
+          "kind": "argument",
+          "speaker": "AUTHOR",
+          "text": "they have an undoubted privilege to inquire into the pretensions of\nboth, and equally to reject the usurpation of either.",
+          "context": "After describing the King of England's support for Parliament and the resulting oppression, the author states the people's response.",
+          "significance": "It supplies the introduction's direct justification for challenging both royal and parliamentary authority.",
+          "entities": ["Parliament"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "America's universal cause",
+          "kind": "argument",
+          "speaker": "AUTHOR",
+          "text": "The cause of America is in a great measure the cause of all mankind.",
+          "context": "The author shifts from the immediate American cause to its broader human stakes.",
+          "significance": "It establishes the universal frame through which the pamphlet asks readers to understand America.",
+          "entities": ["America"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "No answer to Independance",
+          "kind": "rebuttal",
+          "speaker": "AUTHOR",
+          "text": "As no Answer hath yet appeared, it is now\npresumed that none will, the Time needful for getting such a\nPerformance ready for the Public being considerably past.",
+          "context": "In the postscript, the author explains why the new edition was delayed and why it is now released.",
+          "significance": "It records the author's assertion that the Doctrine of Independance has gone unanswered in the relevant period.",
+          "entities": ["Independance"],
+          "complete": true,
+          "certainty": "explicit"
+        }
+      ],
+      "openQuestions": ["Who is the author of this production?"]
+    },
+    "extract:primary-0002-e36801330a": {
+      "segmentId": "primary-0002-e36801330a",
+      "summary": "The segment distinguishes society from government, argues that government arises from moral failure to secure freedom and security, sketches representative government as a colony grows, and rebuts the English constitution as a complex union in which hereditary monarchy and aristocracy leave the crown dominant.",
+      "plotBeats": [
+        "Society and government are separated by origin and function: society arises from wants and promotes happiness, while government arises from wickedness and restrains vice.",
+        "Government is presented as a necessary evil whose legitimate end is security, and later as a system aimed at freedom and security.",
+        "A hypothetical colony moves from direct assembly to frequently elected representatives as growth makes universal meetings impractical.",
+        "The English constitution is criticized as complex, imperfect, and built from monarchical and aristocratical tyranny combined with republican materials.",
+        "The crown is identified as the constitution's dominant power, while national pride and prejudice obscure constitutional defects."
+      ],
+      "themes": [
+        "Society and government have distinct origins and purposes.",
+        "Security and freedom are the ends by which government should be judged.",
+        "Representation and frequent elections align elected officials with the public.",
+        "Simplicity is preferable to constitutional complexity.",
+        "Hereditary power and national prejudice undermine political freedom."
+      ],
+      "entities": [
+        {
+          "name": "Government",
+          "category": "political-system",
+          "aliases": [],
+          "summary": "A necessary but potentially intolerable system, arising because moral virtue cannot govern the world and properly directed toward freedom and security.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "Here then is the origin and rise of government; namely, a mode rendered\nnecessary by the inability of moral virtue to govern the world; here\ntoo is the design and end of government, viz. freedom and security.",
+          "attributes": {
+            "stated-purpose": "freedom and security",
+            "authorial-assessment": "a necessary evil"
+          },
+          "claims": [
+            {
+              "text": "Government is produced by wickedness and restrains vices.",
+              "certainty": "explicit",
+              "excerpt": "Society is produced by our wants, and government by our wickedness; \nthe former promotes our happiness positively by uniting \nour affections, the latter negatively by restraining our \nvices."
+            },
+            {
+              "text": "Government in its best state is a necessary evil and in its worst state is intolerable.",
+              "certainty": "explicit",
+              "excerpt": "Society in every state is a blessing, but government even in its best\nstate is but a necessary evil; in its worst state an intolerable one;"
+            },
+            {
+              "text": "Security is the true design and end of government, and the form best ensuring it with least expense and greatest benefit is preferable.",
+              "certainty": "explicit",
+              "excerpt": "security being the true design and end of government, it unanswerably \nfollows that whatever form thereof appears most likely to \nensure it to us, with the least expence and greatest benefit, is \npreferable to all others."
+            }
+          ]
+        },
+        {
+          "name": "Society",
+          "category": "political-concept",
+          "aliases": [],
+          "summary": "A beneficial association produced by human wants that precedes government in the hypothetical account.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "Society is produced by our wants, and government by our wickedness; \nthe former promotes our happiness positively by uniting \nour affections, the latter negatively by restraining our \nvices.",
+          "attributes": {
+            "authorial-position": "defined as a blessing that promotes happiness"
+          },
+          "claims": [
+            {
+              "text": "Society is a blessing in every state.",
+              "certainty": "explicit",
+              "excerpt": "Society in every state is a blessing"
+            },
+            {
+              "text": "In natural liberty, society is the first thought of the hypothetical settlers because individuals need mutual assistance and relief.",
+              "certainty": "explicit",
+              "excerpt": "In\nthis state of natural liberty, society will be their first thought. A\nthousand motives will excite them thereto, the strength of one man is\nso unequal to his wants, and his mind so unfitted for perpetual\nsolitude, that he is soon obliged to seek assistance and relief of\nanother, who in his turn requires the same."
+            },
+            {
+              "text": "Society initially makes law and government unnecessary while its members remain perfectly just to one another.",
+              "certainty": "explicit",
+              "excerpt": "the reciprocal blessings of which,\nwould supersede, and render the obligations of law and government\nunnecessary while they remained perfectly just to each other;"
+            }
+          ]
+        },
+        {
+          "name": "Constitution of England",
+          "category": "political-system",
+          "aliases": ["English Constitution"],
+          "summary": "The Constitution of England is assessed as historically noble but imperfect, complex, and unable to deliver what it promises.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "the\nso much boasted constitution of England. That it was noble for the\ndark and slavish times in which it was erected, is granted. When the\nworld was over run with tyranny the least remove therefrom was a\nglorious rescue. But that it is imperfect, subject to convulsions, and\nincapable of producing what it seems to promise, is easily demonstrated.",
+          "attributes": {
+            "authorial-assessment": "imperfect, subject to convulsions, and incapable of producing what it seems to promise"
+          },
+          "claims": [
+            {
+              "text": "The Constitution of England is so complex that the nation may suffer for years without discovering where its fault lies.",
+              "certainty": "explicit",
+              "excerpt": "the constitution of England is so exceedingly complex, that the nation\nmay suffer for years together without being able to discover in which\npart the fault lies"
+            },
+            {
+              "text": "The Constitution of England consists of remains of two ancient tyrannies compounded with new republican materials.",
+              "certainty": "explicit",
+              "excerpt": "the component parts of the\nEnglish constitution, we shall find them to be the base remains of two\nancient tyrannies, compounded with some new republican materials."
+            },
+            {
+              "text": "Its hereditary monarchical and aristocratical components contribute nothing to freedom in a constitutional sense.",
+              "certainty": "explicit",
+              "excerpt": "The two first, by being hereditary, are independent of the people;\nwherefore in a constitutional sense they contribute nothing \ntowards the freedom of the state."
+            },
+            {
+              "text": "Its purported reciprocal checks are called farcical or contradictory.",
+              "certainty": "explicit",
+              "excerpt": "To say that the constitution of England is a union of three \npowers reciprocally checking each other, is farcical, either \nthe words have no meaning, or they are flat contradictions."
+            }
+          ]
+        },
+        {
+          "name": "Monarchy",
+          "category": "political-system",
+          "aliases": ["absolute monarchy"],
+          "summary": "A simple political system that is condemned as a disgrace to human nature and characterized as naturally prone to absolute power.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "Absolute governments (tho’ the disgrace of human nature) have this\nadvantage with them, that they are simple;",
+          "attributes": {
+            "authorial-assessment": "a disgrace of human nature; simple"
+          },
+          "claims": [
+            {
+              "text": "In absolute governments, sufferers know the source of their suffering and the remedy.",
+              "certainty": "explicit",
+              "excerpt": "if the people suffer, they\nknow the head from which their suffering springs, know likewise the\nremedy, and are not bewildered by a variety of causes and cures."
+            },
+            {
+              "text": "A thirst for absolute power is described as the natural disease of monarchy.",
+              "certainty": "explicit",
+              "excerpt": "a thirst for absolute \npower is the natural disease of monarchy."
+            },
+            {
+              "text": "The composition of monarchy is judged absurd and useless because the king is excluded from information while empowered to act where high judgment is required.",
+              "certainty": "explicit",
+              "excerpt": "There is something exceedingly ridiculous in the composition of\nmonarchy; it first excludes a man from the means of information, yet\nempowers him to act in cases where the highest judgment is required."
+            }
+          ]
+        },
+        {
+          "name": "Crown",
+          "category": "institution",
+          "aliases": ["king"],
+          "summary": "The hereditary monarchical component of the Constitution of England, described as its overbearing power because it dispenses places and pensions.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "That the crown is this overbearing part in the English constitution\nneeds not be mentioned, and that it derives its whole consequence\nmerely from being the giver of places and pensions is self-evident,",
+          "attributes": {
+            "institution-type": "monarchical office",
+            "claimed-authority": "power to reject the commons' other bills"
+          },
+          "claims": [
+            {
+              "text": "The monarch is one of the Constitution of England's remains of monarchical tyranny.",
+              "certainty": "explicit",
+              "excerpt": "The remains of monarchical tyranny in the person of \nthe king."
+            },
+            {
+              "text": "The constitution gives the king power to check the commons by rejecting their other bills.",
+              "certainty": "explicit",
+              "excerpt": "the same constitution which gives the commons a power to check\nthe king by withholding the supplies, gives afterwards the king a power\nto check the commons, by empowering him to reject their other bills;"
+            },
+            {
+              "text": "The crown is likened to possessing the key after a door has been shut and locked against absolute monarchy.",
+              "certainty": "explicit",
+              "excerpt": "though we have been wise enough to shut and lock a door\nagainst absolute monarchy, we at the same time have been foolish \nenough to put the crown in possession of the key."
+            }
+          ]
+        },
+        {
+          "name": "Commons",
+          "category": "institution",
+          "aliases": ["the commons"],
+          "summary": "The republican component of the Constitution of England, whose virtue is said to determine England's freedom and which is assigned a check on the king through withholding supplies.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "The new republican materials, in the persons of \nthe commons, on whose virtue depends the freedom of England.",
+          "attributes": {
+            "institution-type": "representative body",
+            "claimed-authority": "power to check the king by withholding the supplies"
+          },
+          "claims": [
+            {
+              "text": "The commons are characterized as the new republican materials in the Constitution of England.",
+              "certainty": "explicit",
+              "excerpt": "The new republican materials, in the persons of \nthe commons"
+            },
+            {
+              "text": "The source's account says that the commons are appointed to check the king.",
+              "certainty": "explicit",
+              "excerpt": "the commons, by being appointed for \nthat purpose"
+            }
+          ]
+        },
+        {
+          "name": "England",
+          "category": "polity",
+          "aliases": [],
+          "summary": "The polity whose constitutional arrangement is assessed; its people, rather than its government, are credited with limiting crown oppression.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "it is wholly owing to the \nconstitution of the people, and not to the constitution of the \ngovernment that the crown is not as oppressive in England as \nin Turkey.",
+          "attributes": {
+            "political-status": "subject to a crown whose oppression is limited by the constitution of the people rather than the constitution of government"
+          },
+          "claims": [
+            {
+              "text": "The source states that individuals are safer in England than in some other countries.",
+              "certainty": "explicit",
+              "excerpt": "Individuals are undoubtedly safer in England than in some\nother countries"
+            },
+            {
+              "text": "The source states that the will of the king is law of the land in Britain as in France, though conveyed through an act of parliament rather than directly.",
+              "certainty": "explicit",
+              "excerpt": "the will of the king is as much the \nlaw of the land in Britain as in France, with this difference, \nthat instead of proceeding directly from his mouth, it is handed to the \npeople under the more formidable shape of an act of parliament."
+            }
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "Government",
+          "predicate": "contrasts-with",
+          "object": "Society",
+          "certainty": "explicit",
+          "excerpt": "Some writers have so confounded society \nwith government, as to leave little or no distinction between them; \nwhereas they are not only different, but have different origins."
+        },
+        {
+          "subject": "Constitution of England",
+          "predicate": "supports",
+          "object": "Crown",
+          "certainty": "explicit",
+          "excerpt": "the same constitution which gives the commons a power to check\nthe king by withholding the supplies, gives afterwards the king a power\nto check the commons, by empowering him to reject their other bills;"
+        },
+        {
+          "subject": "Crown",
+          "predicate": "claims-authority-over",
+          "object": "England",
+          "certainty": "explicit",
+          "excerpt": "the will of the king is as much the \nlaw of the land in Britain as in France"
+        },
+        {
+          "subject": "Commons",
+          "predicate": "supports",
+          "object": "literal:freedom of England",
+          "certainty": "explicit",
+          "excerpt": "the commons, on whose virtue depends the freedom of England."
+        }
+      ],
+      "passages": [
+        {
+          "title": "Society and government distinguished",
+          "kind": "maxim",
+          "speaker": null,
+          "text": "Society is produced by our wants, and government by our wickedness; \nthe former promotes our happiness positively by uniting \nour affections, the latter negatively by restraining our \nvices. The one encourages intercourse, the other creates \ndistinctions. The first a patron, the last a punisher.",
+          "context": "The opening distinction between the two central terms.",
+          "significance": "It establishes the conceptual opposition that grounds the section's account of political legitimacy.",
+          "entities": ["Society", "Government"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Government's origin and end",
+          "kind": "maxim",
+          "speaker": null,
+          "text": "Here then is the origin and rise of government; namely, a mode rendered\nnecessary by the inability of moral virtue to govern the world; here\ntoo is the design and end of government, viz. freedom and security.",
+          "context": "The conclusion of the hypothetical account of settlers forming government.",
+          "significance": "It supplies the section's compact statement of why government exists and what it should deliver.",
+          "entities": ["Government"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Frequent elections preserve common interest",
+          "kind": "argument",
+          "speaker": null,
+          "text": "that the elected might never form to themselves an interest \nseparate from the electors, prudence will point out the \npropriety of having elections often; because as the elected \nmight by that means return and mix again with the general body of the \nelectors in a few months, their fidelity to the public will be \nsecured by the prudent reflexion of not making a rod for themselves. \nAnd as this frequent interchange will establish a common interest with \nevery part of the community, they will mutually and naturally support \neach other, and on this (not on the unmeaning name of king) depends \nthe strength of government, and the happiness of the governed.",
+          "context": "The proposed development from direct assembly to representative government in a growing colony.",
+          "significance": "It offers frequent election and shared interest as the practical source of governmental strength and public happiness.",
+          "entities": ["Government", "Crown"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "English constitution condemned as a mixed tyranny",
+          "kind": "argument",
+          "speaker": null,
+          "text": "if we will suffer ourselves to examine the component parts of the\nEnglish constitution, we shall find them to be the base remains of two\nancient tyrannies, compounded with some new republican materials.",
+          "context": "The transition from general principles of governmental simplicity to the English case.",
+          "significance": "It frames the subsequent analysis of king, peers, and commons as a critique of the constitution's origins.",
+          "entities": ["Constitution of England", "Monarchy", "Commons"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "The crown holds the key",
+          "kind": "rebuttal",
+          "speaker": null,
+          "text": "That the crown is this overbearing part in the English constitution\nneeds not be mentioned, and that it derives its whole consequence\nmerely from being the giver of places and pensions is self-evident,\nwherefore, though we have been wise enough to shut and lock a door\nagainst absolute monarchy, we at the same time have been foolish \nenough to put the crown in possession of the key.",
+          "context": "The critique of the claim that the constitution's three powers effectively check one another.",
+          "significance": "It names the crown as the decisive power and uses the key image to deny that constitutional checks have excluded monarchy.",
+          "entities": ["Crown", "Constitution of England", "Monarchy"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Prejudice disables constitutional judgment",
+          "kind": "argument",
+          "speaker": null,
+          "text": "An inquiry into the constitutional errors in the English form \nof government is at this time highly necessary, for as we are never in a\nproper condition of doing justice to others, while we continue under\nthe influence of some leading partiality, so neither are we capable of\ndoing it to ourselves while we remain fettered by any obstinate\nprejudice.",
+          "context": "The section's closing call to examine the English form of government without partiality.",
+          "significance": "It turns the constitutional critique into a demand for freedom from prejudice as a condition of political judgment.",
+          "entities": ["Constitution of England", "Government"],
+          "complete": true,
+          "certainty": "explicit"
+        }
+      ],
+      "openQuestions": []
+    },
+    "extract:primary-0003-7ed9938aef": {
+      "segmentId": "primary-0003-7ed9938aef",
+      "summary": "This section argues that monarchy and hereditary succession violate natural equality and scriptural authority. It uses the Israelites' requests for kings and English history to portray both arrangements as sources of corruption, unfit rulers, and civil conflict, and contrasts them with republican principles.",
+      "plotBeats": [
+        "The argument begins from original human equality and rejects the division of people into kings and subjects as lacking a natural or religious justification.",
+        "The history of the children of Israel is presented as a scriptural warning: Gideon refuses an offered hereditary kingship, and Samuel describes the exactions of a king requested by the people.",
+        "Hereditary succession is attacked as an unjust transfer of posterity's rights that can elevate unworthy heirs and become established through fear, superstition, and convenience.",
+        "English history, especially conflicts between York and Lancaster, is offered to rebut the claim that hereditary succession prevents civil war.",
+        "The section closes by treating the English constitution as weakened by monarchical influence over its republican House of Commons."
+      ],
+      "themes": [
+        "the equal rights of nature",
+        "the evil of monarchy",
+        "the evil of hereditary succession",
+        "civil wars",
+        "the republican part in the constitution of England"
+      ],
+      "entities": [
+        {
+          "name": "Monarchy",
+          "category": "political-system",
+          "aliases": [],
+          "summary": "A form of government that the section rejects as contrary to natural equality and scripture and associates with war, idolatrous homage, corruption, and oppression.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "Monarchy is ranked in scripture as one of the sins of the Jews, for\nwhich a curse in reserve is denounced against them.",
+          "attributes": {
+            "authorial-assessment": "Rejected as a sinful and oppressive form of government."
+          },
+          "claims": [
+            {
+              "text": "The distinction between kings and subjects is said to lack a truly natural or religious justification.",
+              "certainty": "explicit",
+              "excerpt": "there is another and greater distinction for which no truly\nnatural or religious reason can be assigned, and that is, the\ndistinction of men into kings and \nsubjects."
+            },
+            {
+              "text": "The section attributes wars and confusion in early history to the pride of kings.",
+              "certainty": "explicit",
+              "excerpt": "there were no kings; the consequence of which was there were no wars;\nit is the pride of kings which throw mankind into confusion."
+            },
+            {
+              "text": "The author characterizes monarchy as a system opposed by the word of God and attended by bloodshed.",
+              "certainty": "explicit",
+              "excerpt": "’Tis a form of government\nwhich the word of God bears testimony against, and blood will attend it."
+            }
+          ]
+        },
+        {
+          "name": "Hereditary succession",
+          "category": "political-system",
+          "aliases": ["hereditary right"],
+          "summary": "The inheritance of rule by a king's descendants, which the section calls an unjust imposition on posterity and a source of unfit rulers, regencies, and civil conflict.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "To the evil of monarchy we have added that of hereditary succession;\nand as the first is a degradation and lessening of ourselves, so the\nsecond, claimed as a matter of right, is an insult and an imposition on\nposterity.",
+          "attributes": {
+            "stated-purpose": "Defenders claim that it preserves a nation from civil wars.",
+            "authorial-assessment": "Rejected as oppressive and as an unjust deprivation of posterity's rights."
+          },
+          "claims": [
+            {
+              "text": "No person can, by birth, rightfully establish a family in perpetual preference to all others.",
+              "certainty": "explicit",
+              "excerpt": "For all men being originally equals, no one by \nbirth could have a right to set up his own family in perpetual \npreference to all others for ever"
+            },
+            {
+              "text": "The system is said to allow foolish, wicked, and improper people to inherit rule and to make rulers ignorant of their dominions' interests.",
+              "certainty": "explicit",
+              "excerpt": "as it opens a\ndoor to the foolish, the wicked, and the \nimproper, it hath in it the nature of oppression."
+            },
+            {
+              "text": "The assertion that hereditary succession prevents civil wars is called false, with English history offered as contrary evidence.",
+              "certainty": "explicit",
+              "excerpt": "The whole history of\nEngland disowns the fact. Thirty kings and two minors have reigned in\nthat distracted kingdom since the conquest, in which time there have\nbeen (including the Revolution) no less than eight civil wars and\nnineteen rebellions."
+            }
+          ]
+        },
+        {
+          "name": "Republic",
+          "category": "political-system",
+          "aliases": [],
+          "summary": "A governmental form used as a contrast to monarchy; the section describes the pre-kingship government of the Jews as a kind of republic and treats England's republican component as the source of its liberty.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "Till then their form of government (except in extraordinary cases,\nwhere the Almighty interposed) was a kind of republic administred by \na judge and the elders of the tribes.",
+          "attributes": {
+            "authorial-assessment": "Presented favorably as the source of England's republican liberty."
+          },
+          "claims": [
+            {
+              "text": "The government of the Jews before their request for a king is described as a kind of republic administered by a judge and tribal elders.",
+              "certainty": "explicit",
+              "excerpt": "Till then their form of government (except in extraordinary cases,\nwhere the Almighty interposed) was a kind of republic administred by \na judge and the elders of the tribes."
+            },
+            {
+              "text": "The author says that Englishmen glory in the republican rather than the monarchical part of their constitution.",
+              "certainty": "explicit",
+              "excerpt": "For it is the republican and not the monarchical\npart of the constitution of England which Englishmen glory in"
+            }
+          ]
+        },
+        {
+          "name": "Government of England",
+          "category": "political-system",
+          "aliases": ["constitution of England"],
+          "summary": "England's constitutional arrangement is depicted as nearly monarchical because the crown's influence has eroded the House of Commons, despite its republican element.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "the government of England is nearly as monarchical\nas that of France or Spain.",
+          "attributes": {
+            "authorial-assessment": "Characterized as nearly monarchical and sickly because monarchical influence has poisoned its republican component."
+          },
+          "claims": [
+            {
+              "text": "The corrupt influence of the crown is said to have swallowed the House of Commons' power and virtue.",
+              "certainty": "explicit",
+              "excerpt": "the corrupt influence of the crown, by having all the places in its\ndisposal, hath so effectually swallowed up the power, and eaten out the\nvirtue of the house of commons"
+            },
+            {
+              "text": "The source says that republican virtue failing leads to slavery.",
+              "certainty": "explicit",
+              "excerpt": "when republican virtue fails, slavery ensues."
+            }
+          ]
+        },
+        {
+          "name": "Equal rights of nature",
+          "category": "political-concept",
+          "aliases": [],
+          "summary": "The principle that humans are originally equal, which supplies the section's natural-rights objection to the exaltation of kings and inherited rule.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "Mankind being originally equals in the order \nof creation",
+          "attributes": {
+            "authorial-position": "Affirmed as the natural basis against which monarchy and hereditary succession are judged."
+          },
+          "claims": [
+            {
+              "text": "The source states that mankind was originally equal in the order of creation.",
+              "certainty": "explicit",
+              "excerpt": "Mankind being originally equals in the order \nof creation"
+            },
+            {
+              "text": "Exalting one person above others is said to be unjustifiable on equal rights of nature.",
+              "certainty": "explicit",
+              "excerpt": "As the exalting one man so greatly above the rest cannot be justified\non the equal rights of nature"
+            }
+          ]
+        },
+        {
+          "name": "Children of Israel",
+          "category": "polity",
+          "aliases": ["Jews", "Israel"],
+          "summary": "The biblical political community whose requests for kings are used to argue that monarchy was a sinful rejection of divine rule.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "the Jews under a national delusion requested a king.",
+          "attributes": {
+            "political-status": "Described as governed by a kind of republic before requesting a king."
+          },
+          "claims": [
+            {
+              "text": "The Jews are said to have requested a king after nearly three thousand years from the Mosaic account of creation.",
+              "certainty": "explicit",
+              "excerpt": "Near three thousand years passed away from the Mosaic account of the\ncreation, till the Jews under a national delusion requested a king."
+            },
+            {
+              "text": "After Gideon's victory, the Jews offered him and his descendants a hereditary kingship, which he refused.",
+              "certainty": "explicit",
+              "excerpt": "proposed making him a king, saying, Rule thou over us, thou \nand thy son and thy son’s son."
+            },
+            {
+              "text": "The people later refused Samuel's warning and insisted on having a king to resemble other nations and fight their battles.",
+              "certainty": "explicit",
+              "excerpt": "Nevertheless the People refused to obey the voice of Samuel, and they \nsaid, Nay, but we will have a king over us, that we may be like all the \nnations, and that our king may judge us, and go out before us, and fight our\nbattles."
+            }
+          ]
+        },
+        {
+          "name": "Great-Britain",
+          "category": "polity",
+          "aliases": [],
+          "summary": "A polity used as the principal historical counterexample to claims that monarchy and hereditary succession produce peace, and as the setting for the section's constitutional critique.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "The whole history of\nEngland disowns the fact.",
+          "attributes": {
+            "political-status": "Described as nearly as monarchical as France or Spain."
+          },
+          "claims": [
+            {
+              "text": "England is said to have endured eight civil wars and nineteen rebellions since the conquest.",
+              "certainty": "explicit",
+              "excerpt": "Thirty kings and two minors have reigned in\nthat distracted kingdom since the conquest, in which time there have\nbeen (including the Revolution) no less than eight civil wars and\nnineteen rebellions."
+            },
+            {
+              "text": "The York-Lancaster contest over monarchy and succession is said to have left England in blood for many years.",
+              "certainty": "explicit",
+              "excerpt": "The contest for monarchy and succession, between the houses of York and\nLancaster, laid England in a scene of blood for many years."
+            }
+          ]
+        },
+        {
+          "name": "Holland",
+          "category": "polity",
+          "aliases": [],
+          "summary": "A country offered as a peaceful counterexample to monarchical European governments.",
+          "salience": "reference",
+          "certainty": "explicit",
+          "excerpt": "Holland\nwithout a king hath enjoyed more peace for this last century than any\nof the monarchial governments in Europe.",
+          "attributes": {
+            "political-status": "Described as without a king."
+          },
+          "claims": [
+            {
+              "text": "Holland without a king is said to have enjoyed more peace in the last century than any monarchical government in Europe.",
+              "certainty": "explicit",
+              "excerpt": "Holland\nwithout a king hath enjoyed more peace for this last century than any\nof the monarchial governments in Europe."
+            }
+          ]
+        },
+        {
+          "name": "House of Commons",
+          "category": "institution",
+          "aliases": ["house of commons"],
+          "summary": "The representative component of England's constitution that the section identifies as republican and says has been weakened by the crown.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "the house of commons (the republican part in the\nconstitution)",
+          "attributes": {
+            "institution-type": "Representative body"
+          },
+          "claims": [
+            {
+              "text": "The House of Commons is called the republican part in England's constitution.",
+              "certainty": "explicit",
+              "excerpt": "the house of commons (the republican part in the\nconstitution)"
+            },
+            {
+              "text": "Choosing a House of Commons from their own body is described as the liberty in which Englishmen glory.",
+              "certainty": "explicit",
+              "excerpt": "the\nliberty of choosing a house of commons from out of their own body"
+            }
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "Monarchy",
+          "predicate": "contrasts-with",
+          "object": "Equal rights of nature",
+          "certainty": "explicit",
+          "excerpt": "As the exalting one man so greatly above the rest cannot be justified\non the equal rights of nature"
+        },
+        {
+          "subject": "Hereditary succession",
+          "predicate": "contrasts-with",
+          "object": "Equal rights of nature",
+          "certainty": "explicit",
+          "excerpt": "For all men being originally equals, no one by \nbirth could have a right to set up his own family in perpetual \npreference to all others for ever"
+        },
+        {
+          "subject": "Government of England",
+          "predicate": "contrasts-with",
+          "object": "Republic",
+          "certainty": "explicit",
+          "excerpt": "Sir William Meredith calls it a\nrepublic; but in its present state it is unworthy of the name"
+        }
+      ],
+      "passages": [
+        {
+          "title": "Gideon's refusal of hereditary rule",
+          "kind": "argument",
+          "speaker": "Gideon",
+          "text": "I will not rule \nover you, neither shall my son rule over you.\nThe Lord shall rule over you.",
+          "context": "After the Jews offer Gideon rule for himself, his son, and his son's son, Gideon refuses the proposed kingship.",
+          "significance": "The quoted refusal is the section's clearest scriptural example against both monarchy and hereditary succession.",
+          "entities": ["Children of Israel", "Monarchy", "Hereditary succession"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Samuel's warning of royal exactions",
+          "kind": "argument",
+          "speaker": "Samuel",
+          "text": "This shall be the manner\nof the king that shall reign over you; he will take your sons and \nappoint them for himself, for his chariots, and to be his horsemen,\nand some shall run before his chariots",
+          "context": "Samuel relays the stated manner of the king after the people ask him to make them one.",
+          "significance": "It begins the catalogue through which the section depicts monarchy as extracting people and property for the ruler's use.",
+          "entities": ["Children of Israel", "Monarchy"],
+          "complete": false,
+          "certainty": "explicit"
+        },
+        {
+          "title": "The limit of a people's grant",
+          "kind": "argument",
+          "speaker": null,
+          "text": "they could not, \nwithout manifest injustice to their children, say “that your \nchildren and your children’s children shall reign over ours \nfor ever.”",
+          "context": "The author distinguishes choosing a present head from surrendering the rights of future generations.",
+          "significance": "This formulation condenses the natural-rights case that a generation cannot give hereditary political authority over its descendants.",
+          "entities": ["Hereditary succession", "Equal rights of nature"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Monarchy and succession's verdict",
+          "kind": "maxim",
+          "speaker": null,
+          "text": "In short, monarchy and succession have laid (not this or that kingdom\nonly) but the world in blood and ashes. ’Tis a form of government\nwhich the word of God bears testimony against, and blood will attend it.",
+          "context": "The section states its conclusion after recounting the English wars of York and Lancaster.",
+          "significance": "This is the chapter's compressed final judgment on monarchy and hereditary succession as globally destructive and scripturally condemned.",
+          "entities": ["Monarchy", "Hereditary succession", "Great-Britain"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "England's republican liberty",
+          "kind": "argument",
+          "speaker": null,
+          "text": "For it is the republican and not the monarchical\npart of the constitution of England which Englishmen glory in, viz. the\nliberty of choosing a house of commons from out of their own body—and\nit is easy to see that when republican virtue fails, slavery ensues.",
+          "context": "The author turns from the history of monarchy to identify the constitutional source of English liberty.",
+          "significance": "It explains why the section treats republican representation, rather than the crown, as England's valuable constitutional element.",
+          "entities": [
+            "Great-Britain",
+            "Government of England",
+            "Republic",
+            "House of Commons",
+            "Monarchy"
+          ],
+          "complete": true,
+          "certainty": "explicit"
+        }
+      ],
+      "openQuestions": []
+    },
+    "extract:primary-0004-799e727fd2": {
+      "segmentId": "primary-0004-799e727fd2",
+      "summary": "The speaker argues that armed conflict has made reconciliation with Great-Britain untenable and that American independence is necessary for security, peace, and self-government. The section rejects British authority as distant and self-interested, contrasts republican equality with monarchy, and proposes a Continental Congress, Conference, and Charter to establish a continental government.",
+      "plotBeats": [
+        "The speaker treats the struggle between England and America as having passed from debate to armed contest.",
+        "Reconciliation is rejected as a dangerous, temporary arrangement that would leave America subject to British interests and future conflict.",
+        "Independence is advanced as the condition for continental peace, security, and the ability to make American laws.",
+        "A constitutional framework is proposed: annual assemblies, a representative Continental Congress, a Continental Conference, and a Continental Charter.",
+        "The section closes by casting America as an asylum for freedom against Old World oppression."
+      ],
+      "themes": [
+        "independence versus reconciliation",
+        "continental self-government",
+        "British authority and political distance",
+        "liberty and security",
+        "representation and equality",
+        "America as an asylum for freedom"
+      ],
+      "entities": [
+        {
+          "name": "America",
+          "category": "polity",
+          "aliases": ["the continent", "these colonies", "the colonies"],
+          "summary": "The collective American polity whose connection with Great-Britain is rejected and whose independent continental government is proposed.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "England and America",
+          "attributes": {
+            "political-status": "Contested continent urged to separate from Great-Britain and form its own government."
+          },
+          "claims": [
+            {
+              "text": "America is described as a secondary object within British politics.",
+              "certainty": "explicit",
+              "excerpt": "America is only a secondary object in the system of British politics,"
+            },
+            {
+              "text": "The speaker says America cannot be conquered by Britain or Europe unless it defeats itself through delay and timidity.",
+              "certainty": "explicit",
+              "excerpt": "It is\nnot in the power of Britain or of Europe to conquer America, if she do\nnot conquer herself by delay and timidity."
+            },
+            {
+              "text": "The speaker holds that America should steer clear of European contentions.",
+              "certainty": "explicit",
+              "excerpt": "It is the true interest of America to steer clear of European\ncontentions"
+            },
+            {
+              "text": "America is presented as a future asylum for mankind.",
+              "certainty": "explicit",
+              "excerpt": "prepare in time an asylum for mankind."
+            }
+          ]
+        },
+        {
+          "name": "Great-Britain",
+          "category": "polity",
+          "aliases": ["Britain"],
+          "summary": "The polity whose authority over America, commercial motives, and proposed reconciliation are condemned by the speaker.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "England and America",
+          "attributes": {
+            "political-status": "Presented as America's external governing power and enemy."
+          },
+          "claims": [
+            {
+              "text": "Britain is described as an open enemy that extinguishes prior ties of English descent.",
+              "certainty": "explicit",
+              "excerpt": "Britain, being now an open enemy, extinguishes every\nother name and title"
+            },
+            {
+              "text": "The speaker says Britain's protection of the continent was motivated by trade and dominion.",
+              "certainty": "explicit",
+              "excerpt": "she would have defended Turkey from the same motive, viz.\nthe sake of trade and dominion."
+            },
+            {
+              "text": "The speaker says Britain cannot administer the continent justly because it is distant and ignorant of America.",
+              "certainty": "explicit",
+              "excerpt": "it is not in the power of Britain to do this\ncontinent justice"
+            },
+            {
+              "text": "The speaker says Britain has not shown any inclination toward compromise.",
+              "certainty": "explicit",
+              "excerpt": "Britain hath not manifested the least inclination towards a\ncompromise"
+            }
+          ]
+        },
+        {
+          "name": "England",
+          "category": "polity",
+          "aliases": [],
+          "summary": "The polity distinguished from America and assigned to Europe in the speaker's continental argument.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "England and America",
+          "attributes": {
+            "political-status": "Presented as a European polity, distinct from America's continental system."
+          },
+          "claims": [
+            {
+              "text": "The speaker assigns England to Europe and America to itself.",
+              "certainty": "explicit",
+              "excerpt": "England to Europe, America to itself."
+            },
+            {
+              "text": "England is identified as the King's residence.",
+              "certainty": "explicit",
+              "excerpt": "England being the King’s residence"
+            }
+          ]
+        },
+        {
+          "name": "Europe",
+          "category": "polity",
+          "aliases": [],
+          "summary": "The Old World political sphere portrayed as commercially important to America but crowded with kingdoms and oppression.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "Europe is our\nmarket for trade",
+          "attributes": {
+            "political-status": "A commercial market whose kingdoms are portrayed as prone to war and oppression."
+          },
+          "claims": [
+            {
+              "text": "Europe is described as America's market for trade.",
+              "certainty": "explicit",
+              "excerpt": "Europe is our\nmarket for trade"
+            },
+            {
+              "text": "Europe is said to be too densely filled with kingdoms to remain peaceful for long.",
+              "certainty": "explicit",
+              "excerpt": "Europe is too thickly planted with kingdoms to be long at peace"
+            },
+            {
+              "text": "Europe is portrayed as regarding freedom as a stranger.",
+              "certainty": "explicit",
+              "excerpt": "Europe regards her like a stranger"
+            }
+          ]
+        },
+        {
+          "name": "British government",
+          "category": "political-system",
+          "aliases": ["second-hand government"],
+          "summary": "The distant governing arrangement under which Britain is portrayed as suppressing American growth for its own interests.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "under such a second-hand government",
+          "attributes": {
+            "authorial-assessment": "The speaker characterizes it as second-hand and driven by Britain's own purpose.",
+            "stated-purpose": "Britain consults American good only where it answers Britain's own purpose."
+          },
+          "claims": [
+            {
+              "text": "British government is presented as putting American interests second to British purpose.",
+              "certainty": "explicit",
+              "excerpt": "England consults the good of this country, no farther than it \nanswers her own purpose."
+            },
+            {
+              "text": "The speaker says Britain would suppress American growth when it did not promote British advantage.",
+              "certainty": "explicit",
+              "excerpt": "her own interest leads \nher to suppress the growth of ours in every case which doth \nnot promote her advantage"
+            }
+          ]
+        },
+        {
+          "name": "Continental government",
+          "category": "political-system",
+          "aliases": ["a continental form of government", "a government of our own"],
+          "summary": "The proposed American system of self-government, held necessary to preserve continental peace and protect liberty.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "a continental form of government",
+          "attributes": {
+            "authorial-assessment": "The speaker presents it as necessary for peace and as America's natural right.",
+            "stated-purpose": "To keep continental peace, preserve liberty, and provide a durable constitution."
+          },
+          "claims": [
+            {
+              "text": "A continental form of government is asserted to be necessary for preserving the continent's peace.",
+              "certainty": "explicit",
+              "excerpt": "nothing but\nindependance, i.e. a continental form of government, can keep the\npeace of the continent"
+            },
+            {
+              "text": "The speaker calls a government of America's own its natural right.",
+              "certainty": "explicit",
+              "excerpt": "A government of our own is our natural right"
+            },
+            {
+              "text": "The speaker urges forming an American constitution deliberately rather than leaving it to time and chance.",
+              "certainty": "explicit",
+              "excerpt": "it is infinitely wiser and safer, to form a\nconstitution of our own in a cool deliberate manner"
+            }
+          ]
+        },
+        {
+          "name": "Monarchy",
+          "category": "political-system",
+          "aliases": ["absolute governments"],
+          "summary": "The form of government portrayed as unstable because royal authority tempts domestic and foreign conflict.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "Monarchical governments, it is true, are never\nlong at rest",
+          "attributes": {
+            "authorial-assessment": "The speaker treats regal authority as a source of pride, insolence, and rupture."
+          },
+          "claims": [
+            {
+              "text": "Monarchical governments are said never to be long at rest.",
+              "certainty": "explicit",
+              "excerpt": "Monarchical governments, it is true, are never\nlong at rest"
+            },
+            {
+              "text": "The crown is said to tempt enterprising ruffians at home.",
+              "certainty": "explicit",
+              "excerpt": "the crown itself is a temptation to enterprizing ruffians\nat home"
+            }
+          ]
+        },
+        {
+          "name": "Independence",
+          "category": "political-concept",
+          "aliases": ["independance", "separation"],
+          "summary": "The political alternative the speaker advocates in place of reconciliation and dependence on Great-Britain.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "I am not induced by motives of pride, party, or resentment to espouse\nthe doctrine of separation and independance",
+          "attributes": {
+            "authorial-position": "Advocated as America's true interest and as self-law-making rather than royal control."
+          },
+          "claims": [
+            {
+              "text": "The speaker says separation and independence are America's true interest.",
+              "certainty": "explicit",
+              "excerpt": "I am clearly, positively,\nand conscientiously persuaded that it is the true interest of this\ncontinent to be so"
+            },
+            {
+              "text": "Independence is defined as the choice for Americans to make their own laws rather than have the king determine them.",
+              "certainty": "explicit",
+              "excerpt": "independancy means no more, than, whether \nwe shall make our own laws, or whether the king"
+            },
+            {
+              "text": "The speaker says all natural and right considerations plead for separation.",
+              "certainty": "explicit",
+              "excerpt": "Every thing that is right or natural pleads \nfor separation."
+            }
+          ]
+        },
+        {
+          "name": "Reconciliation",
+          "category": "political-concept",
+          "aliases": ["the doctrine of reconciliation"],
+          "summary": "The political alternative that the speaker rejects as a dangerous, forced, and temporary return to British connection.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "Reconciliation is now \na fallacious dream.",
+          "attributes": {
+            "authorial-position": "Rejected as a fallacious and dangerous doctrine."
+          },
+          "claims": [
+            {
+              "text": "Reconciliation is described as a fallacious dream.",
+              "certainty": "explicit",
+              "excerpt": "Reconciliation is now \na fallacious dream."
+            },
+            {
+              "text": "The speaker says reconciliation and ruin are closely related.",
+              "certainty": "explicit",
+              "excerpt": "Reconciliation and ruin are nearly related."
+            },
+            {
+              "text": "The speaker predicts that reconciliation would be followed by a revolt somewhere.",
+              "certainty": "explicit",
+              "excerpt": "it will be followed by a revolt somewhere or other"
+            }
+          ]
+        },
+        {
+          "name": "Continental union",
+          "category": "political-concept",
+          "aliases": [],
+          "summary": "The principle of continent-wide unity treated as the formative commitment of the current moment and as superior to provincial division.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "Now is the seed time of continental union, faith\nand honor.",
+          "attributes": {
+            "authorial-position": "Advocated as a necessary basis for continental strength."
+          },
+          "claims": [
+            {
+              "text": "The current moment is called the seed time of continental union, faith, and honor.",
+              "certainty": "explicit",
+              "excerpt": "Now is the seed time of continental union, faith\nand honor."
+            },
+            {
+              "text": "The speaker states that American strength is continental rather than provincial.",
+              "certainty": "explicit",
+              "excerpt": "our strength \nis continental, not provincial:"
+            }
+          ]
+        },
+        {
+          "name": "Continental Congress",
+          "category": "institution",
+          "aliases": ["Congress"],
+          "summary": "The proposed continent-wide representative body that would hold authority over domestic annual assemblies and select a rotating president.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "subject\nto the authority of a Continental Congress.",
+          "attributes": {
+            "institution-type": "Continental representative legislature.",
+            "claimed-authority": "Authority over annual domestic assemblies."
+          },
+          "claims": [
+            {
+              "text": "The proposed annual assemblies would be subject to the authority of a Continental Congress.",
+              "certainty": "explicit",
+              "excerpt": "Their business wholly domestic, and subject\nto the authority of a Continental Congress."
+            },
+            {
+              "text": "Each colony is proposed to send at least thirty delegates to Congress.",
+              "certainty": "explicit",
+              "excerpt": "so that each colony send at least thirty."
+            },
+            {
+              "text": "The proposed Congress would select a president by ballot from a colony chosen by lot, rotating through the thirteen colonies.",
+              "certainty": "explicit",
+              "excerpt": "let the whole Congress choose (by ballot) a president from out of the\ndelegates of that province."
+            },
+            {
+              "text": "The proposal requires at least three fifths of Congress for a majority.",
+              "certainty": "explicit",
+              "excerpt": "not\nless than three fifths of the Congress to be called a majority."
+            }
+          ]
+        },
+        {
+          "name": "Continental Conference",
+          "category": "institution",
+          "aliases": ["the said Conference"],
+          "summary": "The intermediate representative body proposed to frame a Continental Charter and then dissolve after constitutional bodies are chosen.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "let a Continental Conference be held",
+          "attributes": {
+            "institution-type": "Constitution-framing conference between Congress and the people.",
+            "claimed-authority": "Authority to frame a Continental Charter through members empowered by the people."
+          },
+          "claims": [
+            {
+              "text": "The Conference is proposed as an intermediate body between Congress and the people.",
+              "certainty": "explicit",
+              "excerpt": "some intermediate body between the\ngoverned and the governors, that is, between the Congress and the\npeople"
+            },
+            {
+              "text": "The Conference would unite knowledge and power through congressional, assembly, convention, and popular representatives.",
+              "certainty": "explicit",
+              "excerpt": "will be united, the two grand principles of business,\nknowledge and power."
+            },
+            {
+              "text": "The Conference is instructed to frame a Continental Charter or Charter of the United Colonies.",
+              "certainty": "explicit",
+              "excerpt": "let their business be to frame a\nContinental Charter, or Charter of the United \nColonies"
+            },
+            {
+              "text": "The Conference would dissolve after bodies conforming to the Charter are chosen.",
+              "certainty": "explicit",
+              "excerpt": "Immediately after which, the said Conference to \ndissolve"
+            }
+          ]
+        },
+        {
+          "name": "Continental Charter",
+          "category": "political-concept",
+          "aliases": ["Charter of the United Colonies"],
+          "summary": "The proposed constitutional charter that would define representation and jurisdictions while securing freedom, property, and religious exercise.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "Continental Charter, or Charter of the United \nColonies",
+          "attributes": {
+            "authorial-position": "advocated"
+          },
+          "claims": [
+            {
+              "text": "The Charter would fix the number and method for choosing members of Congress and Assembly.",
+              "certainty": "explicit",
+              "excerpt": "fixing the number and manner of choosing members of Congress, members \nof Assembly"
+            },
+            {
+              "text": "The Charter would draw the line of business and jurisdiction between Congress and Assembly.",
+              "certainty": "explicit",
+              "excerpt": "drawing the line of business \nand jurisdiction between them"
+            },
+            {
+              "text": "The Charter would secure freedom, property, and free exercise of religion according to conscience.",
+              "certainty": "explicit",
+              "excerpt": "Securing freedom and property to all \nmen, and above all things, the free exercise of religion, according to \nthe dictates of conscience"
+            }
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "Great-Britain",
+          "predicate": "claims-authority-over",
+          "object": "America",
+          "certainty": "explicit",
+          "excerpt": "The authority of Great-Britain over this continent"
+        },
+        {
+          "subject": "Continental Congress",
+          "predicate": "governs",
+          "object": "America",
+          "certainty": "explicit",
+          "excerpt": "subject\nto the authority of a Continental Congress."
+        },
+        {
+          "subject": "Independence",
+          "predicate": "opposes",
+          "object": "Reconciliation",
+          "certainty": "inferred",
+          "excerpt": "Reconciliation is now \na fallacious dream."
+        },
+        {
+          "subject": "Independence",
+          "predicate": "supports",
+          "object": "Continental government",
+          "certainty": "explicit",
+          "excerpt": "independance, i.e. a continental form of government"
+        },
+        {
+          "subject": "Monarchy",
+          "predicate": "contrasts-with",
+          "object": "Continental government",
+          "certainty": "inferred",
+          "excerpt": "Monarchical governments, it is true, are never\nlong at rest"
+        }
+      ],
+      "passages": [
+        {
+          "title": "Arms decide the contest",
+          "kind": "argument",
+          "speaker": "The speaker",
+          "text": "Arms, as\nthe last resource, decide the contest; the appeal was the choice of\nthe king, and the continent hath accepted the challenge.",
+          "context": "The speaker marks the close of debate between England and America.",
+          "significance": "Establishes the armed conflict as the reason earlier reconciliation proposals no longer govern the situation.",
+          "entities": ["America", "England"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Separation as the natural course",
+          "kind": "argument",
+          "speaker": "The speaker",
+          "text": "Every thing that is right or natural pleads \nfor separation.",
+          "context": "The speaker links continued dependence on Britain to European wars and argues that distance demonstrates separate political destinies.",
+          "significance": "Condenses the central case for independence into a direct normative claim.",
+          "entities": ["America", "Great-Britain", "Independence"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Reconciliation and ruin",
+          "kind": "rebuttal",
+          "speaker": "The speaker",
+          "text": "Reconciliation and ruin are nearly related.",
+          "context": "The speaker argues that a repeal offered by the king could be a tactic for regaining control of the provinces.",
+          "significance": "Gives the section's sharpest warning against a restored British connection.",
+          "entities": ["Great-Britain", "Reconciliation"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Continental representation proposal",
+          "kind": "proposal",
+          "speaker": "The speaker",
+          "text": "Let each colony be divided into six, eight, or ten, convenient\ndistricts, each district to send a proper number of delegates to\nCongress, so that each colony send at least thirty.",
+          "context": "The speaker offers concrete hints for forming a continental representative system.",
+          "significance": "Supplies the proposed basis for representation in the new Continental Congress.",
+          "entities": ["America", "Continental Congress"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Continental Charter proposal",
+          "kind": "proposal",
+          "speaker": "The speaker",
+          "text": "The conferring members being met, let their business be to frame a\nContinental Charter, or Charter of the United \nColonies;",
+          "context": "The speaker assigns the proposed Continental Conference the task of forming America's constitutional settlement.",
+          "significance": "Introduces the charter that would establish representative bodies, jurisdiction, and protected liberties.",
+          "entities": ["America", "Continental Conference", "Continental Charter"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Law as king",
+          "kind": "maxim",
+          "speaker": "The speaker",
+          "text": "in America the \nlaw is king.",
+          "context": "The speaker replaces a human king with the law as the highest honor in the proposed American order.",
+          "significance": "States the proposed reversal of absolute monarchy in a compact memorable formulation.",
+          "entities": ["America", "Monarchy", "Continental government"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Natural right to self-government",
+          "kind": "argument",
+          "speaker": "The speaker",
+          "text": "A government of our own is our natural right:",
+          "context": "The speaker urges the timely, deliberate formation of an American constitution.",
+          "significance": "Expresses the foundational justification for establishing an American government.",
+          "entities": ["America", "Continental government"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Asylum for mankind",
+          "kind": "proposal",
+          "speaker": "The speaker",
+          "text": "O! receive the fugitive, and\nprepare in time an asylum for mankind.",
+          "context": "The conclusion calls on opponents of tyranny after describing oppression across Asia, Africa, Europe, and England.",
+          "significance": "Broadens the case from American separation to a universal mission of refuge for freedom.",
+          "entities": ["America", "Europe"],
+          "complete": true,
+          "certainty": "explicit"
+        }
+      ],
+      "openQuestions": [
+        "What final constitutional plan will be adopted for an independent continental government?",
+        "How will the proposed Continental Charter set the respective jurisdictions of Congress and the assemblies?"
+      ]
+    },
+    "extract:primary-0005-0cc95308b4": {
+      "segmentId": "primary-0005-0cc95308b4",
+      "summary": "The pamphlet argues that America is already at the uniquely favorable moment to declare independance: its unity, population, resources, undeveloped land, and productive capacity make collective self-government and naval defense practical now. It rejects renewed British rule as unsafe and politically disabling, recommends a commercially useful fleet, a Continental Charter, religious protection, and large, equal representation, and closes by arguing that a public declaration is necessary for foreign recognition, mediation, and assistance.",
+      "plotBeats": [
+        "The narrator treats separation between England and America as inevitable and argues that the present moment has already made America fit for independance.",
+        "America's unity, armed population, lack of debt, and material resources are presented as sufficient foundations for collective action.",
+        "A fleet is proposed as both a commercial investment and the necessary means of protecting American property and coasts.",
+        "Reliance on Britain for defense is rejected because a former would-be conqueror could turn friendship into slavery and distant ships cannot answer emergencies.",
+        "The narrator warns that resubmission to British government would bring ruin, recurring disorder, and foreign obedience, while only Continental authority can regulate Continental affairs.",
+        "America's youth and current union are framed as a fleeting opportunity to form a government before population, commerce, and conflicting interests divide the colonies.",
+        "The proposed government should begin with a charter or articles that define rights before officials are delegated to execute them.",
+        "The section calls for government to protect all conscientious religious professors and for a Continental Charter and large, equal representation to secure rights and restrain concentrated power.",
+        "The conclusion contends that declaring independance is necessary to end the contradiction of resistance and British subjection, obtain foreign mediation and aid, and be received by other nations."
+      ],
+      "themes": [
+        "Independance as a present and irreversible political necessity",
+        "Unity and collective self-government",
+        "Naval defense joined to commerce",
+        "Constitutional order before executive power",
+        "Religious protection and political representation",
+        "Foreign recognition and the costs of British subjection"
+      ],
+      "entities": [
+        {
+          "name": "America",
+          "category": "polity",
+          "aliases": ["the Continent", "the Colonies"],
+          "summary": "The collective American polity is presented as militarily and materially capable of independance, but politically endangered by renewed British rule and unable to receive full foreign standing while it remains British subjects.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "America",
+          "attributes": {
+            "political-status": "Subject of Great-Britain"
+          },
+          "claims": [
+            {
+              "text": "America's present population is sufficient to repel any external force when joined by unity.",
+              "certainty": "explicit",
+              "excerpt": "our present numbers are sufficient to repel the force of all the world."
+            },
+            {
+              "text": "America has no national debt or navy, but can build a navy for a fraction of England's national debt.",
+              "certainty": "explicit",
+              "excerpt": "America is without a debt, and without a navy; yet for the\ntwentieth part of the English national debt, could have a navy as large\nagain."
+            },
+            {
+              "text": "America is described as especially able to raise a fleet from its domestic raw materials.",
+              "certainty": "explicit",
+              "excerpt": "No country on the globe is so happily situated, or so internally\ncapable of raising a fleet as America."
+            },
+            {
+              "text": "As British subjects, Americans cannot be received or heard abroad.",
+              "certainty": "explicit",
+              "excerpt": "Under our present denomination of British subjects, we can neither be\nreceived nor heard abroad"
+            }
+          ]
+        },
+        {
+          "name": "Great-Britain",
+          "category": "polity",
+          "aliases": [],
+          "summary": "Britain is portrayed as the distant power that sought to subdue America, is burdened by debt and far-flung naval commitments, and whose renewed governance would leave America unsafe and politically subordinate.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "Britain",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "Britain is said to be oppressed by a national debt exceeding one hundred and forty million sterling and to pay more than four million in interest.",
+              "certainty": "explicit",
+              "excerpt": "Britain is oppressed with a debt of upwards of one hundred\nand forty millions sterling, for which she pays upwards of four\nmillions interest."
+            },
+            {
+              "text": "Britain's navy is constrained by demands from territories over which it extends claims.",
+              "certainty": "explicit",
+              "excerpt": "The\nEast and West Indies, Mediterranean, Africa, and other parts over which\nBritain extends her claim, make large demands upon her navy."
+            },
+            {
+              "text": "Britain's naval distance makes it unable to provide useful protection in sudden emergencies.",
+              "certainty": "explicit",
+              "excerpt": "A navy three or four thousand miles off can be of little use, and\non sudden emergencies, none at all."
+            }
+          ]
+        },
+        {
+          "name": "France",
+          "category": "polity",
+          "aliases": [],
+          "summary": "France is identified as a potential foreign source of assistance that the narrator expects would not support a reconciliation strengthening Britain and America’s connection.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "France",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "France is not expected to assist if that aid would repair the breach and strengthen the Britain-America connection.",
+              "certainty": "explicit",
+              "excerpt": "France \nor Spain will give us any kind of assistance, if we mean only, to \nmake use of that assistance for the purpose of repairing the breach, \nand strengthening the connection between Britain and America"
+            }
+          ]
+        },
+        {
+          "name": "Spain",
+          "category": "polity",
+          "aliases": [],
+          "summary": "Spain is identified alongside France as a potential foreign source of assistance that the narrator expects would not support a reconciliation strengthening Britain and America’s connection.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "Spain",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "Spain is not expected to assist if that aid would repair the breach and strengthen the Britain-America connection.",
+              "certainty": "explicit",
+              "excerpt": "France \nor Spain will give us any kind of assistance, if we mean only, to \nmake use of that assistance for the purpose of repairing the breach, \nand strengthening the connection between Britain and America"
+            }
+          ]
+        },
+        {
+          "name": "Pennsylvania",
+          "category": "polity",
+          "aliases": [],
+          "summary": "Pennsylvania is used as an example of the danger of unequal representation and of a legislature exercising undue authority over its delegates.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "Pennsylvania",
+          "attributes": {},
+          "claims": [
+            {
+              "text": "A dispute between Pennsylvania and Connecticut over unlocated lands is offered as proof that only Continental authority can regulate Continental matters.",
+              "certainty": "explicit",
+              "excerpt": "The\ndifference between Pennsylvania and Connecticut, respecting some\nunlocated lands, shews the insignificance of a British government, and\nfully proves, that nothing but Continental authority can regulate\nContinental matters."
+            },
+            {
+              "text": "The Pennsylvania House of Assembly's handling of the Associators petition is offered as an example of representation allowing two counties to govern the whole province.",
+              "certainty": "explicit",
+              "excerpt": "this whole province had been governed by two counties\nonly"
+            }
+          ]
+        },
+        {
+          "name": "British government",
+          "category": "political-system",
+          "aliases": [],
+          "summary": "The narrator judges British government unable to regulate Continental matters and warns that its return would make the Continent unlivable and subject Americans to foreign obedience.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "British government",
+          "attributes": {
+            "authorial-assessment": "insignificance"
+          },
+          "claims": [
+            {
+              "text": "The dispute over unlocated lands is said to show the insignificance of British government for Continental matters.",
+              "certainty": "explicit",
+              "excerpt": "shews the insignificance of a British government"
+            },
+            {
+              "text": "The narrator warns that renewed British government in America would bring continual jealousies and insurrections.",
+              "certainty": "explicit",
+              "excerpt": "If she is once admitted to the government\nof America again, this Continent will not be worth living in.\nJealousies will be always arising; insurrections will be constantly\nhappening"
+            }
+          ]
+        },
+        {
+          "name": "Congress",
+          "category": "institution",
+          "aliases": [],
+          "summary": "Congress is the enduring representative body whose continuation is expected and whose method of choosing members requires reconsideration to prevent one body from holding both representative and electoral power.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "Congress",
+          "attributes": {
+            "institution-type": "representative body"
+          },
+          "claims": [
+            {
+              "text": "The narrator considers it more than probable that America will never be without a Congress.",
+              "certainty": "explicit",
+              "excerpt": "it is more than probable that we shall never be\nwithout a Congress"
+            },
+            {
+              "text": "The method for choosing Congress's members is said to deserve consideration because representation and election may be too much power for one body to possess.",
+              "certainty": "explicit",
+              "excerpt": "the mode for choosing members of that body, \ndeserves consideration. And I put it as a question to those, who make \na study of mankind, whether representation and election is \nnot too great a power for one and the same body of men to possess?"
+            }
+          ]
+        },
+        {
+          "name": "House of Assembly of Pennsylvania",
+          "category": "institution",
+          "aliases": ["that House"],
+          "summary": "Pennsylvania's House of Assembly is criticized as an example of an unrepresentative institution that attempted to acquire undue authority over provincial delegates and passed instructions in the name of the whole colony without broad consent.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "House of Assembly of Pennsylvania",
+          "attributes": {
+            "institution-type": "assembly"
+          },
+          "claims": [
+            {
+              "text": "The House is accused of making an unwarrantable stretch to gain undue authority over provincial delegates.",
+              "certainty": "explicit",
+              "excerpt": "The unwarrantable\nstretch likewise, which that house made in their last sitting, to gain\nan undue authority over the delegates of that province"
+            },
+            {
+              "text": "Instructions approved by very few people were passed by the House in behalf of the whole colony.",
+              "certainty": "explicit",
+              "excerpt": "after\nbeing approved by a few, a very few without doors, \nwere carried into the House, and there passed in behalf of the \nwhole colony"
+            }
+          ]
+        },
+        {
+          "name": "independance",
+          "category": "political-concept",
+          "aliases": ["independence"],
+          "summary": "Independance is the advocated political alternative: its declaration is presented as the immediate means to settle affairs, obtain foreign standing, and break the untenable combination of resistance and British subjection.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "independance",
+          "attributes": {
+            "authorial-position": "advocated"
+          },
+          "claims": [
+            {
+              "text": "The present time is declared the true time for establishing independance.",
+              "certainty": "explicit",
+              "excerpt": "the present \ntime is the true time for establishing it."
+            },
+            {
+              "text": "An open and determined declaration for independance is said to settle American affairs most expeditiously.",
+              "certainty": "explicit",
+              "excerpt": "nothing can settle our affairs so expeditiously as an open and \ndetermined declaration for independance."
+            },
+            {
+              "text": "Independance is said to let America take rank with other nations and overcome the inability of British subjects to be received abroad.",
+              "certainty": "explicit",
+              "excerpt": "until, by an independance, we take rank with other nations."
+            }
+          ]
+        },
+        {
+          "name": "union",
+          "category": "political-concept",
+          "aliases": ["unity"],
+          "summary": "Union is the source of American strength and the political form that must be established now, before trade, population, and diverging colonial interests make it impossible.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "union",
+          "attributes": {
+            "authorial-position": "advocated"
+          },
+          "claims": [
+            {
+              "text": "American strength is located in unity rather than numbers.",
+              "certainty": "explicit",
+              "excerpt": "It is not in numbers, but in unity, that our great strength lies"
+            },
+            {
+              "text": "The current union is said to have withstood troubles and to be especially durable because it formed in both youth and misfortune.",
+              "certainty": "explicit",
+              "excerpt": "Our \npresent union is marked with both these characters: we are young and we \nhave been distressed; but our concord hath withstood our troubles"
+            },
+            {
+              "text": "A united government may become impossible in half a century as trade and population produce conflicting interests.",
+              "certainty": "explicit",
+              "excerpt": "It might be difficult, if not impossible, to form the\nContinent into one government half a century hence."
+            }
+          ]
+        },
+        {
+          "name": "naval protection",
+          "category": "political-concept",
+          "aliases": ["a fleet", "a navy"],
+          "summary": "Naval protection is advocated as a self-reliant American defense that can be built from domestic resources, serve commerce, deter coastal predation, and avoid dependence on Britain's remote fleet.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "naval protection",
+          "attributes": {
+            "authorial-position": "advocated"
+          },
+          "claims": [
+            {
+              "text": "Building a fleet is described as the natural manufactory of America and an article of commerce.",
+              "certainty": "explicit",
+              "excerpt": "We ought to view the building a fleet as an article of\ncommerce, it being the natural manufactory of this country."
+            },
+            {
+              "text": "A finished navy is said to unite commerce and protection in national policy.",
+              "certainty": "explicit",
+              "excerpt": "A navy when finished is worth more than it\ncost. And is that nice point in national policy, in which commerce and\nprotection are united."
+            },
+            {
+              "text": "The vulnerability of Philadelphia and the Continent to armed raiders is used to establish the necessity of naval protection.",
+              "certainty": "explicit",
+              "excerpt": "These are circumstances which demand our\nattention, and point out the necessity of naval protection."
+            }
+          ]
+        },
+        {
+          "name": "Continental Charter",
+          "category": "political-concept",
+          "aliases": ["a charter"],
+          "summary": "The proposed Continental Charter is a solemn binding agreement through which the whole protects the rights of every separate part, including religion, personal freedom, and property.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "Continental Charter",
+          "attributes": {
+            "authorial-position": "advocated"
+          },
+          "claims": [
+            {
+              "text": "A charter is defined as a bond of solemn obligation entered by the whole to support every separate part's rights.",
+              "certainty": "explicit",
+              "excerpt": "a charter is to be understood as a bond of solemn\nobligation, which the whole enters into, to support the right of every\nseparate part"
+            },
+            {
+              "text": "The charter's stated rights include religion, personal freedom, and property.",
+              "certainty": "explicit",
+              "excerpt": "whether of religion, personal freedom, or property."
+            }
+          ]
+        },
+        {
+          "name": "large and equal representation",
+          "category": "political-concept",
+          "aliases": [],
+          "summary": "Large and equal representation is advocated as necessary to prevent a small or unequal group of electors or representatives from governing an entire province.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "large and\nequal representation",
+          "attributes": {
+            "authorial-position": "advocated"
+          },
+          "claims": [
+            {
+              "text": "Large and equal representation is described as a political matter deserving special attention.",
+              "certainty": "explicit",
+              "excerpt": "the necessity of a large and\nequal representation; and there is no political matter which more\ndeserves our attention."
+            },
+            {
+              "text": "Small numbers of electors or representatives, particularly when unequal, are said to be dangerous.",
+              "certainty": "explicit",
+              "excerpt": "A small number of electors, or a small number\nof representatives, are equally dangerous. But if the number of the\nrepresentatives be not only small, but unequal, the danger is\nincreased."
+            }
+          ]
+        },
+        {
+          "name": "diversity of religious opinions",
+          "category": "political-concept",
+          "aliases": ["various denominations"],
+          "summary": "Diversity of religious opinions is treated as the Almighty's will and as the basis for Christian kindness among denominations; government is assigned the limited duty of protecting all conscientious professors.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "diversity of religious opinions",
+          "attributes": {
+            "authorial-position": "advocated"
+          },
+          "claims": [
+            {
+              "text": "Government is said to have the indispensable duty to protect all conscientious religious professors and no other business in religion.",
+              "certainty": "explicit",
+              "excerpt": "the indispensable duty of\nall government, to protect all conscientious professors thereof, and I\nknow of no other business which government hath to do therewith."
+            },
+            {
+              "text": "The narrator says diversity of religious opinions is the will of the Almighty and creates a larger field for Christian kindness.",
+              "certainty": "explicit",
+              "excerpt": "it is the will of the\nAlmighty, that there should be diversity of religious opinions among\nus: It affords a larger field for our Christian kindness."
+            }
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "Great-Britain",
+          "predicate": "claims-authority-over",
+          "object": "America",
+          "certainty": "explicit",
+          "excerpt": "while \nAmerica calls herself the Subject of Great-Britain"
+        },
+        {
+          "subject": "Continental Charter",
+          "predicate": "supports",
+          "object": "diversity of religious opinions",
+          "certainty": "explicit",
+          "excerpt": "a charter is to be understood as a bond of solemn\nobligation, which the whole enters into, to support the right of every\nseparate part, whether of religion, personal freedom, or property."
+        }
+      ],
+      "passages": [
+        {
+          "title": "Strength in unity",
+          "kind": "maxim",
+          "speaker": null,
+          "text": "It is not in numbers, but in unity, that our great strength lies; yet\nour present numbers are sufficient to repel the force of all the world.",
+          "context": "The narrator opens the practical case for immediate independance by identifying unity rather than population size as America's decisive strength.",
+          "significance": "This compact formulation states the segment's central measure of collective American capacity.",
+          "entities": ["America", "union"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Commerce and protection united",
+          "kind": "argument",
+          "speaker": null,
+          "text": "A navy when finished is worth more than it\ncost. And is that nice point in national policy, in which commerce and\nprotection are united.",
+          "context": "The fleet proposal is framed not as a military expense alone but as a productive domestic enterprise.",
+          "significance": "It captures the economic rationale for naval protection that anchors the section's long maritime argument.",
+          "entities": ["America", "naval protection"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Britain cannot defend America",
+          "kind": "rebuttal",
+          "speaker": null,
+          "text": "Common sense will tell\nus, that the power which hath endeavoured to subdue us, is of all\nothers, the most improper to defend us.",
+          "context": "The narrator answers the prospect that reconciliation with Britain would let British naval power protect America.",
+          "significance": "The line converts the case for naval self-reliance into a rejection of renewed dependence on the former enemy.",
+          "entities": ["America", "Britain", "naval protection"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Government at the right end",
+          "kind": "maxim",
+          "speaker": null,
+          "text": "First, they had a king, and\nthen a form of government; whereas, the articles or charter of\ngovernment, should be formed first, and men delegated to execute them\nafterward",
+          "context": "The narrator contrasts conquered nations' sequence of rule with the opportunity available to America while it is forming itself into government.",
+          "significance": "It states the constitutional ordering principle behind the proposed charter: rights and governmental articles precede officeholders.",
+          "entities": ["America", "Continental Charter"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Government's religious duty",
+          "kind": "argument",
+          "speaker": null,
+          "text": "As to religion, I hold it to be the indispensable duty of\nall government, to protect all conscientious professors thereof, and I\nknow of no other business which government hath to do therewith.",
+          "context": "The narrator defines a limited governmental responsibility amid diverse religious denominations.",
+          "significance": "The statement gives the segment's clearest rule for the relation between government and religious conscience.",
+          "entities": ["diversity of religious opinions"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "The Continental Charter defined",
+          "kind": "proposal",
+          "speaker": null,
+          "text": "a charter is to be understood as a bond of solemn\nobligation, which the whole enters into, to support the right of every\nseparate part, whether of religion, personal freedom, or property.",
+          "context": "The narrator returns to a previously introduced Continental Charter and defines its purpose.",
+          "significance": "This is the segment's operative definition of the constitutional bond proposed for the united colonies.",
+          "entities": ["Continental Charter", "diversity of religious opinions"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "The danger of unequal representation",
+          "kind": "argument",
+          "speaker": null,
+          "text": "A small number of electors, or a small number\nof representatives, are equally dangerous. But if the number of the\nrepresentatives be not only small, but unequal, the danger is\nincreased.",
+          "context": "The narrator introduces the Pennsylvania assembly example to argue for a large and equal representative structure.",
+          "significance": "It concisely supplies the warning against concentrated representative and electoral power.",
+          "entities": [
+            "large and equal representation",
+            "Pennsylvania",
+            "House of Assembly of Pennsylvania"
+          ],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Declaration as settlement",
+          "kind": "argument",
+          "speaker": null,
+          "text": "nothing can settle our affairs so expeditiously as an open and \ndetermined declaration for independance.",
+          "context": "The concluding case for a declaration introduces reasons involving mediation, foreign assistance, diplomatic status, and trade.",
+          "significance": "This is the section's direct final proposition linking independance to a workable settlement.",
+          "entities": ["America", "independance"],
+          "complete": true,
+          "certainty": "explicit"
+        }
+      ],
+      "openQuestions": []
+    },
+    "extract:primary-0006-05584f2a63": {
+      "segmentId": "primary-0006-05584f2a63",
+      "summary": "The appendix renews the case for American independence after condemning the King's Speech and rejecting reconciliation as impracticable and unsafe. It presents independence as the means to unite America, establish an independent constitution through Congress, end the conflict with Britain, and secure lasting peace. It also rebukes Quaker representatives for entering politics without representative authority and for condemning defensive arms while failing to address British violence.",
+      "plotBeats": [
+        "The speaker condemns the King's Speech as openly brutal and tyrannical, treating it as proof that independence is necessary.",
+        "America's interest is defined as separation from Britain, whose foreign dependence constrains commerce and legislative power.",
+        "Reconciliation is rejected as a complicated and unreliable course because Britain and Parliament cannot be held to future engagements.",
+        "The speaker describes America as lacking settled law and government, then urges a prompt, lawful achievement of independence through Congress rather than military power or a mob.",
+        "Independence is advanced as the bond that can unite America, create a basis for peace and trade, and allow the formation of an independent constitution.",
+        "The address to Quaker representatives argues that their political testimony lacks representative authority and inconsistently censures American defensive force without confronting British aggression."
+      ],
+      "themes": [
+        "independence versus reconciliation",
+        "American self-government and constitutional founding",
+        "British authority, war, and distrust",
+        "unity and political legitimacy",
+        "defensive violence and religious conscience",
+        "peace through final separation"
+      ],
+      "entities": [
+        {
+          "name": "America",
+          "category": "polity",
+          "aliases": ["the Continent", "American states", "this country"],
+          "summary": "The American political community presented as dependent on Britain, politically unbraced in the present, and capable of securing its future through separation and self-government.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "it is the interest of America to be separated from Britain.",
+          "attributes": {
+            "political-status": "A polity urged to end subjection to Britain and establish its own secure government."
+          },
+          "claims": [
+            {
+              "text": "The speaker says America has a young family that it has a duty to care for rather than support a reproachful power.",
+              "certainty": "explicit",
+              "excerpt": "She hath already a large and young \nfamily, whom it is more her duty to take care of"
+            },
+            {
+              "text": "America's present state is described as alarming.",
+              "certainty": "explicit",
+              "excerpt": "The present state of America is truly alarming"
+            },
+            {
+              "text": "America is described as lacking law and government.",
+              "certainty": "explicit",
+              "excerpt": "Without law, without government"
+            },
+            {
+              "text": "The speaker says America can begin the world over again if independence is achieved by the legal voice of the people in Congress.",
+              "certainty": "explicit",
+              "excerpt": "We have it in our power to begin the world over again."
+            }
+          ]
+        },
+        {
+          "name": "Great-Britain",
+          "category": "polity",
+          "aliases": [],
+          "summary": "The external polity whose authority over America, court, and continuing conflict are presented as reasons to reject reconciliation and pursue separation.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "it is the interest of America to be separated from Britain.",
+          "attributes": {
+            "political-status": "Presented as America's foreign governing power and adversary."
+          },
+          "claims": [
+            {
+              "text": "The speaker argues that no nation under foreign dependence and restricted commerce and legislation can reach material eminence.",
+              "certainty": "explicit",
+              "excerpt": "no nation in a\nstate of foreign dependance, limited in its commerce, and cramped and\nfettered in its legislative powers, can ever arrive at any material\neminence."
+            },
+            {
+              "text": "Britain is said to lack the power and willingness to restore the pre-1763 footing requested by some advocates of reconciliation.",
+              "certainty": "explicit",
+              "excerpt": "the request is not now in the power of Britain to \ncomply with, neither will she propose it"
+            },
+            {
+              "text": "The speaker says the connection with Britain has already filled America with blood and would cause future mischiefs while it remains.",
+              "certainty": "explicit",
+              "excerpt": "a connexion which hath already filled our land \nwith blood; and which, while the name of it remains, will be the fatal \ncause of future mischiefs to both countries."
+            }
+          ]
+        },
+        {
+          "name": "Congress",
+          "category": "institution",
+          "aliases": ["the Congress for the time being"],
+          "summary": "The continental institution assigned the lawful role of effecting independence through the people's voice and administering proceeds to discharge public debt.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "for the execution of which, the\nCongress for the time being, will be the continental trustees.",
+          "attributes": {
+            "institution-type": "Continental representative body",
+            "claimed-authority": "Assigned continental trusteeship over land-sale proceeds used to discharge debt."
+          },
+          "claims": [
+            {
+              "text": "Congress is assigned continental trusteeship for executing the application of land-sale proceeds to debt discharge.",
+              "certainty": "explicit",
+              "excerpt": "for the execution of which, the\nCongress for the time being, will be the continental trustees."
+            },
+            {
+              "text": "The legal voice of the people in Congress is presented as one of three possible ways independence may be effected.",
+              "certainty": "explicit",
+              "excerpt": "By the legal voice of the people in Congress;"
+            }
+          ]
+        },
+        {
+          "name": "Independence",
+          "category": "political-concept",
+          "aliases": ["Independance", "independency"],
+          "summary": "The central political alternative advocated as America's necessary, simpler, and unifying route to constitutional self-government and peace.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "Independance is the only Bond that \ncan tye and keep us together.",
+          "attributes": {
+            "authorial-position": "Advocated as necessary and urgent."
+          },
+          "claims": [
+            {
+              "text": "The speaker calls independence the main and only object worthy of contention.",
+              "certainty": "explicit",
+              "excerpt": "it is the\nindependance of this country of Britain or any other, which is now the\nmain and only object worthy of contention"
+            },
+            {
+              "text": "Independence is described as a single simple line contained within America.",
+              "certainty": "explicit",
+              "excerpt": "independance being a\nsingle simple line, contained within\nourselves"
+            },
+            {
+              "text": "The speaker says independence should no longer be debated but accomplished on a firm, secure, and honorable basis.",
+              "certainty": "explicit",
+              "excerpt": "We ought not now to be debating whether we shall be\nindependant or not, but, anxious to accomplish it on a firm, secure,\nand honorable basis"
+            },
+            {
+              "text": "The speaker says independence is the only bond that can unite America.",
+              "certainty": "explicit",
+              "excerpt": "Independance is the only Bond that \ncan tye and keep us together."
+            }
+          ]
+        },
+        {
+          "name": "Reconciliation",
+          "category": "political-concept",
+          "aliases": ["reconciliation"],
+          "summary": "The political alternative rejected as a complex, dangerous, and now unrecoverable return to dependence on Britain.",
+          "salience": "primary",
+          "certainty": "explicit",
+          "excerpt": "reconciliation, a matter exceedingly perplexed and\ncomplicated",
+          "attributes": {
+            "authorial-position": "Rejected as impracticable and unsafe."
+          },
+          "claims": [
+            {
+              "text": "Reconciliation is contrasted with independence as an exceedingly perplexed and complicated plan involving a treacherous court.",
+              "certainty": "explicit",
+              "excerpt": "reconciliation, a matter exceedingly perplexed and\ncomplicated, and in which, a treacherous capricious court is to \ninterfere"
+            },
+            {
+              "text": "The speaker says reconciliation and independence may both become impracticable if action is delayed.",
+              "certainty": "explicit",
+              "excerpt": "neither Reconciliation nor Independance\nwill be practicable."
+            },
+            {
+              "text": "The request to return to the footing of 1763 is said to be too late.",
+              "certainty": "explicit",
+              "excerpt": "but now it is too late, “The \nRubicon is passed.”"
+            }
+          ]
+        },
+        {
+          "name": "Independent Constitution",
+          "category": "political-system",
+          "aliases": ["an Independant Constitution of our own"],
+          "summary": "The envisioned constitutional order America could form if independence is lawfully effected, justified as the basis for enduring peace.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "an Independant Constitution of\nour own",
+          "attributes": {
+            "authorial-assessment": "Presented as capable of being the noblest and purest constitution on earth.",
+            "stated-purpose": "To secure peace for ever through final separation from Britain."
+          },
+          "claims": [
+            {
+              "text": "The speaker says lawful achievement of independence would allow the formation of the noblest and purest constitution on earth.",
+              "certainty": "explicit",
+              "excerpt": "we have every opportunity and every encouragement before \nus, to form the noblest purest constitution on the face of the earth."
+            },
+            {
+              "text": "The speaker calls the plan peace for ever.",
+              "certainty": "explicit",
+              "excerpt": "Our\nplan is peace for ever."
+            }
+          ]
+        },
+        {
+          "name": "Monarchy",
+          "category": "political-system",
+          "aliases": ["Kings"],
+          "summary": "The monarchical system condemned by the speaker as unnatural, tyrannical, and productive of human massacre.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "the certain consequence of Kings",
+          "attributes": {
+            "authorial-assessment": "Condemned as the source of tyranny and general massacre."
+          },
+          "claims": [
+            {
+              "text": "The speaker calls general massacre one of the privileges and certain consequences of kings.",
+              "certainty": "explicit",
+              "excerpt": "this general massacre of mankind, is one of the privileges, \nand the certain consequence of Kings;"
+            },
+            {
+              "text": "The speaker says nature does not know kings and they have become the gods of their creators.",
+              "certainty": "explicit",
+              "excerpt": "as nature knows them not, \nthey know not her, and although they are beings of our own \ncreating, they know not us, and are become the gods of their \ncreators."
+            }
+          ]
+        },
+        {
+          "name": "Quakers",
+          "category": "institution",
+          "aliases": [
+            "the Religious Society of the People called Quakers",
+            "the whole body of the Quakers"
+          ],
+          "summary": "The religious body whose representatives are rebuked for publishing a political testimony without authority to represent all Quakers and for a partial position on armed conflict.",
+          "salience": "supporting",
+          "certainty": "explicit",
+          "excerpt": "the whole body of the Quakers",
+          "attributes": {
+            "institution-type": "Religious body",
+            "claimed-authority": "The addressed representatives are accused of putting themselves in the place of the whole body of Quakers."
+          },
+          "claims": [
+            {
+              "text": "The address treats the Quakers as a political body rather than addressing their religion.",
+              "certainty": "explicit",
+              "excerpt": "not so properly addressed to you as a\nreligious, but as a political body"
+            },
+            {
+              "text": "The addressed representatives are accused of assuming the place of all Quakers without proper authority.",
+              "certainty": "explicit",
+              "excerpt": "without a proper authority for so doing, put yourselves in\nthe place of the whole body of the Quakers"
+            },
+            {
+              "text": "The speaker says neither the writer nor the Quaker representatives has a claim or title to political representation.",
+              "certainty": "explicit",
+              "excerpt": "For neither he nor you can have any claim or title to\nPolitical Representation."
+            },
+            {
+              "text": "The speaker says politics is not the proper walk of the Quakers as a religious body.",
+              "certainty": "explicit",
+              "excerpt": "politics, (as a religious body of men) is\nnot your proper Walk"
+            }
+          ]
+        }
+      ],
+      "relationships": [
+        {
+          "subject": "Great-Britain",
+          "predicate": "claims-authority-over",
+          "object": "America",
+          "certainty": "explicit",
+          "excerpt": "governing and sovereign power of America,"
+        },
+        {
+          "subject": "Independence",
+          "predicate": "contrasts-with",
+          "object": "Reconciliation",
+          "certainty": "explicit",
+          "excerpt": "independance being a\nsingle simple line, contained within\nourselves; and reconciliation, a matter exceedingly perplexed and\ncomplicated"
+        },
+        {
+          "subject": "Independence",
+          "predicate": "supports",
+          "object": "America",
+          "certainty": "explicit",
+          "excerpt": "Independance is the only Bond that \ncan tye and keep us together."
+        },
+        {
+          "subject": "Congress",
+          "predicate": "supports",
+          "object": "Independence",
+          "certainty": "explicit",
+          "excerpt": "By the legal voice of the people in Congress;"
+        },
+        {
+          "subject": "Independence",
+          "predicate": "supports",
+          "object": "Independent Constitution",
+          "certainty": "inferred",
+          "excerpt": "Should an independancy be brought about by the first of \nthose means, we have every opportunity and every encouragement before \nus, to form the noblest purest constitution on the face of the earth."
+        }
+      ],
+      "passages": [
+        {
+          "title": "America's interest in separation",
+          "kind": "argument",
+          "speaker": "The speaker",
+          "text": "First. That it is the interest of America to be separated from Britain.",
+          "context": "The speaker introduces the first of the appendix's two announced heads.",
+          "significance": "States the central conclusion that organizes the subsequent case against dependence and reconciliation.",
+          "entities": ["America", "Great-Britain", "Independence"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "America without settled government",
+          "kind": "argument",
+          "speaker": "The speaker",
+          "text": "Without law, without government, without any\nother mode of power than what is founded on, and granted by courtesy.",
+          "context": "The speaker describes the precarious current state of America while comparing independence and reconciliation.",
+          "significance": "Identifies the absence of a settled legal order as an urgent reason to establish independence on a secure basis.",
+          "entities": ["America", "Independence", "Reconciliation"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Lawful route to independence",
+          "kind": "proposal",
+          "speaker": "The speaker",
+          "text": "By the legal voice of the people in Congress; \nby a military power; or by a mob:",
+          "context": "The speaker lists three possible ways America might eventually attain independence.",
+          "significance": "Frames congressional action as the desirable lawful alternative to military seizure or mob rule.",
+          "entities": ["America", "Congress", "Independence"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Independence as the bond of union",
+          "kind": "argument",
+          "speaker": "The speaker",
+          "text": "In short, Independance is the only Bond that \ncan tye and keep us together.",
+          "context": "After urging prompt action, the speaker explains how separation will enable America to negotiate and trade on proper terms.",
+          "significance": "Condenses independence's proposed political function: to unite America and end the conditions that prolong war.",
+          "entities": ["America", "Great-Britain", "Independence"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Peace through an independent constitution",
+          "kind": "proposal",
+          "speaker": "The speaker",
+          "text": "Our\nplan is peace for ever.",
+          "context": "Addressing Quaker representatives, the speaker explains that separation and an independent constitution are intended to end the conflict with Britain.",
+          "significance": "States the claimed end of separation: enduring peace rather than continued contention.",
+          "entities": ["America", "Great-Britain", "Independent Constitution", "Independence"],
+          "complete": true,
+          "certainty": "explicit"
+        },
+        {
+          "title": "Defence rather than conquest",
+          "kind": "rebuttal",
+          "speaker": "The speaker",
+          "text": "We fight neither for revenge nor conquest; neither from pride nor\npassion; we are not insulting the world with our fleets and armies, nor\nravaging the globe for plunder.",
+          "context": "The speaker rebuts the Quaker testimony's condemnation of American armed action.",
+          "significance": "Defines the speaker's moral distinction between defensive force and aggressive war.",
+          "entities": ["America", "Quakers"],
+          "complete": true,
+          "certainty": "explicit"
+        }
+      ],
+      "openQuestions": [
+        "Will independence be effected by the legal voice of the people in Congress rather than by military power or a mob?",
+        "What independent constitution will America form if it achieves separation through Congress?",
+        "Will Britain accept peace and reopened trade after America independently redresses its grievances?"
+      ]
+    }
+  }
+}

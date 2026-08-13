@@ -46,8 +46,12 @@ export async function renderObsidian(root: string): Promise<{ files: number; has
       `Chapters/${String(segment.ordinal).padStart(4, "0")}-${slugify(segment.title)}`,
     ]),
   )
+  const chapterTitles = new Map(segments.map((segment) => [segment.id, inlineText(segment.title)]))
   const chapterLabels = new Map(
-    segments.map((segment) => [segment.id, chapterLabel(segment.ordinal, segment.title)]),
+    segments.map((segment) => [
+      segment.id,
+      chapterLabel(segment.ordinal, chapterTitles.get(segment.id) ?? segment.title),
+    ]),
   )
   const passagePaths = new Map(
     passages.map((passage) => [
@@ -82,14 +86,16 @@ export async function renderObsidian(root: string): Promise<{ files: number; has
       [
         "# Reading order",
         "",
-        ...segments.map(
-          (segment) => `- [[${chapterPaths.get(segment.id)}|${segment.ordinal}. ${segment.title}]]`,
-        ),
+        ...segments.map((segment) => {
+          const title = chapterTitles.get(segment.id) ?? segment.title
+          return `- [[${chapterPaths.get(segment.id)}|${segment.ordinal}. ${title}]]`
+        }),
       ].join("\n"),
     ),
   )
 
   for (const segment of segments) {
+    const title = chapterTitles.get(segment.id) ?? segment.title
     const extraction = extractions.find((candidate) => candidate.segmentId === segment.id)
     if (!extraction) continue
     const mentioned = entities.filter((entity) =>
@@ -99,7 +105,7 @@ export async function renderObsidian(root: string): Promise<{ files: number; has
       (passage) => passage.provenance.segmentId === segment.id,
     )
     const body = [
-      `# ${segment.title}`,
+      `# ${title}`,
       "",
       extraction.summary,
       "",
@@ -130,7 +136,7 @@ export async function renderObsidian(root: string): Promise<{ files: number; has
       join(outputRoot, `${chapterPaths.get(segment.id)}.md`),
       page(
         {
-          title: segment.title,
+          title,
           type: "chapter",
           ordinal: segment.ordinal,
           source: segment.sourceId,
@@ -354,6 +360,9 @@ function renderRelationship(
     if (object) return `${predicate} → [[${entityPaths.get(object.id)}|${object.canonicalName}]]`
   }
   return `${predicate} → ${literalObject ?? "unresolved"}`
+}
+function inlineText(value: string): string {
+  return value.replace(/\s+/g, " ").trim()
 }
 
 function chapterLabel(ordinal: number, title: string): string {

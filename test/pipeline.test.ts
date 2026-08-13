@@ -133,6 +133,32 @@ test("recorded corpus builds a deterministic, verified graph", async () => {
   assert.equal(report.gates.find((gate) => gate.id === "evidence-exactness")?.status, "pass")
 })
 
+test("rendered chapter titles remain valid links when source headings span lines", async () => {
+  const root = await createProject()
+  await prepareCanonicalGraph(root)
+  const segmentsPath = join(root, "data", "segments.jsonl")
+  const segments = (await readUtf8(segmentsPath))
+    .trim()
+    .split("\n")
+    .map((line) => JSON.parse(line) as Record<string, unknown>)
+  segments[0] = { ...segments[0], title: "A title across\nmultiple lines" }
+  await writeJsonLines(segmentsPath, segments)
+
+  await renderObsidian(root)
+
+  const readingOrder = await readUtf8(join(root, "content", "Chapters", "index.md"))
+  assert.match(
+    readingOrder,
+    /\[\[Chapters\/0001-a-title-across-multiple-lines\|1\. A title across multiple lines\]\]/,
+  )
+  assert.doesNotMatch(readingOrder, /\[\[[^\]]*\n[^\]]*\]\]/)
+  const chapter = await readUtf8(
+    join(root, "content", "Chapters", "0001-a-title-across-multiple-lines.md"),
+  )
+  assert.match(chapter, /^title: A title across multiple lines$/m)
+  assert.match(chapter, /^# A title across multiple lines$/m)
+})
+
 test("OMP work items collect in source order", async () => {
   const root = await createProject()
   await prepareThroughOnboarding(root)

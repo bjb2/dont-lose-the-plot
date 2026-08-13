@@ -1,4 +1,4 @@
-name: Deploy Alice example
+name: Deploy examples
 
 on:
   push:
@@ -28,7 +28,7 @@ jobs:
           enablement: true
       - run: npm ci
       - run: npm run build
-      - name: Rebuild and verify public-domain example
+      - name: Rebuild and verify Alice example
         working-directory: examples/alice-in-wonderland
         run: |
           node ../../dist/cli.js ingest
@@ -37,9 +37,25 @@ jobs:
           node ../../dist/cli.js render
           node ../../dist/cli.js verify
           node ../../dist/cli.js site build
+      - name: Rebuild and verify Common Sense example
+        working-directory: examples/common-sense
+        run: |
+          node ../../dist/cli.js ingest
+          node ../../dist/cli.js pilot
+          node ../../dist/cli.js onboard --accept-recommended
+          node ../../dist/cli.js extract
+          node ../../dist/cli.js normalize
+          node ../../dist/cli.js render
+          node ../../dist/cli.js verify
+          node ../../dist/cli.js site build
+      - name: Assemble Pages artifact
+        run: |
+          mkdir -p pages/common-sense
+          cp -R examples/alice-in-wonderland/site/public/. pages/
+          cp -R examples/common-sense/site/public/. pages/common-sense/
       - uses: actions/upload-pages-artifact@v4
         with:
-          path: examples/alice-in-wonderland/site/public
+          path: pages
 
   deploy:
     needs: build
