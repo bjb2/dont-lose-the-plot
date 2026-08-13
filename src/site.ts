@@ -1,12 +1,12 @@
 import { execFile } from "node:child_process"
-import { cp } from "node:fs/promises"
-import { basename, join, resolve } from "node:path"
+import { cp, rm } from "node:fs/promises"
+import { dirname, join, relative, resolve } from "node:path"
 import { promisify } from "node:util"
 import { parse as parseYaml, stringify as stringifyYaml } from "yaml"
 import { z } from "zod"
 import { loadProjectConfig } from "./config.js"
 import {
-  emptyDirectory,
+  ensureDirectory,
   listFilesRecursive,
   pathExists,
   readJson,
@@ -60,10 +60,8 @@ export async function buildQuartzSite(root: string): Promise<string> {
     await runPackageCommand("npm", ["ci"], checkout)
   }
   const contentRoot = resolve(root, config.output.obsidian)
-  await runPackageCommand(
-    "npx",
+  await runQuartzCommand(
     [
-      "quartz",
       "create",
       "--template",
       "obsidian",
@@ -77,14 +75,19 @@ export async function buildQuartzSite(root: string): Promise<string> {
     checkout,
   )
   await applyQuartzTheme(checkout, config.title)
-  await runPackageCommand("npx", ["quartz", "plugin", "install", "--from-config"], checkout)
-  await runQuartzBuild(checkout)
-  await waitForQuartzOutput(checkout)
+  await runQuartzCommand(["plugin", "install", "--from-config"], checkout)
 
   const output = resolve(root, config.output.site, "public")
-  await emptyDirectory(output)
-  await cp(join(checkout, "public"), output, { recursive: true })
-  return output
+  const buildOutput = join(root, ".plot-tools", `quartz-public-${process.pid}-${Date.now()}`)
+  try {
+    await runQuartzBuild(checkout, buildOutput)
+    await validateQuartzOutput(buildOutput, config.title, siteConfig.baseUrl)
+    await publishQuartzOutput(buildOutput, output)
+    await validateQuartzOutput(output, config.title, siteConfig.baseUrl)
+    return output
+  } finally {
+    await rm(buildOutput, { recursive: true, force: true })
+  }
 }
 
 type QuartzConfig = {
@@ -164,11 +167,7 @@ async function applyQuartzTheme(checkout: string, projectTitle: string): Promise
   )
 }
 
-async function runPackageCommand(
-  command: "npm" | "npx",
-  args: string[],
-  cwd: string,
-): Promise<void> {
+async function runPackageCommand(command: "npm", args: string[], cwd: string): Promise<void> {
   const executable = process.platform === "win32" ? `${command}.cmd` : command
   await execute(executable, args, {
     cwd,
@@ -179,10 +178,19 @@ async function runPackageCommand(
   })
 }
 
-async function runQuartzBuild(checkout: string): Promise<void> {
+async function runQuartzCommand(args: string[], checkout: string): Promise<void> {
+  await execute(process.execPath, [join(checkout, "quartz", "bootstrap-cli.mjs"), ...args], {
+    cwd: checkout,
+    windowsHide: true,
+    maxBuffer: 20 * 1024 * 1024,
+    env: { ...process.env, CI: "1" },
+  })
+}
+
+async function runQuartzBuild(checkout: string, output: string): Promise<void> {
   for (let attempt = 1; attempt <= 3; attempt += 1) {
     try {
-      await runPackageCommand("npx", ["quartz", "build"], checkout)
+      await runQuartzCommand(["build", "--output", output], checkout)
       return
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error)
@@ -194,20 +202,92 @@ async function runQuartzBuild(checkout: string): Promise<void> {
   }
 }
 
-async function waitForQuartzOutput(checkout: string): Promise<void> {
-  const output = join(checkout, "public")
-  const deadline = Date.now() + 10_000
-  while (true) {
-    const files = await listFilesRecursive(output)
-    if (files.some((file) => /^index(?:-[a-f0-9]+)?\.css$/i.test(basename(file)))) {
-      await delay(250)
-      return
-    }
-    if (Date.now() >= deadline) {
-      throw new Error(`Quartz build completed without producing its index stylesheet in ${output}`)
-    }
-    await delay(100)
+export async function publishQuartzOutput(source: string, output: string): Promise<void> {
+  await ensureDirectory(output)
+  const sourceFiles = await listFilesRecursive(source)
+  const orderedFiles = sourceFiles.toSorted(
+    (left, right) => Number(left.endsWith(".html")) - Number(right.endsWith(".html")),
+  )
+  const expectedFiles = new Set(sourceFiles.map((file) => relative(source, file)))
+
+  for (const sourceFile of orderedFiles) {
+    const destination = join(output, relative(source, sourceFile))
+    await ensureDirectory(dirname(destination))
+    await cp(sourceFile, destination, { force: true })
   }
+
+  const staleFiles = (await listFilesRecursive(output))
+    .filter((file) => !expectedFiles.has(relative(output, file)))
+    .toSorted((left, right) => Number(!left.endsWith(".html")) - Number(!right.endsWith(".html")))
+  for (const staleFile of staleFiles) {
+    await rm(staleFile, { force: true })
+  }
+}
+
+export async function validateQuartzOutput(
+  output: string,
+  projectTitle: string,
+  baseUrl: string,
+): Promise<void> {
+  const files = await listFilesRecursive(output)
+  const htmlFiles = files.filter((file) => file.endsWith(".html"))
+  if (htmlFiles.length === 0) {
+    throw new Error(`Quartz build completed without HTML pages in ${output}`)
+  }
+  const expectedPages = ["index.html", "entities.html"]
+  for (const page of expectedPages) {
+    const pagePath = join(output, page)
+    if (!(await pathExists(pagePath))) {
+      throw new Error(`Quartz build completed without required page ${page}`)
+    }
+    const html = await readUtf8(pagePath)
+    if (!html.includes(`content="${escapeHtmlAttribute(projectTitle)}"`)) {
+      throw new Error(`Quartz page ${page} does not identify the site as ${projectTitle}`)
+    }
+  }
+
+  const basePath = new URL(`https://${baseUrl}`).pathname.replace(/\/$/, "")
+  for (const htmlFile of htmlFiles) {
+    const html = await readUtf8(htmlFile)
+    for (const reference of assetReferences(html)) {
+      const assetPath = resolveAssetPath(output, htmlFile, reference, basePath)
+      if (!(await pathExists(assetPath))) {
+        throw new Error(
+          `Quartz page ${relative(output, htmlFile)} references missing asset ${reference}`,
+        )
+      }
+    }
+  }
+}
+
+function assetReferences(html: string): string[] {
+  return [...html.matchAll(/\b(?:href|src)=["']([^"'#?]+?\.(?:css|js))(?:[?#][^"']*)?["']/gi)]
+    .map((match) => match[1]!)
+    .filter((reference) => !/^(?:[a-z]+:)?\/\//i.test(reference))
+}
+
+function resolveAssetPath(
+  output: string,
+  htmlFile: string,
+  reference: string,
+  basePath: string,
+): string {
+  if (reference.startsWith("/")) {
+    const withoutBase =
+      basePath && (reference === basePath || reference.startsWith(`${basePath}/`))
+        ? reference.slice(basePath.length)
+        : reference
+    return resolve(output, withoutBase.replace(/^\/+/, ""))
+  }
+  return resolve(dirname(htmlFile), reference)
+}
+
+function escapeHtmlAttribute(value: string): string {
+  return value
+    .replaceAll("&", "&amp;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
 }
 
 function delay(milliseconds: number): Promise<void> {
