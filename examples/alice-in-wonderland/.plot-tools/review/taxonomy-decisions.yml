@@ -1,0 +1,117 @@
+schemaVersion: 1
+proposals:
+  - id: game
+    recommendedAs: category
+    decision: pending
+    mergeInto: null
+    folder: Games
+    attributes:
+      activity-form:
+        type: string
+        required: false
+        description: Whether the activity is a race, field game, dance, or another
+          stated form.
+      rules:
+        type: object
+        required: false
+        description: The stated procedure, turn order, figures, winning condition, or
+          other durable mechanics.
+      equipment:
+        type: string-list
+        required: false
+        description: Distinctive implements, living pieces, prizes, or partners required
+          by the activity.
+  - id: transformation
+    recommendedAs: category
+    decision: pending
+    mergeInto: null
+    folder: Transformations
+    attributes:
+      effect:
+        type: string
+        required: false
+        description: The stated change in size, body, or form.
+      trigger:
+        type: entity-ref
+        required: false
+        description: The item, substance, act, or condition stated to produce the
+          transformation.
+      reversal:
+        type: string
+        required: false
+        description: The stated method, condition, or outcome that returns or changes
+          the transformed state.
+  - id: work
+    recommendedAs: category
+    decision: pending
+    mergeInto: null
+    folder: Works
+    attributes:
+      work-form:
+        type: string
+        required: false
+        description: The stated form, such as song, poem, verses, or recitation.
+      version-note:
+        type: string
+        required: false
+        description: A stated altered wording, incomplete text, or edition-specific
+          variation.
+  - id: rule
+    recommendedAs: category
+    decision: pending
+    mergeInto: null
+    folder: Rules
+    attributes:
+      scope:
+        type: string
+        required: false
+        description: The court, procession, or other social context in which the rule
+          applies.
+      rule-text:
+        type: string
+        required: false
+        description: The stated wording or number of the rule, decree, or procedure.
+      consequence:
+        type: string
+        required: false
+        description: The stated penalty, exclusion, or procedural outcome.
+  - id: character-classification
+    recommendedAs: attribute
+    decision: pending
+    mergeInto: character
+    folder: Character Classifications
+    attributes:
+      form:
+        type: string
+        required: false
+        description: The stated physical kind or embodiment, such as little girl,
+          serpent, animal, or card-like figure.
+      social-role:
+        type: string-list
+        required: false
+        description: Stated court, legal, ceremonial, or occupational role, such as
+          King, Queen, Knave, soldier, courtier, gardener, or juryman.
+passageKinds:
+  verse: false
+  song: false
+  riddle: false
+  game-instructions: false
+  legal-proceeding: false
+  legal-evidence: false
+  dream-frame: false
+  wordplay: false
+relations:
+  played-by: false
+  uses-equipment: false
+  has-figure: false
+  affects: false
+  triggered-by: false
+  reversed-by: false
+  recited-by: false
+  sung-by: false
+  is-variant-of: false
+  quoted-in: false
+  enforced-by: false
+  applies-to: false
+  governs: false
+  violated-by: false

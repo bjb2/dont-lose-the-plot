@@ -66,10 +66,7 @@ export async function applyTaxonomyOnboarding(
     const proposal = discovery.proposals.find((candidate) => candidate.id === decision.id)
     if (!proposal) throw new Error(`Decision references unknown proposal ${decision.id}`)
     if (decision.decision === "category") {
-      if (categories.some((category) => category.id === proposal.id)) {
-        throw new Error(`Category ${proposal.id} already exists`)
-      }
-      categories.push({
+      const proposedCategory: TaxonomyCategory = {
         id: proposal.id,
         labels: proposal.labels,
         definition: proposal.definition,
@@ -80,7 +77,15 @@ export async function applyTaxonomyOnboarding(
         relations: proposal.commonRelations,
         folder: decision.folder ?? proposal.labels.plural,
         pageTemplate: "entity",
-      })
+      }
+      const existing = categories.find((category) => category.id === proposal.id)
+      if (existing) {
+        if (stableStringify(existing) !== stableStringify(proposedCategory)) {
+          throw new Error(`Category ${proposal.id} already exists with a different definition`)
+        }
+      } else {
+        categories.push(proposedCategory)
+      }
       continue
     }
     applyNonCategoryDecision(categories, decision, proposal.id)

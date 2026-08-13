@@ -1,6 +1,6 @@
 # Verification
 
-Verification operates on persisted artifacts, not provider confidence. `plot-tools verify` writes `.plot-tools/verification-report.json` and exits nonzero when any gate has status `fail`.
+Verification operates on persisted artifacts, not model confidence. `plot-tools verify` writes `.plot-tools/verification-report.json` and exits nonzero when any gate has status `fail`.
 
 ## Gate semantics
 
@@ -27,7 +27,7 @@ Exact evidence does not claim that the model's interpretation is correct; it pro
 ## Failure workflow
 
 1. Read the failed gate and details in the report.
-2. Fix the earliest responsible artifact: source config, decision file, recorded/provider response, or review decision.
+2. Fix the earliest responsible artifact: source config, decision file, OMP/recorded response, or review decision.
 3. Re-run the affected stage and every downstream deterministic stage.
 4. Do not edit generated Markdown to hide a canonical error; rendering will overwrite it.
 
@@ -38,4 +38,4 @@ The test suite uses two corpora:
 - `examples/alice-in-wonderland`: real public-domain EPUB ingestion and a successful source-evidence path.
 - `test/fixtures/the-clockwork-harbor`: a synthetic fixture for custom category discovery, deterministic output, pending onboarding, fabricated evidence, and taxonomy-drift failures.
 
-Recorded provider responses make these contracts network-free and stable in CI. They test the same schemas and provider interface used by live AI Gateway requests.
+Recorded responses make these contracts network-free and stable in CI. They exercise the same response schemas and deterministic collectors used for output from interactive OMP agents; no test or CLI stage calls a model service.

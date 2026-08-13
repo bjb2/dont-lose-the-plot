@@ -4,11 +4,14 @@
 
 ```mermaid
 flowchart LR
-  S[EPUB / Markdown / text] --> I[Ingestion]
-  I --> G[Corpus discovery]
+  S[EPUB / Markdown / text] --> I[Deterministic ingestion]
+  I --> W[Self-contained work items]
+  W --> A[Interactive OMP agents]
+  A --> G[Validated discovery]
   G --> O[Human onboarding]
   O --> L[Taxonomy lock]
-  L --> E[Structured extraction]
+  L --> X[Visible OMP extraction subagents]
+  X --> E[Deterministic response collector]
   E --> N[Normalization]
   N --> V[Verification]
   N --> R[Obsidian renderer]
@@ -26,7 +29,7 @@ Inputs are immutable source bytes plus `plot-tools.yml`. Outputs are a source ma
 
 ### Discovery
 
-Discovery receives the locked starter ontology and a deterministic stratified sample. It returns corpus profile notes, evidenced category proposals, passage kinds, and relationship predicates. It writes a decision draft but cannot modify the taxonomy.
+Discovery preparation receives the starter ontology and a deterministic stratified sample, then writes a self-contained prompt and JSON schema under `.plot-tools/work/`. A visible OMP task agent writes the response. The deterministic collector validates it, writes a decision draft, and cannot modify the taxonomy.
 
 ### Onboarding
 
@@ -34,11 +37,11 @@ A decision must classify every proposal. Categories receive definitions, inclusi
 
 ### Extraction
 
-Every segment is an independent structured generation request. A bounded worker pool fans requests out up to `processing.concurrency`, waits for in-flight work on failure, and reconciles successful responses into source order. The provider key is stable (`extract:<segment-id>`), enabling recorded responses. Extraction refuses a taxonomy whose current hash differs from the lock. One parsed response is persisted in `.plot-tools/raw/` and one line in `data/extractions.jsonl`.
+Every segment becomes one self-contained work item. The project OMP skill dispatches visible task subagents in batches no larger than `processing.concurrency`; each writes one JSON response. The collector parses every response with Zod, verifies its segment ID, restores source order, and refuses a taxonomy whose current hash differs from the lock. One validated response is persisted in `.plot-tools/raw/` and one line in `data/extractions.jsonl`. A stable recording key (`extract:<segment-id>`) supports network-free fixture replay without masquerading as a live provider.
 
 ### Normalization
 
-Normalization is deterministic and provider-independent. Exact normalized identity inside a category is merged. An alias merges only when it identifies one owner. Ambiguity, conflicting attributes, and unresolved endpoints become review issues; no fuzzy score silently changes identity.
+Normalization is deterministic and independent of whichever models the interactive OMP session selected. Exact normalized identity inside a category is merged. An alias merges only when it identifies one owner. Ambiguity, conflicting attributes, and unresolved endpoints become review issues; no fuzzy score silently changes identity.
 
 ### Canonical graph
 
@@ -54,12 +57,12 @@ Quartz remains an output adapter, not a source of truth. The adapter clones pinn
 
 ## Trust boundaries
 
-Narrative source text is untrusted prompt data. System prompts explicitly prohibit following source instructions. Provider output is untrusted until Zod parsing, taxonomy validation, exact-evidence checks, endpoint resolution, and provenance checks pass. Raw responses are never used directly by the renderer.
+Narrative source text is untrusted prompt data. Work-item instructions explicitly prohibit following source instructions. OMP agent output is untrusted until Zod parsing, taxonomy validation, exact-evidence checks, endpoint resolution, and provenance checks pass. Raw responses are never used directly by the renderer. OMP owns model selection, subscription authentication, tool visibility, and subagent session logs; `plot-tools` owns deterministic data contracts.
 
 ## Extension points
 
 - Add a source parser by producing ordered `Segment` records.
-- Add a model provider by implementing `StructuredProvider`.
+- Change orchestration by revising the project OMP skill and work-item protocol, not by embedding a model SDK.
 - Extend taxonomy through onboarding rather than hard-coded extractor branches.
 - Add a publisher from canonical JSONL without changing extraction.
 - Add deterministic gates as `GateResult` records; blocking semantics remain centralized in the verification report.

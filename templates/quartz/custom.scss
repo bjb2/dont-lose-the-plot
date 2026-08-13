@@ -119,6 +119,98 @@ html body .breadcrumb-container .breadcrumb-element > a {
   font-weight: 600;
 }
 
+// Folder pages are reference indexes, not a reverse-chronological blog feed.
+html body .page-listing > p {
+  color: var(--gray);
+  font-family: var(--codeFont);
+  font-size: 0.72rem;
+  letter-spacing: 0.045em;
+  margin: 0.7rem 0 1.1rem;
+  text-transform: uppercase;
+}
+
+html body .page-listing .section-ul {
+  column-gap: 2.2rem;
+  counter-reset: archive-entry;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+html body .page-listing .section-li {
+  border-bottom: 1px solid color-mix(in srgb, var(--gray) 32%, transparent);
+  counter-increment: archive-entry;
+  list-style: none;
+  margin: 0;
+  min-width: 0;
+}
+
+html body .page-listing .section {
+  align-items: center;
+  display: grid;
+  gap: 0.7rem;
+  grid-template-columns: 2rem minmax(0, 1fr) 1rem;
+  min-height: 3.5rem;
+  padding: 0.7rem 0.15rem;
+}
+
+html body .page-listing .section::before {
+  color: var(--gray);
+  content: counter(archive-entry, decimal-leading-zero);
+  font-family: var(--codeFont);
+  font-size: 0.67rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.025em;
+}
+
+html body .page-listing .section::after {
+  color: var(--plot-link);
+  content: "→";
+  font-family: var(--headerFont);
+  font-size: 0.9rem;
+  opacity: 0;
+  transform: translateX(-0.3rem);
+  transition:
+    opacity 120ms ease,
+    transform 120ms ease;
+}
+
+html body .page-listing .section:hover::after,
+html body .page-listing .section:focus-within::after {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+html body .page-listing .section > .meta,
+html body .page-listing .section > .tags {
+  display: none;
+}
+
+html body .page-listing .section .desc {
+  min-width: 0;
+}
+
+html body .page-listing .section .desc h3 {
+  font-size: clamp(0.98rem, 1.5vw, 1.08rem);
+  line-height: 1.25;
+  margin: 0;
+}
+
+html body .page-listing .section .desc h3 > a.internal {
+  color: var(--dark) !important;
+  display: block;
+  font-weight: 620;
+  overflow-wrap: anywhere;
+  text-decoration: none !important;
+}
+
+html body .page-listing .section:hover .desc h3 > a.internal,
+html body .page-listing .section .desc h3 > a.internal:focus-visible {
+  color: var(--plot-link) !important;
+}
+
 html body .page article blockquote,
 html body .popover article blockquote {
   background: var(--plot-quote-bg) !important;
@@ -266,6 +358,14 @@ html body .popover article blockquote > :last-child {
 }
 
 @media all and (max-width: 800px) {
+  html body .page-listing .section-ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  html body .page-listing .section {
+    min-height: 3.25rem;
+  }
+
   .graph > .graph-outer {
     height: 300px;
   }

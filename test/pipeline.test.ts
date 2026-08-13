@@ -3,21 +3,15 @@ import { cp, mkdtemp } from "node:fs/promises"
 import { tmpdir } from "node:os"
 import { dirname, join } from "node:path"
 import { fileURLToPath } from "node:url"
-import { setTimeout as delay } from "node:timers/promises"
 import test from "node:test"
 import { parse as parseYaml, stringify as stringifyYaml } from "yaml"
 import { initializeProject } from "../src/config.js"
 import { discoverCorpus } from "../src/discovery.js"
-import { extractSegments } from "../src/extract.js"
-import { readUtf8, writeJsonLines, writeUtf8 } from "../src/files.js"
+import { extractSegments, prepareExtractionWork } from "../src/extract.js"
+import { readUtf8, writeJson, writeJsonLines, writeUtf8 } from "../src/files.js"
 import { ingestProject } from "../src/ingest.js"
 import { normalizeExtractions } from "../src/normalize.js"
 import { applyTaxonomyOnboarding } from "../src/onboarding.js"
-import {
-  RecordedProvider,
-  type GenerationRequest,
-  type StructuredProvider,
-} from "../src/providers.js"
 import { renderObsidian } from "../src/render.js"
 import { verifyProject } from "../src/verify.js"
 
@@ -25,24 +19,17 @@ const repositoryRoot = join(dirname(fileURLToPath(import.meta.url)), "..")
 const exampleRoot = join(repositoryRoot, "test", "fixtures", "the-clockwork-harbor")
 const aliceExampleRoot = join(repositoryRoot, "examples", "alice-in-wonderland")
 
-class TrackingProvider implements StructuredProvider {
-  readonly name = "tracking-recorded"
-  readonly model = null
-  active = 0
-  maxActive = 0
-
-  constructor(private readonly inner: RecordedProvider) {}
-
-  async generate<T>(request: GenerationRequest<T>): Promise<T> {
-    this.active += 1
-    this.maxActive = Math.max(this.maxActive, this.active)
-    await delay(20)
-    try {
-      return await this.inner.generate(request)
-    } finally {
-      this.active -= 1
-    }
-  }
+async function createOmpProject(): Promise<string> {
+  const parent = await mkdtemp(join(tmpdir(), "plot-tools-omp-"))
+  const root = join(parent, "project")
+  await initializeProject({
+    directory: root,
+    title: "The Clockwork Harbor",
+    source: "sources/story.md",
+    profile: "novel",
+  })
+  await cp(join(exampleRoot, "sources"), join(root, "sources"), { recursive: true })
+  return root
 }
 
 async function createProject(): Promise<string> {
@@ -125,18 +112,49 @@ test("recorded corpus builds a deterministic, verified graph", async () => {
   assert.equal(report.gates.find((gate) => gate.id === "evidence-exactness")?.status, "pass")
 })
 
-test("segment extraction fans out and reconciles in source order", async () => {
+test("OMP work items collect in source order", async () => {
   const root = await createProject()
   await prepareThroughOnboarding(root)
-  const provider = new TrackingProvider(new RecordedProvider(join(root, "recordings.json")))
+  const prepared = await prepareExtractionWork(root)
+  const recordings = JSON.parse(await readUtf8(join(root, "recordings.json"))) as {
+    responses: Record<string, unknown>
+  }
+  const segmentIds = [
+    "primary-0001-a63e726871",
+    "primary-0002-7b1eb4be42",
+    "primary-0003-865df2fca8",
+  ]
+  for (const segmentId of [...segmentIds].reverse()) {
+    await writeJson(
+      join(prepared.responses, `${segmentId}.json`),
+      recordings.responses[`extract:${segmentId}`],
+    )
+  }
+  const configPath = join(root, "plot-tools.yml")
+  const config = parseYaml(await readUtf8(configPath)) as { recordings?: string }
+  delete config.recordings
+  await writeUtf8(configPath, stringifyYaml(config))
 
-  const extractions = await extractSegments(root, { provider })
+  const extractions = await extractSegments(root, { responsesDir: prepared.responses })
 
-  assert.ok(provider.maxActive > 1)
+  assert.equal(prepared.segments, 3)
+  assert.equal(prepared.concurrency, 4)
   assert.deepEqual(
     extractions.map((extraction) => extraction.segmentId),
-    ["primary-0001-a63e726871", "primary-0002-7b1eb4be42", "primary-0003-865df2fca8"],
+    segmentIds,
   )
+})
+
+test("new projects scaffold the interactive OMP skill", async () => {
+  const root = await createOmpProject()
+  const config = parseYaml(await readUtf8(join(root, "plot-tools.yml"))) as {
+    recordings?: string
+  }
+  const skill = await readUtf8(join(root, ".omp", "skills", "dont-lose-the-plot", "SKILL.md"))
+
+  assert.equal(config.recordings, undefined)
+  assert.match(skill, /visible `task` subagents/)
+  assert.match(skill, /plot-tools prepare extraction/)
 })
 
 test("public-domain Alice EPUB builds with exact source evidence", async () => {
@@ -157,9 +175,31 @@ test("public-domain Alice EPUB builds with exact source evidence", async () => {
   assert.ok(entityIds.has("character-white-rabbit"))
   assert.ok(entityIds.has("character-queen-of-hearts"))
   assert.ok(entityIds.has("character-mock-turtle"))
-  assert.equal(graph.relationships.length, 27)
-  assert.equal(graph.passages.length, 12)
-  assert.equal(report.passed, true)
+  const croquet = graph.entities.filter(
+    (entity) => entity.category === "game" && entity.canonicalName.toLowerCase() === "croquet",
+  )
+  assert.equal(croquet.length, 1)
+  assert.equal(croquet[0]?.canonicalName, "Croquet")
+  assert.equal(graph.relationships.length, 60)
+  assert.equal(graph.passages.length, 34)
+  assert.equal(
+    report.passed,
+    true,
+    report.gates
+      .filter((gate) => gate.status === "fail")
+      .map((gate) => `${gate.id}: ${gate.details.join("; ")}`)
+      .join("\n"),
+  )
+})
+
+test("accepted taxonomy onboarding is idempotent", async () => {
+  const root = await createProject()
+  await ingestProject(root)
+  await discoverCorpus(root)
+  const first = await applyTaxonomyOnboarding(root, { acceptRecommended: true })
+  const second = await applyTaxonomyOnboarding(root, { acceptRecommended: true })
+
+  assert.deepEqual(second, first)
 })
 
 test("onboarding refuses unresolved taxonomy decisions", async () => {

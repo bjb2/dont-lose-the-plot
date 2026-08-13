@@ -6,6 +6,8 @@ coverage/
 .env
 .env.*
 !.env.example
+**/.plot-tools/work/
+**/.plot-tools/responses/
 examples/**/.plot-tools/cache/
 examples/**/.plot-tools/quartz/
 examples/**/.plot-tools/runs/

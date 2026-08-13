@@ -1,3 +1,4 @@
+import { cp } from "node:fs/promises"
 import { dirname, join, resolve } from "node:path"
 import { parse, stringify } from "yaml"
 import {
@@ -95,7 +96,6 @@ export async function initializeProject(options: {
   title: string
   source: string
   profile: ProjectConfig["profile"]
-  model?: string
   recordings?: string
 }): Promise<string> {
   const root = resolve(options.directory)
@@ -103,9 +103,6 @@ export async function initializeProject(options: {
     throw new Error(`${root} is already a plot-tools project`)
   }
   await ensureDirectory(root)
-  const provider = options.recordings
-    ? { kind: "recorded" as const, recordings: options.recordings }
-    : { kind: "gateway" as const, model: options.model ?? "openai/gpt-5.4" }
   const config = ProjectConfigSchema.parse({
     schemaVersion: 1,
     title: options.title,
@@ -115,7 +112,7 @@ export async function initializeProject(options: {
     scope: { startSegment: 1, maxSegment: null, allowInferredClaims: true },
     processing: { concurrency: 4 },
     publication: { includeExcerpts: true, maxExcerptCharacters: 280 },
-    provider,
+    ...(options.recordings ? { recordings: options.recordings } : {}),
     output: { data: "data", obsidian: "content", site: "site" },
   })
   await writeUtf8(join(root, CONFIG_FILE), stringify(config, { lineWidth: 100 }))
@@ -125,6 +122,12 @@ export async function initializeProject(options: {
   )
   await ensureDirectory(join(root, "sources"))
   await ensureDirectory(join(root, ".plot-tools", "review"))
+  const skillDirectory = join(root, ".omp", "skills", "dont-lose-the-plot")
+  await ensureDirectory(skillDirectory)
+  await cp(
+    resolve(import.meta.dirname, "..", "templates", "omp", "dont-lose-the-plot", "SKILL.md"),
+    join(skillDirectory, "SKILL.md"),
+  )
   return root
 }
 

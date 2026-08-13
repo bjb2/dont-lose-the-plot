@@ -32,16 +32,7 @@ export const ProjectConfigSchema = z.object({
     includeExcerpts: z.boolean().default(true),
     maxExcerptCharacters: z.number().int().nonnegative().default(280),
   }),
-  provider: z.discriminatedUnion("kind", [
-    z.object({
-      kind: z.literal("gateway"),
-      model: z.string().min(1),
-    }),
-    z.object({
-      kind: z.literal("recorded"),
-      recordings: z.string().min(1),
-    }),
-  ]),
+  recordings: z.string().min(1).optional(),
   output: z.object({
     data: z.string().default("data"),
     obsidian: z.string().default("content"),
@@ -286,8 +277,7 @@ export const RunManifestSchema = z.object({
   toolVersion: z.string(),
   taxonomyHash: z.string().nullable(),
   promptVersions: z.record(z.string(), z.string()),
-  provider: z.string(),
-  model: z.string().nullable(),
+  responseSource: z.enum(["omp", "recorded"]),
   inputHashes: z.record(z.string(), z.string()),
   outputHashes: z.record(z.string(), z.string()),
   error: z.string().nullable(),

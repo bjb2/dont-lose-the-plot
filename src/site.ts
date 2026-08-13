@@ -1,11 +1,19 @@
 import { execFile } from "node:child_process"
 import { cp } from "node:fs/promises"
-import { join, resolve } from "node:path"
+import { basename, join, resolve } from "node:path"
 import { promisify } from "node:util"
 import { parse as parseYaml, stringify as stringifyYaml } from "yaml"
 import { z } from "zod"
 import { loadProjectConfig } from "./config.js"
-import { emptyDirectory, pathExists, readJson, readUtf8, writeJson, writeUtf8 } from "./files.js"
+import {
+  emptyDirectory,
+  listFilesRecursive,
+  pathExists,
+  readJson,
+  readUtf8,
+  writeJson,
+  writeUtf8,
+} from "./files.js"
 
 const execute = promisify(execFile)
 
@@ -70,7 +78,8 @@ export async function buildQuartzSite(root: string): Promise<string> {
   )
   await applyQuartzTheme(checkout, config.title)
   await runPackageCommand("npx", ["quartz", "plugin", "install", "--from-config"], checkout)
-  await runPackageCommand("npx", ["quartz", "build"], checkout)
+  await runQuartzBuild(checkout)
+  await waitForQuartzOutput(checkout)
 
   const output = resolve(root, config.output.site, "public")
   await emptyDirectory(output)
@@ -87,6 +96,7 @@ type QuartzConfig = {
   }
   plugins: Array<{
     source: string
+    enabled?: boolean
     options?: unknown
   }>
 }
@@ -131,6 +141,13 @@ async function applyQuartzTheme(checkout: string, projectTitle: string): Promise
     },
   }
 
+  const createdModifiedDate = quartzConfig.plugins.find(
+    (plugin) => plugin.source === "@quartz-community/created-modified-date",
+  )
+  if (createdModifiedDate) {
+    createdModifiedDate.enabled = false
+  }
+
   const footer = quartzConfig.plugins.find((plugin) => plugin.source === "@quartz-community/footer")
   if (footer) {
     footer.options = {
@@ -160,6 +177,43 @@ async function runPackageCommand(
     maxBuffer: 20 * 1024 * 1024,
     env: { ...process.env, CI: "1" },
   })
+}
+
+async function runQuartzBuild(checkout: string): Promise<void> {
+  for (let attempt = 1; attempt <= 3; attempt += 1) {
+    try {
+      await runPackageCommand("npx", ["quartz", "build"], checkout)
+      return
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error)
+      const transientWindowsLock =
+        process.platform === "win32" && /\b(?:EBUSY|ENOTEMPTY)\b/.test(message)
+      if (!transientWindowsLock || attempt === 3) throw error
+      await delay(250)
+    }
+  }
+}
+
+async function waitForQuartzOutput(checkout: string): Promise<void> {
+  const output = join(checkout, "public")
+  const deadline = Date.now() + 10_000
+  while (true) {
+    const files = await listFilesRecursive(output)
+    if (files.some((file) => /^index(?:-[a-f0-9]+)?\.css$/i.test(basename(file)))) {
+      await delay(250)
+      return
+    }
+    if (Date.now() >= deadline) {
+      throw new Error(`Quartz build completed without producing its index stylesheet in ${output}`)
+    }
+    await delay(100)
+  }
+}
+
+function delay(milliseconds: number): Promise<void> {
+  const { promise, resolve: resolveDelay } = Promise.withResolvers<void>()
+  setTimeout(resolveDelay, milliseconds)
+  return promise
 }
 
 function pagesWorkflow(): string {

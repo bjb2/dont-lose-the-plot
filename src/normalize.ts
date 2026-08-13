@@ -69,19 +69,18 @@ export async function normalizeExtractions(root: string): Promise<CanonicalGraph
 
   for (const group of groups) {
     const first = group[0]!
-    const entityId = allocateEntityId(first.extraction.category, first.extraction.name, usedIds)
+    const canonicalName = preferredCanonicalName(group.map(({ extraction }) => extraction.name))
+    const entityId = allocateEntityId(first.extraction.category, canonicalName, usedIds)
     const provenance = group.map(({ extraction, segment }) =>
       provenanceFor(segment, extraction.excerpt),
     )
     const aliases = unique(
       group.flatMap(({ extraction }) => [extraction.name, ...extraction.aliases]),
-    ).filter(
-      (name) => normalizeComparableText(name) !== normalizeComparableText(first.extraction.name),
-    )
+    ).filter((name) => normalizeIdentityText(name) !== normalizeIdentityText(canonicalName))
     const entity = CanonicalEntitySchema.parse({
       id: entityId,
       category: first.extraction.category,
-      canonicalName: first.extraction.name,
+      canonicalName,
       aliases,
       summary: longest(group.map(({ extraction }) => extraction.summary)),
       salience: strongestSalience(group.map(({ extraction }) => extraction.salience)),
@@ -95,9 +94,7 @@ export async function normalizeExtractions(root: string): Promise<CanonicalGraph
     entities.push(entity)
 
     for (const { extraction, segment } of group) {
-      if (
-        normalizeComparableText(extraction.name) !== normalizeComparableText(entity.canonicalName)
-      ) {
+      if (normalizeIdentityText(extraction.name) !== normalizeIdentityText(entity.canonicalName)) {
         merges.push(
           MergeDecisionSchema.parse({
             canonicalEntityId: entity.id,
@@ -244,7 +241,7 @@ export async function normalizeExtractions(root: string): Promise<CanonicalGraph
 function groupMentions(mentions: Mention[], issues: Issue[]): Mention[][] {
   const canonicalKeys = new Map<string, Mention[]>()
   for (const mention of mentions) {
-    const key = `${mention.extraction.category}:${normalizeComparableText(mention.extraction.name)}`
+    const key = `${mention.extraction.category}:${normalizeIdentityText(mention.extraction.name)}`
     const group = canonicalKeys.get(key) ?? []
     group.push(mention)
     canonicalKeys.set(key, group)
@@ -253,7 +250,7 @@ function groupMentions(mentions: Mention[], issues: Issue[]): Mention[][] {
   const aliasToKeys = new Map<string, Set<string>>()
   for (const [key, group] of canonicalKeys) {
     for (const alias of group.flatMap(({ extraction }) => extraction.aliases)) {
-      const aliasKey = `${group[0]!.extraction.category}:${normalizeComparableText(alias)}`
+      const aliasKey = `${group[0]!.extraction.category}:${normalizeIdentityText(alias)}`
       const owners = aliasToKeys.get(aliasKey) ?? new Set<string>()
       owners.add(key)
       aliasToKeys.set(aliasKey, owners)
@@ -291,7 +288,7 @@ function buildAliasIndex(entities: CanonicalEntity[], issues: Issue[]): Map<stri
   const index = new Map<string, Set<string>>()
   for (const entity of entities) {
     for (const name of [entity.canonicalName, ...entity.aliases]) {
-      const key = normalizeComparableText(name)
+      const key = normalizeIdentityText(name)
       const owners = index.get(key) ?? new Set<string>()
       owners.add(entity.id)
       index.set(key, owners)
@@ -308,8 +305,28 @@ function buildAliasIndex(entities: CanonicalEntity[], issues: Issue[]): Map<stri
 }
 
 function resolveEntity(name: string, aliases: Map<string, Set<string>>): string | null {
-  const owners = aliases.get(normalizeComparableText(name))
+  const owners = aliases.get(normalizeIdentityText(name))
   return owners?.size === 1 ? [...owners][0]! : null
+}
+
+function normalizeIdentityText(value: string): string {
+  return normalizeComparableText(value).toLocaleLowerCase()
+}
+
+function preferredCanonicalName(names: string[]): string {
+  return [...names].sort((a, b) => {
+    const capitalization = capitalizationScore(b) - capitalizationScore(a)
+    return capitalization || a.localeCompare(b)
+  })[0]!
+}
+
+function capitalizationScore(value: string): number {
+  const firstLetter = value.match(/\p{L}/u)?.[0]
+  if (!firstLetter) return 0
+  return firstLetter === firstLetter.toLocaleUpperCase() &&
+    firstLetter !== firstLetter.toLocaleLowerCase()
+    ? 1
+    : 0
 }
 
 function mergeAttributes(

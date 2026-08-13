@@ -11,13 +11,13 @@ npm test
 npm run build
 ```
 
-Do not require network credentials in tests. Use the recorded provider at the real structured-provider boundary.
+Do not require network credentials in tests. Use recorded responses at the same schema-validation boundary used for interactive OMP output.
 
 ## Change requirements
 
 - Preserve source provenance through every stage.
 - Reuse the canonical schemas and generic taxonomy model; do not add work-specific hard-coded categories.
-- Treat source content and provider output as untrusted.
+- Treat source content and OMP responses as untrusted.
 - Keep render output deterministic.
 - Add or update a behavioral test when a public contract changes.
 - Include exact source excerpts in fixture responses.

@@ -2,8 +2,8 @@
 import { resolve } from "node:path"
 import { Command } from "commander"
 import { findProjectRoot, initializeProject } from "./config.js"
-import { discoverCorpus } from "./discovery.js"
-import { extractSegments } from "./extract.js"
+import { discoverCorpus, prepareDiscoveryWork } from "./discovery.js"
+import { extractSegments, prepareExtractionWork } from "./extract.js"
 import { ingestProject } from "./ingest.js"
 import { normalizeExtractions } from "./normalize.js"
 import { applyTaxonomyOnboarding, lockExistingTaxonomy } from "./onboarding.js"
@@ -23,8 +23,7 @@ program
   .requiredOption("--title <title>", "project title")
   .option("--source <path>", "source path", "sources/story.md")
   .option("--profile <profile>", "novel, screenplay, transcript, or blank", "novel")
-  .option("--model <model>", "AI Gateway model", "openai/gpt-5.4")
-  .option("--recordings <path>", "recorded provider responses")
+  .option("--recordings <path>", "recorded responses for deterministic replay")
   .action(async (directory: string, options: InitOptions) => {
     if (!isProfile(options.profile)) throw new Error(`Unknown profile ${options.profile}`)
     const root = await initializeProject({
@@ -32,7 +31,6 @@ program
       title: options.title,
       source: options.source,
       profile: options.profile,
-      model: options.model,
       ...(options.recordings ? { recordings: options.recordings } : {}),
     })
     print({ root })
@@ -49,10 +47,13 @@ program
 
 program
   .command("discover")
-  .description("Sample the corpus and propose taxonomy extensions")
-  .action(async () => {
+  .description("Validate an OMP discovery response and draft taxonomy decisions")
+  .option("--response <path>", "OMP-produced discovery JSON")
+  .action(async (options: { response?: string }) => {
     const root = await projectRoot()
-    const result = await discoverCorpus(root)
+    const result = await discoverCorpus(root, {
+      ...(options.response ? { responsePath: options.response } : {}),
+    })
     print({ proposals: result.proposals.length })
   })
 
@@ -81,12 +82,25 @@ program
 
 program
   .command("extract")
-  .description("Extract typed, source-grounded records from every segment")
-  .action(async () => {
+  .description("Validate OMP segment responses and collect them in source order")
+  .option("--responses <directory>", "directory containing one OMP response per segment")
+  .action(async (options: { responses?: string }) => {
     const root = await projectRoot()
-    const result = await extractSegments(root)
+    const result = await extractSegments(root, {
+      ...(options.responses ? { responsesDir: options.responses } : {}),
+    })
     print({ extractions: result.length })
   })
+
+const prepare = program
+  .command("prepare")
+  .description("Create self-contained work items for visible OMP agents")
+prepare.command("discovery").action(async () => {
+  print(await prepareDiscoveryWork(await projectRoot()))
+})
+prepare.command("extraction").action(async () => {
+  print(await prepareExtractionWork(await projectRoot()))
+})
 
 program
   .command("normalize")
@@ -151,7 +165,6 @@ interface InitOptions {
   title: string
   source: string
   profile: string
-  model: string
   recordings?: string
 }
 

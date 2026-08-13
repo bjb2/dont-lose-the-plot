@@ -8,8 +8,7 @@ const TOOL_VERSION = "0.1.0"
 export async function startRun(options: {
   root: string
   command: string
-  provider: string
-  model: string | null
+  responseSource: "omp" | "recorded"
   taxonomy?: unknown
   promptVersions?: Record<string, string>
   inputHashes?: Record<string, string>
@@ -25,8 +24,7 @@ export async function startRun(options: {
     toolVersion: TOOL_VERSION,
     taxonomyHash: options.taxonomy ? sha256(stableStringify(options.taxonomy)) : null,
     promptVersions: options.promptVersions ?? {},
-    provider: options.provider,
-    model: options.model,
+    responseSource: options.responseSource,
     inputHashes: options.inputHashes ?? {},
     outputHashes: {},
     error: null,

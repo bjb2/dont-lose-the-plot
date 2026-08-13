@@ -14,7 +14,11 @@ categories:
       - Unnamed crowds
       - Incidental roles without stable identity
     tags: []
-    attributes: {}
+    attributes:
+      character-classification:
+        type: string
+        required: false
+        description: "Discovered corpus attribute: character-classification"
     relations: []
     folder: Characters
     pageTemplate: entity
@@ -86,18 +90,189 @@ categories:
     relations: []
     folder: Events
     pageTemplate: entity
+  - id: game
+    labels:
+      singular: Game
+      plural: Games
+    definition: A named structured game, race, or dance whose procedures, equipment,
+      participant roles, or figures are independently referable.
+    include:
+      - Named competitive or recreational activities with stated procedures
+      - Named dances with figures and participant arrangements
+      - Activities whose unusual equipment or turn structure explains later
+        scenes
+    exclude:
+      - Untitled ordinary play
+      - A one-off social meal without a named structured activity
+      - The occurrence of playing a game when the activity itself has no stable
+        identity
+    tags: []
+    attributes:
+      activity-form:
+        type: string
+        required: false
+        description: Whether the activity is a race, field game, dance, or another
+          stated form.
+      rules:
+        type: object
+        required: false
+        description: The stated procedure, turn order, figures, winning condition, or
+          other durable mechanics.
+      equipment:
+        type: string-list
+        required: false
+        description: Distinctive implements, living pieces, prizes, or partners required
+          by the activity.
+    relations:
+      - played-by
+      - uses-equipment
+      - has-figure
+    folder: Games
+    pageTemplate: entity
+  - id: transformation
+    labels:
+      singular: Transformation
+      plural: Transformations
+    definition: A recurring, independently explainable alteration of a participant’s
+      size, body, or form, together with its trigger, effect, and reversal where
+      stated.
+    include:
+      - Recurring transformations that affect identity, movement, access, or
+        social treatment
+      - Stated consumable or environmental triggers with a durable effect
+      - A transformation type that connects multiple scenes or outcomes
+    exclude:
+      - Ordinary growth or metaphorical change
+      - A single descriptive comparison with no altered state
+      - The individual scene in which a transformation occurs when no recurring
+        phenomenon is involved
+    tags: []
+    attributes:
+      effect:
+        type: string
+        required: false
+        description: The stated change in size, body, or form.
+      trigger:
+        type: entity-ref
+        required: false
+        description: The item, substance, act, or condition stated to produce the
+          transformation.
+      reversal:
+        type: string
+        required: false
+        description: The stated method, condition, or outcome that returns or changes
+          the transformed state.
+    relations:
+      - affects
+      - triggered-by
+      - reversed-by
+    folder: Transformations
+    pageTemplate: entity
+  - id: work
+    labels:
+      singular: Work
+      plural: Works
+    definition: A titled or repeatable poem, song, set of verses, or formal
+      recitation whose wording, performance, or altered version matters in the
+      narrative.
+    include:
+      - Named songs, poems, and formal recitations
+      - A work recalled or performed in more than one scene
+      - A work whose altered wording is discussed or used as evidence
+    exclude:
+      - Untitled everyday dialogue
+      - A character’s unstructured anecdote
+      - A physical manuscript considered only as an object when its text is not
+        independently referable
+    tags: []
+    attributes:
+      work-form:
+        type: string
+        required: false
+        description: The stated form, such as song, poem, verses, or recitation.
+      version-note:
+        type: string
+        required: false
+        description: A stated altered wording, incomplete text, or edition-specific
+          variation.
+    relations:
+      - recited-by
+      - sung-by
+      - is-variant-of
+      - quoted-in
+    folder: Works
+    pageTemplate: entity
+  - id: rule
+    labels:
+      singular: Rule
+      plural: Rules
+    definition: A stated formal rule, decree, or recurring court procedure that
+      governs participation, judgment, punishment, or social conduct outside a
+      named game’s own mechanics.
+    include:
+      - Numbered or quoted court rules
+      - Stated procedural ordering in the court
+      - Repeatedly enforced royal decrees with a defined consequence
+    exclude:
+      - Game-specific mechanics recorded on a Game page
+      - Alice’s ordinary-world safety advice
+      - An isolated request or insult that does not govern conduct
+    tags: []
+    attributes:
+      scope:
+        type: string
+        required: false
+        description: The court, procession, or other social context in which the rule
+          applies.
+      rule-text:
+        type: string
+        required: false
+        description: The stated wording or number of the rule, decree, or procedure.
+      consequence:
+        type: string
+        required: false
+        description: The stated penalty, exclusion, or procedural outcome.
+    relations:
+      - enforced-by
+      - applies-to
+      - governs
+      - violated-by
+    folder: Rules
+    pageTemplate: entity
 passageKinds:
+  - dream-frame
+  - game-instructions
+  - legal-evidence
+  - legal-proceeding
   - quote
+  - riddle
+  - song
+  - verse
+  - wordplay
 relationVocabulary:
   - accuses
   - advises
+  - affects
+  - applies-to
   - asks-for-help
   - attends
+  - enforced-by
   - follows
+  - governs
+  - has-figure
   - introduces
+  - is-variant-of
   - meets
   - orders
   - owns
+  - played-by
   - plays-with
   - proposes
+  - quoted-in
+  - recited-by
+  - reversed-by
+  - sung-by
+  - triggered-by
+  - uses-equipment
+  - violated-by
   - visits

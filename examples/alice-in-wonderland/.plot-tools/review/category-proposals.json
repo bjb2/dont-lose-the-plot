@@ -1,0 +1,317 @@
+{
+  "corpusProfile": {
+    "extractionRisks": [
+      "Talking animals, cards, and personified abstractions can be durable characters rather than ordinary fauna or objects.",
+      "Dream-world claims are framed as Alice's dream at the end and should retain their narrative provenance.",
+      "Embedded verse, songs, riddles, and puns deliberately alter wording or meaning; preserve their source form rather than normalizing them.",
+      "Royal decrees and court procedure are often absurd or contested; record the stated rule and its speaker without treating it as reliable justice.",
+      "Some supplied chapter samples end mid-scene, so absence from a sample is not evidence of non-recurrence."
+    ],
+    "genre": "Children's fantasy novel with a dream frame and nonsense-satirical worldbuilding.",
+    "namingConventions": [
+      "Chapters use numbered headings and titled episodes.",
+      "Characters are named through personal names, descriptive animal names, and court titles.",
+      "Named activities and works retain title-like capitalization or quoted titles.",
+      "Formal court rules may be numbered."
+    ],
+    "structure": "Chaptered episodic journey, largely in dialogue, with embedded verse, songs, games, a court proceeding, and a waking frame."
+  },
+  "proposals": [
+    {
+      "commonRelations": ["played-by", "uses-equipment", "has-figure"],
+      "confidence": 0.96,
+      "definition": "A named structured game, race, or dance whose procedures, equipment, participant roles, or figures are independently referable.",
+      "examples": [
+        {
+          "evidence": "First it marked out a race-course, in a sort of circle, (“the exact shape\ndoesn’t matter,” it said,) and then all the party were placed along the course,\nhere and there. There was no “One, two, three, and away,” but they began\nrunning when they liked, and left off when they liked, so that it was not easy\nto know when the race was over.",
+          "name": "Caucus-race",
+          "segmentId": "primary-0003-c7dce16cd1"
+        },
+        {
+          "evidence": "“Get to your places!” shouted the Queen in a voice of thunder, and people began\nrunning about in all directions, tumbling up against each other; however, they\ngot settled down in a minute or two, and the game began. Alice thought she had\nnever seen such a curious croquet-ground in her life; it was all ridges and\nfurrows; the balls were live hedgehogs, the mallets live flamingoes, and the\nsoldiers had to double themselves up and to stand on their hands and feet, to\nmake the arches.",
+          "name": "Croquet",
+          "segmentId": "primary-0008-a0de9947ea"
+        },
+        {
+          "evidence": "“You may not have lived much under the sea—” (“I haven’t,” said Alice)—“and\nperhaps you were never even introduced to a lobster—” (Alice began to say “I\nonce tasted—” but checked herself hastily, and said “No, never”) “—so you can\nhave no idea what a delightful thing a Lobster Quadrille is!”\n\n\n\n“No, indeed,” said Alice. “What sort of a dance is it?”\n\n\n\n“Why,” said the Gryphon, “you first form into a line along the sea-shore—”\n\n\n\n“Two lines!” cried the Mock Turtle. “Seals, turtles, salmon, and so on; then,\nwhen you’ve cleared all the jelly-fish out of the way—”\n\n\n\n“That generally takes some time,” interrupted the Gryphon.\n\n\n\n“—you advance twice—”\n\n\n\n“Each with a lobster as a partner!” cried the Gryphon.\n\n\n\n“Of course,” the Mock Turtle said: “advance twice, set to partners—”\n\n\n\n“—change lobsters, and retire in same order,” continued the Gryphon.\n\n\n\n“Then, you know,” the Mock Turtle went on, “you throw the—”\n\n\n\n“The lobsters!” shouted the Gryphon, with a bound into the air.\n\n\n\n“—as far out to sea as you can—”\n\n\n\n“Swim after them!” screamed the Gryphon.\n\n\n\n“Turn a somersault in the sea!” cried the Mock Turtle, capering wildly about.\n\n\n\n“Change lobsters again!” yelled the Gryphon at the top of its voice.\n\n\n\n“Back to land again, and that’s all the first figure,”",
+          "name": "Lobster Quadrille",
+          "segmentId": "primary-0010-51fae369c5"
+        }
+      ],
+      "exclude": [
+        "Untitled ordinary play",
+        "A one-off social meal without a named structured activity",
+        "The occurrence of playing a game when the activity itself has no stable identity"
+      ],
+      "id": "game",
+      "include": [
+        "Named competitive or recreational activities with stated procedures",
+        "Named dances with figures and participant arrangements",
+        "Activities whose unusual equipment or turn structure explains later scenes"
+      ],
+      "labels": {
+        "plural": "Games",
+        "singular": "Game"
+      },
+      "mergeInto": null,
+      "readerValue": "Each named activity has repeatable procedures and distinctive equipment or roles. Dedicated pages let readers retrieve those mechanics and link their occurrences without treating every game as only a transient Event.",
+      "recommendedAs": "category",
+      "sharedAttributes": [
+        {
+          "description": "Whether the activity is a race, field game, dance, or another stated form.",
+          "id": "activity-form",
+          "type": "string"
+        },
+        {
+          "description": "The stated procedure, turn order, figures, winning condition, or other durable mechanics.",
+          "id": "rules",
+          "type": "object"
+        },
+        {
+          "description": "Distinctive implements, living pieces, prizes, or partners required by the activity.",
+          "id": "equipment",
+          "type": "string-list"
+        }
+      ]
+    },
+    {
+      "commonRelations": ["affects", "triggered-by", "reversed-by"],
+      "confidence": 0.95,
+      "definition": "A recurring, independently explainable alteration of a participant’s size, body, or form, together with its trigger, effect, and reversal where stated.",
+      "examples": [
+        {
+          "evidence": "“What a curious feeling!” said Alice; “I must be shutting up like a telescope.”\n\n\n\nAnd so it was indeed: she was now only ten inches high, and her face brightened\nup at the thought that she was now the right size for going through the little\ndoor into that lovely garden. First, however, she waited for a few minutes to\nsee if she was going to shrink any further: she felt a little nervous about\nthis; “for it might end, you know,” said Alice to herself, “in my going out\naltogether, like a candle. I wonder what I should be like then?” And she tried\nto fancy what the flame of a candle is like after the candle is blown out, for\nshe could not remember ever having seen such a thing.",
+          "name": "Alice’s shrinking",
+          "segmentId": "primary-0001-87acee8cf1"
+        },
+        {
+          "evidence": "“One side will make you grow taller, and\nthe other side will make you grow shorter.”\n\n\n\n“One side of what? The other side of what?” thought Alice to\nherself.\n\n\n\n“Of the mushroom,” said the Caterpillar, just as if she had asked it aloud; and\nin another moment it was out of sight.",
+          "name": "Mushroom size effects",
+          "segmentId": "primary-0005-121416e6bb"
+        },
+        {
+          "evidence": "“Rule Forty-two.\nAll persons more than a mile high to leave the court.”\n\n\n\nEverybody looked at Alice.\n\n\n\n“I’m not a mile high,” said Alice.\n\n\n\n“You are,” said the King.\n\n\n\n“Nearly two miles high,” added the Queen.\n\n\n\n“Well, I shan’t go, at any rate,” said Alice: “besides, that’s not a regular\nrule: you invented it just now.”\n\n\n\n“It’s the oldest rule in the book,” said the King.\n\n\n\n“Then it ought to be Number One,” said Alice.",
+          "name": "Alice’s court height",
+          "segmentId": "primary-0012-e55373cbf3"
+        }
+      ],
+      "exclude": [
+        "Ordinary growth or metaphorical change",
+        "A single descriptive comparison with no altered state",
+        "The individual scene in which a transformation occurs when no recurring phenomenon is involved"
+      ],
+      "id": "transformation",
+      "include": [
+        "Recurring transformations that affect identity, movement, access, or social treatment",
+        "Stated consumable or environmental triggers with a durable effect",
+        "A transformation type that connects multiple scenes or outcomes"
+      ],
+      "labels": {
+        "plural": "Transformations",
+        "singular": "Transformation"
+      },
+      "mergeInto": null,
+      "readerValue": "Alice’s changes recur in separate scenes, have several stated triggers, and determine access and court treatment. A Transformation page can connect mechanisms and consequences that would otherwise be buried in Items and Events.",
+      "recommendedAs": "category",
+      "sharedAttributes": [
+        {
+          "description": "The stated change in size, body, or form.",
+          "id": "effect",
+          "type": "string"
+        },
+        {
+          "description": "The item, substance, act, or condition stated to produce the transformation.",
+          "id": "trigger",
+          "type": "entity-ref"
+        },
+        {
+          "description": "The stated method, condition, or outcome that returns or changes the transformed state.",
+          "id": "reversal",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "commonRelations": ["recited-by", "sung-by", "is-variant-of", "quoted-in"],
+      "confidence": 0.92,
+      "definition": "A titled or repeatable poem, song, set of verses, or formal recitation whose wording, performance, or altered version matters in the narrative.",
+      "examples": [
+        {
+          "evidence": "“Repeat, ‘You are old, Father William,’” said the Caterpillar.\n\n\n\nAlice folded her hands, and began:—\n\n\n\n“You are old, Father William,” the young man said,\n\n “And your hair has become very white;\n\nAnd yet you incessantly stand on your head—\n\n Do you think, at your age, it is right?”\n\n\n\n“In my youth,” Father William replied to his son,\n\n “I feared it might injure the brain;\n\nBut, now that I’m perfectly sure I have none,\n\n Why, I do it again and again.”\n\n\n\n“You are old,” said the youth, “as I mentioned before,\n\n And have grown most uncommonly fat;\n\nYet you turned a back-somersault in at the door—\n\n Pray, what is the reason of that?”\n\n\n\n“In my youth,” said the sage, as he shook his grey locks,\n\n “I kept all my limbs very supple\n\nBy the use of this ointment—one shilling the box—\n\n Allow me to sell you a couple?”\n\n\n\n“You are old,” said the youth, “and your jaws are too weak\n\n For anything tougher than suet;\n\nYet you finished the goose, with the bones and the beak—\n\n Pray, how did you manage to do it?”\n\n\n\n“In my youth,” said his father, “I took to the law,\n\n And argued each case with my wife;\n\nAnd the muscular strength, which it gave to my jaw,\n\n Has lasted the rest of my life.”\n\n\n\n“You are old,” said the youth, “one would hardly suppose\n\n That your eye was as steady as ever;\n\nYet you balanced an eel on the end of your nose—\n\n What made you so awfully clever?”\n\n\n\n“I have answered three questions, and that is enough,”\n\n Said his father; “don’t give yourself airs!\n\nDo you think I can listen all day to such stuff?\n\n Be off, or I’ll kick you down stairs!”\n\n\n\n“That is not said right,” said the Caterpillar.\n\n\n\n“Not quite right, I’m afraid,” said Alice, timidly; “some of the words\nhave got altered.”\n\n\n\n“It is wrong from beginning to end,” said the Caterpillar decidedly, and there\nwas silence for some minutes.\n\n\n\nThe Caterpillar was the first to speak.\n\n\n\n“What size do you want to be?” it asked.\n\n\n\n“Oh, I’m not particular as to size,” Alice hastily replied; “only one doesn’t\nlike changing so often, you know.”\n\n\n\n“I don’t know,” said the Caterpillar.\n\n\n\nAlice said nothing: she had never been so much contradicted in her life before,\nand she felt that she was losing her temper.\n\n\n\n“Are you content now?” said the Caterpillar.\n\n\n\n“Well, I should like to be a little larger, sir, if you wouldn’t mind,”\nsaid Alice: “three inches is such a wretched height to be.”\n\n\n\n“It is a very good height indeed!” said the Caterpillar angrily, rearing itself\nupright as it spoke (it was exactly three inches high).\n\n\n\n“But I’m not used to it!” pleaded poor Alice in a piteous tone. And she thought\nof herself, “I wish the creatures wouldn’t be so easily offended!”\n\n\n\n“You’ll get used to it in time,” said the Caterpillar; and it put the hookah\ninto its mouth and began smoking again.\n\n\n\nThis time Alice waited patiently until it chose to speak again. In a minute or\ntwo the Caterpillar took the hookah out of its mouth and yawned once or twice,\nand shook itself. Then it got down off the mushroom, and crawled away in the\ngrass, merely remarking as it went, “One side will make you grow taller, and\nthe other side will make you grow shorter.”\n\n\n\n“One side of what? The other side of what?” thought Alice to\nherself.\n\n\n\n“Of the mushroom,” said the Caterpillar, just as if she had asked it aloud; and\nin another moment it was out of sight.\n\n\n\nAlice remained looking thoughtfully at the mushroom for a minute, trying to\nmake out which were the two sides of it; and as it was perfectly round, she\nfound this a very difficult question. However, at last she stretched her arms\nround it as far as they would go, and broke off a bit of the edge with each\nhand.\n\n\n\n“And now which is which?” she said to herself, and nibbled a little of the\nright-hand bit to try the effect: the next moment she felt a violent blow\nunderneath her chin: it had struck her foot!\n\n\n\nShe was a good deal frightened by this very sudden change, but she felt that\nthere was no time to be lost, as she was shrinking rapidly; so she set to work\nat once to eat some of the other bit. Her chin was pressed so closely against\nher foot, that there was hardly room to open her mouth; but she did it at last,\nand managed to swallow a morsel of the lefthand bit.\n\n\n\n* * * * * * *\n\n\n\n * * * * * *\n\n\n\n* * * * * * *\n\n\n\n\n“Come, my head’s free at last!” said Alice in a tone of delight, which changed\ninto alarm in another moment, when she found that her shoulders were nowhere to\nbe found: all she could see, when she looked down, was an immense length of\nneck, which seemed to rise like a stalk out of a sea of green leaves that lay\nfar below her.\n\n\n\n“What can all that green stuff be?” said Alice. “And where have\nmy shoulders got to? And oh, my poor hands, how is it I can’t see you?” She was\nmoving them about as she spoke, but no result seemed to follow, except a little\nshaking among the distant green leaves.\n\n\n\nAs there seemed to be no chance of getting her hands up to her head, she tried\nto get her head down to them, and was delighted to find that her neck would\nbend about easily in any direction, like a serpent. She had just succeeded in\ncurving it down into a graceful zigzag, and was going to dive in among the\nleaves, which she found to be nothing but the tops of the trees under which she\nhad been wandering, when a sharp hiss made her draw back in a hurry: a large\npigeon had flown into her face, and was beating her violently with its wings.\n\n\n\n“Serpent!” screamed the Pigeon.\n\n\n\n“I’m not a serpent!” said Alice indignantly. “Let me alone!”\n\n\n\n“Serpent, I say again!” repeated the Pigeon, but in a more subdued tone, and\nadded with a kind of sob, “I’ve tried every way, and nothing seems to suit\nthem!”\n\n\n\n“I haven’t the least idea what you’re talking about,” said Alice.\n\n\n\n“I’ve tried the roots of trees, and I’ve tried banks, and I’ve tried hedges,”\nthe Pigeon went on, without attending to her; “but those serpents! There’s no\npleasing them!”\n\n\n\nAlice was more and more puzzled, but she thought there was no use in saying\nanything more till the Pigeon had finished.\n\n\n\n“As if it wasn’t trouble enough hatching the eggs,” said the Pigeon; “but I\nmust be on the look-out for serpents night and day! Why, I haven’t had a wink\nof sleep these three weeks!”\n\n\n\n“I’m very sorry you’ve been annoyed,” said Alice, who was beginning to see its\nmeaning.\n\n\n\n“And just as I’d taken the highest tree in the wood,” continued the Pigeon,\nraising its voice to a shriek, “and just as I was thinking I should be free of\nthem at last, they must needs come wriggling down from the sky! Ugh, Serpent!”\n\n\n\n“But I’m not a serpent, I tell you!” said Alice. “I’m a—I’m a—”\n\n\n\n“Well! What are you?” said the Pigeon. “I can see you’re trying to\ninvent something!”\n\n\n\n“I—I’m a little girl,” said Alice, rather doubtfully, as she remembered the\nnumber of changes she had gone through that day.\n\n\n\n“A likely story indeed!” said the Pigeon in a tone of the deepest contempt.\n“I’ve seen a good many little girls in my time, but never one with such\na neck as that! No, no! You’re a serpent; and there’s no use denying it. I\nsuppose you’ll be telling me next that you never tasted an egg!”\n\n\n\n“I have tasted eggs, certainly,” said Alice, who was a very truthful\nchild; “but little girls eat eggs quite as much as serpents do, you know.”\n\n\n\n“I don’t believe it,” said the Pigeon; “but if they do, why then they’re a kind\nof serpent, that’s all I can say.”\n\n\n\nThis was such a new idea to Alice, that she was quite silent for a minute or\ntwo, which gave the Pigeon the opportunity of adding, “You’re looking for eggs,\nI know that well enough; and what does it matter to me whether you’re a\nlittle girl or a serpent?”\n\n\n\n“It matters a good deal to me,” said Alice hastily; “but I’m not looking\nfor eggs, as it happens; and if I was, I shouldn’t want yours: I don’t\nlike them raw.”\n\n\n\n“Well, be off, then!” said the Pigeon in a sulky tone, as it settled down again\ninto its nest. Alice crouched down among the trees as well as she could, for\nher neck kept getting entangled among the branches, and every now and then she\nhad to stop and untwist it. After a while she remembered that she still held\nthe pieces of mushroom in her hands, and she set to work very carefully,\nnibbling first at one and then at the other, and growing sometimes taller and\nsometimes shorter, until she had succeeded in bringing herself down to her\nusual height.\n\n\n\nIt was so long since she had been anything near the right size, that it felt\nquite strange at first; but she got used to it in a few minutes, and began\ntalking to herself, as usual. “Come, there’s half my plan done now! How\npuzzling all these changes are! I’m never sure what I’m going to be, from one\nminute to another! However, I’ve got back to my right size: the next thing is,\nto get into that beautiful garden—how is that to be done, I wonder?” As\nshe said this, she came suddenly upon an open place, with a little house in it\nabout four feet high. “Whoever lives there,” thought Alice, “it’ll never do to\ncome upon them this size: why, I should frighten them out of their\nwits!” So she began nibbling at the righthand bit again, and did not venture to\ngo near the house till she had brought herself down to nine inches high.",
+          "name": "You are old, Father William",
+          "segmentId": "primary-0005-121416e6bb"
+        },
+        {
+          "evidence": "but she gained courage as she went on. Her\nlisteners were perfectly quiet till she got to the part about her repeating\n“You are old, Father William,” to the Caterpillar, and the words all\ncoming different, and then the Mock Turtle drew a long breath, and said “That’s\nvery curious.”",
+          "name": "You are old, Father William (altered recitation)",
+          "segmentId": "primary-0010-51fae369c5"
+        },
+        {
+          "evidence": "“Oh, a song, please, if the Mock Turtle would be so kind,” Alice replied, so\neagerly that the Gryphon said, in a rather offended tone, “Hm! No accounting\nfor tastes! Sing her ‘Turtle Soup,’ will you, old fellow?”",
+          "name": "Turtle Soup",
+          "segmentId": "primary-0010-51fae369c5"
+        }
+      ],
+      "exclude": [
+        "Untitled everyday dialogue",
+        "A character’s unstructured anecdote",
+        "A physical manuscript considered only as an object when its text is not independently referable"
+      ],
+      "id": "work",
+      "include": [
+        "Named songs, poems, and formal recitations",
+        "A work recalled or performed in more than one scene",
+        "A work whose altered wording is discussed or used as evidence"
+      ],
+      "labels": {
+        "plural": "Works",
+        "singular": "Work"
+      },
+      "mergeInto": null,
+      "readerValue": "These works have durable titles and performances, and one is explicitly recalled with altered wording in a later scene. Pages preserve the text’s identity and variants instead of reducing quotations to incidental Item metadata.",
+      "recommendedAs": "category",
+      "sharedAttributes": [
+        {
+          "description": "The stated form, such as song, poem, verses, or recitation.",
+          "id": "work-form",
+          "type": "string"
+        },
+        {
+          "description": "A stated altered wording, incomplete text, or edition-specific variation.",
+          "id": "version-note",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "commonRelations": ["enforced-by", "applies-to", "governs", "violated-by"],
+      "confidence": 0.87,
+      "definition": "A stated formal rule, decree, or recurring court procedure that governs participation, judgment, punishment, or social conduct outside a named game’s own mechanics.",
+      "examples": [
+        {
+          "evidence": "“Rule Forty-two.\nAll persons more than a mile high to leave the court.”\n\n\n\nEverybody looked at Alice.\n\n\n\n“I’m not a mile high,” said Alice.\n\n\n\n“You are,” said the King.\n\n\n\n“Nearly two miles high,” added the Queen.\n\n\n\n“Well, I shan’t go, at any rate,” said Alice: “besides, that’s not a regular\nrule: you invented it just now.”\n\n\n\n“It’s the oldest rule in the book,” said the King.\n\n\n\n“Then it ought to be Number One,” said Alice.",
+          "name": "Rule Forty-two",
+          "segmentId": "primary-0012-e55373cbf3"
+        },
+        {
+          "evidence": "“No, no!” said the Queen. “Sentence first—verdict afterwards.”\n\n\n\n“Stuff and nonsense!” said Alice loudly. “The idea of having the sentence\nfirst!”\n\n\n\n“Hold your tongue!” said the Queen, turning purple.\n\n\n\n“I won’t!” said Alice.\n\n\n\n“Off with her head!” the Queen shouted at the top of her voice. Nobody moved.\n\n\n\n“Who cares for you?” said Alice, (she had grown to her full size by this time).\n“You’re nothing but a pack of cards!”\n\n\n\nAt this the whole pack rose up into the air, and came flying down upon her: she\ngave a little scream, half of fright and half of anger, and tried to beat them\noff, and found herself lying on the bank, with her head in the lap of her\nsister, who was gently brushing away some dead leaves that had fluttered down\nfrom the trees upon her face.\n\n\n\n“Wake up, Alice dear!” said her sister; “Why, what a long sleep you’ve had!”\n\n\n\n“Oh, I’ve had such a curious dream!” said Alice, and she told her sister, as\nwell as she could remember them, all these strange Adventures of hers that you\nhave just been reading about; and when she had finished, her sister kissed her,\nand said, “It was a curious dream, dear, certainly: but now run in to\nyour tea; it’s getting late.” So Alice got up and ran off, thinking while she\nran, as well she might, what a wonderful dream it had been.\n\n\n\n\nBut her sister sat still just as she left her, leaning her head on her hand,\nwatching the setting sun, and thinking of little Alice and all her wonderful\nAdventures, till she too began dreaming after a fashion, and this was her\ndream:—\n\n\n\nFirst, she dreamed of little Alice herself, and once again the tiny hands were\nclasped upon her knee, and the bright eager eyes were looking up into hers—she\ncould hear the very tones of her voice, and see that queer little toss of her\nhead to keep back the wandering hair that would always get into her\neyes—and still as she listened, or seemed to listen, the whole place around her\nbecame alive with the strange creatures of her little sister’s dream.\n\n\n\nThe long grass rustled at her feet as the White Rabbit hurried by—the\nfrightened Mouse splashed his way through the neighbouring pool—she could hear\nthe rattle of the teacups as the March Hare and his friends shared their\nnever-ending meal, and the shrill voice of the Queen ordering off her\nunfortunate guests to execution—once more the pig-baby was sneezing on the\nDuchess’s knee, while plates and dishes crashed around it—once more the shriek\nof the Gryphon, the squeaking of the Lizard’s slate-pencil, and the choking of\nthe suppressed guinea-pigs, filled the air, mixed up with the distant sobs of\nthe miserable Mock Turtle.\n\n\n\nSo she sat on, with closed eyes, and half believed herself in Wonderland,\nthough she knew she had but to open them again, and all would change to dull\nreality—the grass would be only rustling in the wind, and the pool rippling to\nthe waving of the reeds—the rattling teacups would change to tinkling\nsheep-bells, and the Queen’s shrill cries to the voice of the shepherd boy—and\nthe sneeze of the baby, the shriek of the Gryphon, and all the other queer\nnoises, would change (she knew) to the confused clamour of the busy\nfarm-yard—while the lowing of the cattle in the distance would take the place\nof the Mock Turtle’s heavy sobs.\n\n\n\nLastly, she pictured to herself how this same little sister of hers would, in\nthe after-time, be herself a grown woman; and how she would keep, through all\nher riper years, the simple and loving heart of her childhood: and how she\nwould gather about her other little children, and make their eyes bright\nand eager with many a strange tale, perhaps even with the dream of Wonderland\nof long ago: and how she would feel with all their simple sorrows, and find a\npleasure in all their simple joys, remembering her own child-life, and the\nhappy summer days.\n\n\nTHE END\n</SOURCE_SAMPLE>\n\nIdentify recurring narrative structures that the existing taxonomy cannot express well. Audit worldbuilding as well as plot: named systems, beliefs, roles, social rules, species distinctions, transformations, games, rituals, texts, and other concepts a reader may need to revisit. For each proposed category, explain why it deserves stable identity and pages rather than a tag or attribute. Also propose useful relationship predicates and passage kinds. Use lowercase kebab-case IDs.\n\nBefore returning, make a second pass over every sample and ask which recurring reader-useful structure would be lost if extraction were limited to the starter categories. Do not force new categories merely to increase counts, but do not mistake a compact starter ontology for a completeness target.",
+          "name": "Sentence-before-verdict procedure",
+          "segmentId": "primary-0012-e55373cbf3"
+        },
+        {
+          "evidence": "The players all played at once without waiting for turns, quarrelling all the\nwhile, and fighting for the hedgehogs; and in a very short time the Queen was\nin a furious passion, and went stamping about, and shouting “Off with his\nhead!” or “Off with her head!” about once in a minute.",
+          "name": "Royal beheading decree",
+          "segmentId": "primary-0008-a0de9947ea"
+        }
+      ],
+      "exclude": [
+        "Game-specific mechanics recorded on a Game page",
+        "Alice’s ordinary-world safety advice",
+        "An isolated request or insult that does not govern conduct"
+      ],
+      "id": "rule",
+      "include": [
+        "Numbered or quoted court rules",
+        "Stated procedural ordering in the court",
+        "Repeatedly enforced royal decrees with a defined consequence"
+      ],
+      "labels": {
+        "plural": "Rules",
+        "singular": "Rule"
+      },
+      "mergeInto": null,
+      "readerValue": "The court supplies a numbered rule, an explicit procedural order, and a repeatedly invoked penalty. Individual rule pages preserve wording, authority, scope, and contested application instead of flattening them into generic Events.",
+      "recommendedAs": "category",
+      "sharedAttributes": [
+        {
+          "description": "The court, procession, or other social context in which the rule applies.",
+          "id": "scope",
+          "type": "string"
+        },
+        {
+          "description": "The stated wording or number of the rule, decree, or procedure.",
+          "id": "rule-text",
+          "type": "string"
+        },
+        {
+          "description": "The stated penalty, exclusion, or procedural outcome.",
+          "id": "consequence",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "commonRelations": [],
+      "confidence": 0.93,
+      "definition": "A character-level classification that records stated physical form and durable social or court role without creating a separate page for each kind or office.",
+      "examples": [
+        {
+          "evidence": "First came ten soldiers carrying clubs; these were all shaped like the three\ngardeners, oblong and flat, with their hands and feet at the corners: next the\nten courtiers; these were ornamented all over with diamonds, and walked two and\ntwo, as the soldiers did. After these came the royal children; there were ten\nof them, and the little dears came jumping merrily along hand in hand, in\ncouples: they were all ornamented with hearts. Next came the guests, mostly\nKings and Queens, and among them Alice recognised the White Rabbit: it was\ntalking in a hurried nervous manner, smiling at everything that was said, and\nwent by without noticing her. Then followed the Knave of Hearts, carrying the\nKing’s crown on a crimson velvet cushion; and, last of all this grand\nprocession, came THE KING AND QUEEN OF HEARTS.",
+          "name": "Card embodiment and court roles",
+          "segmentId": "primary-0008-a0de9947ea"
+        },
+        {
+          "evidence": "“I—I’m a little girl,” said Alice, rather doubtfully, as she remembered the\nnumber of changes she had gone through that day.\n\n\n\n“A likely story indeed!” said the Pigeon in a tone of the deepest contempt.\n“I’ve seen a good many little girls in my time, but never one with such\na neck as that! No, no! You’re a serpent; and there’s no use denying it. I\nsuppose you’ll be telling me next that you never tasted an egg!”\n\n\n\n“I have tasted eggs, certainly,” said Alice, who was a very truthful\nchild; “but little girls eat eggs quite as much as serpents do, you know.”\n\n\n\n“I don’t believe it,” said the Pigeon; “but if they do, why then they’re a kind\nof serpent, that’s all I can say.”",
+          "name": "Girl and serpent classifications",
+          "segmentId": "primary-0005-121416e6bb"
+        }
+      ],
+      "exclude": [
+        "An inferred biological classification not stated in the text",
+        "Temporary placement in an unnamed crowd",
+        "A role that has its own named organization and stable collective identity"
+      ],
+      "id": "character-classification",
+      "include": [
+        "Stated bodily kinds or embodiments that affect identification or treatment",
+        "Court, legal, or ceremonial roles assigned to a character",
+        "Character classifications visibly used to organize a collective"
+      ],
+      "labels": {
+        "plural": "Character classifications",
+        "singular": "Character classification"
+      },
+      "mergeInto": "character",
+      "readerValue": "Form and role distinguish otherwise similar participants and explain court behavior, but neither needs independent aliases, provenance, or pages. Keep them as Character attributes so readers can filter people, animals, cards, and offices without multiplying categories.",
+      "recommendedAs": "attribute",
+      "sharedAttributes": [
+        {
+          "description": "The stated physical kind or embodiment, such as little girl, serpent, animal, or card-like figure.",
+          "id": "form",
+          "type": "string"
+        },
+        {
+          "description": "Stated court, legal, ceremonial, or occupational role, such as King, Queen, Knave, soldier, courtier, gardener, or juryman.",
+          "id": "social-role",
+          "type": "string-list"
+        }
+      ]
+    }
+  ],
+  "proposedPassageKinds": [
+    "verse",
+    "song",
+    "riddle",
+    "game-instructions",
+    "legal-proceeding",
+    "legal-evidence",
+    "dream-frame",
+    "wordplay"
+  ],
+  "proposedRelations": [
+    "played-by",
+    "uses-equipment",
+    "has-figure",
+    "affects",
+    "triggered-by",
+    "reversed-by",
+    "recited-by",
+    "sung-by",
+    "is-variant-of",
+    "quoted-in",
+    "enforced-by",
+    "applies-to",
+    "governs",
+    "violated-by"
+  ]
+}

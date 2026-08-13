@@ -28,28 +28,6 @@
       "enum": ["novel", "screenplay", "transcript", "blank"],
       "type": "string"
     },
-    "provider": {
-      "oneOf": [
-        {
-          "additionalProperties": false,
-          "properties": {
-            "kind": { "const": "gateway", "type": "string" },
-            "model": { "minLength": 1, "type": "string" }
-          },
-          "required": ["kind", "model"],
-          "type": "object"
-        },
-        {
-          "additionalProperties": false,
-          "properties": {
-            "kind": { "const": "recorded", "type": "string" },
-            "recordings": { "minLength": 1, "type": "string" }
-          },
-          "required": ["kind", "recordings"],
-          "type": "object"
-        }
-      ]
-    },
     "publication": {
       "additionalProperties": false,
       "properties": {
@@ -64,6 +42,7 @@
       "required": ["includeExcerpts", "maxExcerptCharacters"],
       "type": "object"
     },
+    "recordings": { "minLength": 1, "type": "string" },
     "schemaVersion": { "const": 1, "type": "number" },
     "scope": {
       "additionalProperties": false,
@@ -115,7 +94,6 @@
     "scope",
     "processing",
     "publication",
-    "provider",
     "output"
   ],
   "type": "object"

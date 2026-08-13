@@ -24,36 +24,47 @@ The synthetic Clockwork Harbor text exists only under `test/fixtures/` to test d
 
 ## Install and initialize
 
-Requires Node.js 22 or newer.
+Requires Node.js 22 or newer and an authenticated [Oh My Pi](https://github.com/can1357/oh-my-pi) installation.
 
 ```sh
 npm install -g dont-lose-the-plot
 plot-tools init my-book \
   --title "My Book" \
   --source sources/book.epub \
-  --profile novel \
-  --model openai/gpt-5.4
+  --profile novel
 cd my-book
+omp
 ```
 
-Set `AI_GATEWAY_API_KEY` for local Vercel AI Gateway access. Vercel-hosted environments may use OIDC instead. The provider and model are explicit in `plot-tools.yml`; recorded responses are also supported for deterministic testing.
+Then ask OMP:
 
-## Workflow
+> Build this book into a source-grounded narrative graph and website.
 
-```sh
+`plot-tools init` installs a project skill at `.omp/skills/dont-lose-the-plot/SKILL.md`. OMP loads that playbook, keeps the workflow interactive, and shows its tools and extraction subagents in the terminal. Select or switch models through OMP as usual; `plot-tools` has no model SDK, provider integration, API key, or hidden inference process.
+
+## Interactive workflow
+
+OMP visibly orchestrates the deterministic CLI:
+
+```text
 plot-tools ingest
-plot-tools discover
-# Review .plot-tools/review/taxonomy-decisions.yml
+plot-tools prepare discovery
+OMP task agent → .plot-tools/responses/discovery.json
+plot-tools discover --response .plot-tools/responses/discovery.json
+human taxonomy review
 plot-tools onboard
-plot-tools extract
+plot-tools prepare extraction
+OMP task agents → one response JSON per segment
+plot-tools extract --responses .plot-tools/responses/extractions
 plot-tools normalize
 plot-tools render
 plot-tools verify
-plot-tools site init --base-url username.github.io/repository
 plot-tools site build
 ```
 
-For an established hand-authored taxonomy, run `plot-tools lock` instead of discovery and onboarding. `plot-tools build` runs ingestion, extraction, normalization, rendering, and verification after a taxonomy has been locked.
+The generated work items are self-contained: each names its output path, embeds the versioned prompt, references its JSON schema, and includes only the source text needed for that decision. `processing.concurrency` limits each visible extraction-subagent batch (default `4`, maximum `32`). The collector validates every response and restores source order regardless of subagent completion order.
+
+For an established hand-authored taxonomy, OMP runs `plot-tools lock` instead of discovery and onboarding. A project with a `recordings` path is a deterministic replay fixture; it can run `discover`, `extract`, or `build` without AI.
 
 ### 1. Ingestion
 
@@ -76,9 +87,9 @@ Corpus-specific concepts, texts, creatures, rituals, powers, protocols, or other
 
 ### 3. Structured extraction
 
-Prompts and Zod schemas are versioned in the package. The Vercel AI SDK requests schema-constrained output through AI Gateway. Source text is delimited as untrusted data, evidence excerpts must be verbatim, and extracted taxonomy values must belong to the lock.
+Prompts and Zod schemas are versioned in the package. OMP task agents read generated work files and write schema-constrained response JSON while their progress remains visible in the terminal. Source text is delimited as untrusted data, evidence excerpts must be verbatim, and extracted taxonomy values must belong to the lock.
 
-Segments fan out through a bounded worker pool controlled by `processing.concurrency` (default `4`, maximum `32`). Responses are reconciled into source order before normalization, so provider latency does not change canonical output order.
+The deterministic collector rejects missing, malformed, mismatched, or out-of-taxonomy responses. It then writes one raw response per segment and reconciles all responses into source order before normalization.
 
 ### 4. Canonical graph
 
@@ -91,16 +102,19 @@ Normalization conservatively merges exact category/name or unambiguous alias mat
 ## Project layout
 
 ```text
-plot-tools.yml                 project, provider, scope, publication, outputs
+plot-tools.yml                 project, scope, publication, outputs
 taxonomy.yml                   reviewed working taxonomy
 taxonomy.lock.json             extraction contract and hash
 sources/                       source EPUB, Markdown, or text
-data/segments.jsonl            ordered source units
-data/extractions.jsonl         schema-valid model output
-data/*.jsonl                   canonical graph artifacts
-.plot-tools/runs/              auditable run manifests
-.plot-tools/raw/               one raw response per segment
+.omp/skills/                   interactive OMP orchestration playbook
+.plot-tools/work/              self-contained agent work items and schemas
+.plot-tools/responses/         OMP-produced structured responses
+.plot-tools/runs/              auditable deterministic run manifests
+.plot-tools/raw/               one validated response per segment
 .plot-tools/review/            taxonomy decisions and review queues
+data/segments.jsonl            ordered source units
+data/extractions.jsonl         schema-valid collected responses
+data/*.jsonl                   canonical graph artifacts
 content/                       generated Obsidian vault
 site/public/                   generated Quartz website
 ```
@@ -124,7 +138,7 @@ Warnings remain visible in `.plot-tools/verification-report.json` but do not fai
 
 ## Reproducibility and privacy
 
-Run manifests record tool version, model/provider, prompt versions, taxonomy hash, input hashes, output hashes, timestamps, and failures. Generated pages never expose provider credentials or raw model responses. Excerpt publication is controlled by `publication.includeExcerpts` and `publication.maxExcerptCharacters`.
+Run manifests record the response source, tool and prompt versions, taxonomy hash, input hashes, output hashes, timestamps, and failures. OMP's own session log records the actual selected models, tool calls, and subagents; the deterministic CLI does not pretend to be their provider. Generated pages never expose OMP sessions or raw responses. Excerpt publication is controlled by `publication.includeExcerpts` and `publication.maxExcerptCharacters`.
 
 Only process and publish sources you have the right to use. Public-domain status varies by jurisdiction.
 
