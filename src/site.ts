@@ -76,6 +76,7 @@ export async function buildQuartzSite(root: string): Promise<string> {
   )
   await applyQuartzTheme(checkout, config.title)
   await runQuartzCommand(["plugin", "install", "--from-config"], checkout)
+  await ensureDefaultQuartzTheme(checkout)
 
   const output = resolve(root, config.output.site, "public")
   const buildOutput = join(root, ".plot-tools", `quartz-public-${process.pid}-${Date.now()}`)
@@ -168,6 +169,16 @@ async function applyQuartzTheme(checkout: string, projectTitle: string): Promise
   await cp(
     resolve(import.meta.dirname, "..", "templates", "quartz", "custom.scss"),
     join(checkout, "quartz", "styles", "custom.scss"),
+  )
+}
+
+async function ensureDefaultQuartzTheme(checkout: string): Promise<void> {
+  const packagePath = join(checkout, "node_modules", "@quartz-themes", "default", "package.json")
+  if (await pathExists(packagePath)) return
+  await runPackageCommand(
+    "npm",
+    ["install", "--no-save", "--ignore-scripts", "@quartz-themes/default@1.0.1"],
+    checkout,
   )
 }
 
