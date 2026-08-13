@@ -2,7 +2,7 @@
 
 `dont-lose-the-plot` turns long-form narrative sources into a source-grounded knowledge graph, an Obsidian vault, and a Quartz website. The CLI command is `plot-tools`.
 
-The pipeline is designed for factual reliability rather than unconstrained wiki generation: every extracted record retains segment provenance, quoted evidence must occur verbatim in the source, taxonomy changes require review and locking, and deterministic gates block invalid publication.
+The pipeline is designed for factual reliability: every extracted record retains segment provenance, quoted evidence must occur verbatim in the source, taxonomy changes require review and locking, and deterministic gates block invalid publication.
 
 ## Real example: Alice's Adventures in Wonderland
 
@@ -20,8 +20,7 @@ node ../../dist/cli.js verify
 node ../../dist/cli.js site build
 ```
 
-The synthetic Clockwork Harbor text exists only under `test/fixtures/` to test discovery, custom taxonomy onboarding, deterministic rendering, and intentional failure paths. It is not the showcase example.
-
+The synthetic Clockwork Harbor text exists only under `test/fixtures/` to test discovery, custom taxonomy onboarding, deterministic rendering, and intentional failure paths.
 ## Install and initialize
 
 Requires Node.js 22 or newer and an authenticated [Oh My Pi](https://github.com/can1357/oh-my-pi) installation.
